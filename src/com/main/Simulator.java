@@ -2,10 +2,16 @@ package com.main;
 
 import java.util.Random;
 
+import com.main.car.CarAdHoc;
+import com.main.car.CarInvalide;
+import com.main.car.Car;
+import com.main.car.CarParkingPass;
+
 public class Simulator {
 
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
+	private static final String INVALIDE = "3";
 	
 	
 	private CarQueue entranceCarQueue;
@@ -20,10 +26,12 @@ public class Simulator {
 
     private int tickPause = 100;
 
-    int weekDayArrivals= 100; // average number of arriving cars per hour
+    int weekDayArrivals = 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
+    int weekDayPassArrivals = 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
+    int weekDayInvalide = 18; // average number of arriving cars per hour
+    int weekendInvalide = 5; // average number of arriving cars per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -96,7 +104,9 @@ public class Simulator {
     	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
         addArrivingCars(numberOfCars, AD_HOC);    	
     	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
-        addArrivingCars(numberOfCars, PASS);    	
+        addArrivingCars(numberOfCars, PASS);    
+        numberOfCars=getNumberOfCars(weekDayInvalide, weekendInvalide);
+        addArrivingCars(numberOfCars, INVALIDE);
     }
 
     private void carsEntering(CarQueue queue){
@@ -166,14 +176,19 @@ public class Simulator {
     	switch(type) {
     	case AD_HOC: 
             for (int i = 0; i < numberOfCars; i++) {
-            	entranceCarQueue.addCar(new AdHocCar());
+            	entranceCarQueue.addCar(new CarAdHoc());
             }
             break;
     	case PASS:
             for (int i = 0; i < numberOfCars; i++) {
-            	entrancePassQueue.addCar(new ParkingPassCar());
+            	entrancePassQueue.addCar(new CarParkingPass());
             }
-            break;	            
+            break;
+    	case INVALIDE:
+            for (int i = 0; i < numberOfCars; i++) {
+            	entranceCarQueue.addCar(new CarInvalide());
+            }
+            break;	
     	}
     }
     

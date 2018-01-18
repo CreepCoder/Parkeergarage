@@ -1,6 +1,9 @@
 package com.main;
 
 import javax.swing.*;
+
+import com.main.car.Car;
+
 import java.awt.*;
 
 public class SimulatorView extends JFrame {

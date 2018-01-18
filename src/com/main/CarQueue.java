@@ -2,6 +2,8 @@ package com.main;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import com.main.car.Car;
+
 public class CarQueue {
     private Queue<Car> queue = new LinkedList<>();
 
