@@ -2,10 +2,12 @@ package com.main;
 
 import java.util.Random;
 
+import com.main.car.Car;
 import com.main.car.CarAdHoc;
 import com.main.car.CarInvalide;
-import com.main.car.Car;
 import com.main.car.CarParkingPass;
+import com.main.view.Model;
+import com.main.view.PieView;
 
 public class Simulator {
 
@@ -36,6 +38,8 @@ public class Simulator {
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
+    
+    private Model model;
 
     public Simulator() {
         entranceCarQueue = new CarQueue();
@@ -43,6 +47,7 @@ public class Simulator {
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         simulatorView = new SimulatorView(3, 6, 30);
+        //PieView pieView = new PieView(model);
         run();
     }
 
