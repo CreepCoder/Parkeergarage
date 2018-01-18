@@ -1,0 +1,10 @@
+
+bin/com/main/SimulatorView.class
+.project
+.settings/org.eclipse.jdt.core.prefs
+.classpath
+.gitattributes
+bin/com/main/AdHocCar.class
+bin/com/main/Car.class
+bin/com/main/CarQueue.class
+*.class
