@@ -14,6 +14,9 @@ public class Simulator {
 	private static final String PASS = "2";
 	private static final String INVALIDE = "3";
 	
+	public static int aantalCarAdHoc;
+	public static int aantalCarPass;
+	public static int aantalCarInvalide;
 	
 	private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -37,7 +40,7 @@ public class Simulator {
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
-	private int aantalCarAdHoc;
+	
 
     public Simulator() {
         entranceCarQueue = new CarQueue();
@@ -51,7 +54,6 @@ public class Simulator {
     public void run() {
         for (int i = 0; i < 10000; i++) {
             tick();
-            simulatorView.model.setAantal(aantalCarAdHoc);
         }
     }
 
@@ -186,11 +188,13 @@ public class Simulator {
     	case PASS:
             for (int i = 0; i < numberOfCars; i++) {
             	entrancePassQueue.addCar(new CarParkingPass());
+            	aantalCarPass++;
             }
             break;
     	case INVALIDE:
             for (int i = 0; i < numberOfCars; i++) {
             	entranceCarQueue.addCar(new CarInvalide());
+            	aantalCarInvalide++;
             }
             break;	
     	}
@@ -202,7 +206,12 @@ public class Simulator {
         if (car.getColor() == ColorList.NORMAL_CAR){
         	aantalCarAdHoc--;
         }
-        	
+        else if (car.getColor() == ColorList.PARKING_PASS_CAR){
+        	aantalCarPass--;
+        }
+        else if (car.getColor() == ColorList.INVALIDE_CAR){
+        	aantalCarInvalide--;
+        }	
     }
     
     public static void main(String[] args) {

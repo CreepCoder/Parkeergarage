@@ -6,8 +6,6 @@ import com.main.lib.ColorList;
 import java.awt.*;
 
 public class CarAdHoc extends Car {
-	private int aantalCarAdHoc;
-	
     public CarAdHoc() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);

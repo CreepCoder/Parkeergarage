@@ -1,6 +1,5 @@
 package com.main;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
@@ -10,12 +9,14 @@ import javax.swing.JFrame;
 import com.main.car.Car;
 import com.main.view.ViewCarPark;
 import com.main.view.ViewPie;
+import com.mvc.Controller;
 import com.mvc.Model;
 
 public class SimulatorFrame extends JFrame {
     private ViewCarPark viewCarPark;
     private ViewPie viewPie;
     public Model model;
+    private Controller controller;
     
     private int numberOfFloors;
     private int numberOfRows;
@@ -31,19 +32,22 @@ public class SimulatorFrame extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(850, 700);
         this.setLocationRelativeTo(null);
+        this.setTitle("Project Parkeergarage C");
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
         viewCarPark = new ViewCarPark();
         
         model=new Model();
         viewPie = new ViewPie(model);
-        viewPie.setLocation(50, 400);
-        
+        viewPie.setLocation(60, 400);
+         
+        controller = new Controller(model);
+        controller.setLocation(320, 450);
 
         Container contentPane = getContentPane();
+        contentPane.add(controller);
         contentPane.add(viewPie);
         contentPane.add(viewCarPark);
-
         
         //viewPie.setBounds(230, 10, 200, 200);
         
