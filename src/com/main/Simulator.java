@@ -6,6 +6,7 @@ import com.main.car.Car;
 import com.main.car.CarAdHoc;
 import com.main.car.CarInvalide;
 import com.main.car.CarParkingPass;
+import com.main.lib.ColorList;
 
 public class Simulator {
 
@@ -198,7 +199,10 @@ public class Simulator {
     private void carLeavesSpot(Car car){
     	simulatorView.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
-        aantalCarAdHoc--;
+        if (car.getColor() == ColorList.NORMAL_CAR){
+        	aantalCarAdHoc--;
+        }
+        	
     }
     
     public static void main(String[] args) {
