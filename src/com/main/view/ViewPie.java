@@ -2,10 +2,13 @@ package com.main.view;
 
 import java.awt.*;
 
-@SuppressWarnings("serial")
-public class PieView extends View {
+import com.mvc.Model;
+import com.mvc.View;
 
-	public PieView(Model model) {
+@SuppressWarnings("serial")
+public class ViewPie extends View {
+
+	public ViewPie(Model model) {
 		super(model);
 	}
 
@@ -14,7 +17,7 @@ public class PieView extends View {
 
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 200, 200);
-		g.setColor(Color.BLUE);
+		g.setColor(Color.RED);
 		
 		g.fillArc(10, 10, 180, 180, 0, aantal);
 	}	

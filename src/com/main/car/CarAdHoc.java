@@ -6,6 +6,7 @@ import com.main.lib.ColorList;
 import java.awt.*;
 
 public class CarAdHoc extends Car {
+	private int aantalCarAdHoc;
 	
     public CarAdHoc() {
     	Random random = new Random();

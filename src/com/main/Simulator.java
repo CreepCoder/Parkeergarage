@@ -6,8 +6,6 @@ import com.main.car.Car;
 import com.main.car.CarAdHoc;
 import com.main.car.CarInvalide;
 import com.main.car.CarParkingPass;
-import com.main.view.Model;
-import com.main.view.PieView;
 
 public class Simulator {
 
@@ -20,7 +18,7 @@ public class Simulator {
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
-    private SimulatorView simulatorView;
+    private SimulatorFrame simulatorView;
 
     private int day = 0;
     private int hour = 0;
@@ -38,22 +36,21 @@ public class Simulator {
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
-    
-    private Model model;
+	private int aantalCarAdHoc;
 
     public Simulator() {
         entranceCarQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
-        simulatorView = new SimulatorView(3, 6, 30);
-        //PieView pieView = new PieView(model);
+        simulatorView = new SimulatorFrame(3, 6, 30);
         run();
     }
 
     public void run() {
         for (int i = 0; i < 10000; i++) {
             tick();
+            simulatorView.model.setAantal(aantalCarAdHoc);
         }
     }
 
@@ -182,6 +179,7 @@ public class Simulator {
     	case AD_HOC: 
             for (int i = 0; i < numberOfCars; i++) {
             	entranceCarQueue.addCar(new CarAdHoc());
+            	aantalCarAdHoc++;
             }
             break;
     	case PASS:
@@ -200,6 +198,7 @@ public class Simulator {
     private void carLeavesSpot(Car car){
     	simulatorView.removeCarAt(car.getLocation());
         exitCarQueue.addCar(car);
+        aantalCarAdHoc--;
     }
     
     public static void main(String[] args) {

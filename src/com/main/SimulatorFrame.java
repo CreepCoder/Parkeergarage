@@ -1,20 +1,29 @@
 package com.main;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Graphics;
+
+import javax.swing.JFrame;
 
 import com.main.car.Car;
+import com.main.view.ViewCarPark;
+import com.main.view.ViewPie;
+import com.mvc.Model;
 
-import java.awt.*;
-
-public class SimulatorView extends JFrame {
-    private CarParkView carParkView;
+public class SimulatorFrame extends JFrame {
+    private ViewCarPark viewCarPark;
+    private ViewPie viewPie;
+    public Model model;
+    
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
 
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public SimulatorFrame(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
@@ -24,19 +33,27 @@ public class SimulatorView extends JFrame {
         this.setLocationRelativeTo(null);
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
-        carParkView = new CarParkView();
+        viewCarPark = new ViewCarPark();
+        
+        model=new Model();
+        viewPie = new ViewPie(model);
+        viewPie.setLocation(50, 400);
+        
 
         Container contentPane = getContentPane();
-        contentPane.add(carParkView, BorderLayout.CENTER);
-        pack();
+        contentPane.add(viewPie);
+        contentPane.add(viewCarPark);
+
+        
+        //viewPie.setBounds(230, 10, 200, 200);
+        
+        //pack();
         setVisible(true);
 
         updateView();
     }
 
-    public void updateView() {
-        carParkView.updateView();
-    }
+
     
 	public int getNumberOfFloors() {
         return numberOfFloors;
@@ -142,51 +159,15 @@ public class SimulatorView extends JFrame {
         return true;
     }
     
-    private class CarParkView extends JPanel {
-        
-        private Dimension size;
-        private Image carParkImage;    
     
-        /**
-         * Constructor for objects of class CarPark
-         */
-        public CarParkView() {
-            size = new Dimension(0, 0);
-        }
-    
-        /**
-         * Overridden. Tell the GUI manager how big we would like to be.
-         */
-        public Dimension getPreferredSize() {
-            return new Dimension(850, 700);
-        }
-    
-        /**
-         * Overriden. The car park view component needs to be redisplayed. Copy the
-         * internal image to screen.
-         */
-        public void paintComponent(Graphics g) {
-            if (carParkImage == null) {
-                return;
-            }
-    
-            Dimension currentSize = getSize();
-            if (size.equals(currentSize)) {
-                g.drawImage(carParkImage, 0, 0, null);
-            }
-            else {
-                // Rescale the previous image.
-                g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
-            }
-        }
     
         public void updateView() {
             // Create a new car park image if the size has changed.
-            if (!size.equals(getSize())) {
-                size = getSize();
-                carParkImage = createImage(size.width, size.height);
+            if (!ViewCarPark.size.equals(getSize())) {
+            	ViewCarPark.size = getSize();
+            	ViewCarPark.carParkImage = createImage(ViewCarPark.size.width, ViewCarPark.size.height);
             }
-            Graphics graphics = carParkImage.getGraphics();
+            Graphics graphics = ViewCarPark.carParkImage.getGraphics();
             for(int floor = 0; floor < getNumberOfFloors(); floor++) {
                 for(int row = 0; row < getNumberOfRows(); row++) {
                     for(int place = 0; place < getNumberOfPlaces(); place++) {
@@ -212,5 +193,3 @@ public class SimulatorView extends JFrame {
                     10 - 1); // TODO use dynamic size or constants
         }
     }
-
-}

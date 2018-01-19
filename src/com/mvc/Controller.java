@@ -1,6 +1,7 @@
-package com.main.view;
+package com.mvc;
 
 import javax.swing.*;
+
 import java.awt.event.*;
 
 @SuppressWarnings("serial")

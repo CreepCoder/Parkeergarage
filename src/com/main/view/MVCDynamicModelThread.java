@@ -2,6 +2,10 @@ package com.main.view;
 
 import javax.swing.*;
 
+import com.mvc.Controller;
+import com.mvc.Model;
+import com.mvc.View;
+
 public class MVCDynamicModelThread  {
 	private Model model;
 	private JFrame screen;
@@ -13,7 +17,7 @@ public class MVCDynamicModelThread  {
 		model=new Model();
 		controller=new Controller(model);
 		countview=new CountView(model);
-		pieview=new PieView(model);
+		pieview=new ViewPie(model);
 		screen=new JFrame("Model View Controller/Dynamic Model with thread");
 		screen.setSize(450, 285);
 		screen.setResizable(false);

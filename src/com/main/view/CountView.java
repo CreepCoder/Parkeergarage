@@ -2,6 +2,9 @@ package com.main.view;
 
 import java.awt.*;
 
+import com.mvc.Model;
+import com.mvc.View;
+
 @SuppressWarnings("serial")
 public class CountView extends View {
 
