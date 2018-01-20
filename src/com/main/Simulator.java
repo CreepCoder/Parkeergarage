@@ -61,21 +61,19 @@ public class Simulator {
     }
 
     private void tick() {
-    	if (run == true) {
-    		advanceTime();
-    		handleExit();
-    		updateViews();
-    		ViewPieNumbers.updateNumbers();
-    		// Pause.
-        	try {
-            	Thread.sleep(tickPause);
-        	} catch (InterruptedException e) {
-        		e.printStackTrace();
-        	}
-    		handleEntrance();
-    	}
+    	advanceTime();
+    	handleExit();
+    	updateViews();
+    	ViewPieNumbers.updateNumbers();
+    	// Pause.
+        try {
+           	Thread.sleep(tickPause);
+        } catch (InterruptedException e) {
+        	e.printStackTrace();
+        }
+    	handleEntrance();
     }
-
+   
     private void advanceTime(){
         // Advance the time by one minute.
         minute++;
