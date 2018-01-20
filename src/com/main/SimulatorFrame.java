@@ -12,6 +12,7 @@ import com.main.view.ViewPie;
 import com.mvc.Controller;
 import com.mvc.Model;
 
+@SuppressWarnings("serial")
 public class SimulatorFrame extends JFrame {
     private ViewCarPark viewCarPark;
     private ViewPie viewPie;
@@ -30,19 +31,20 @@ public class SimulatorFrame extends JFrame {
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(850, 700);
+        this.setSize(1200, 800);
         this.setLocationRelativeTo(null);
         this.setTitle("Project Parkeergarage C");
+        this.setResizable(false);
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
         viewCarPark = new ViewCarPark();
         
         model=new Model();
         viewPie = new ViewPie(model);
-        viewPie.setLocation(60, 400);
+        viewPie.setLocation(70, 400);
          
         controller = new Controller(model);
-        controller.setLocation(320, 450);
+        controller.setLocation(15, 700);
 
         Container contentPane = getContentPane();
         contentPane.add(controller);
@@ -51,7 +53,7 @@ public class SimulatorFrame extends JFrame {
         
         //viewPie.setBounds(230, 10, 200, 200);
         
-        //pack();
+        pack();
         setVisible(true);
 
         updateView();

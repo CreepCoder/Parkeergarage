@@ -19,17 +19,22 @@ public class ViewPie extends View {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 200, 200);
 		
+		g.setColor(Color.lightGray);
+		g.fillArc(10, 10, 180, 180, 360-(aantalBerekening(Simulator.aantalCarAdHoc)+aantalBerekening(Simulator.aantalCarPass)+aantalBerekening(Simulator.aantalCarInvalide)), 360);
+		
 		g.setColor(Color.RED);
-		g.fillArc(10, 10, 180, 180, 0, (int) (Simulator.aantalCarAdHoc*0.6666666667));
+		g.fillArc(10, 10, 180, 180, 0, (int) (Simulator.aantalCarAdHoc/1.5));
 		
 		g.setColor(Color.GREEN);
-		g.fillArc(10, 10, 180, 180, (int) (Simulator.aantalCarAdHoc*0.6666666667), (int) (Simulator.aantalCarPass*0.6666666667));
-		
-		if (Simulator.aantalCarInvalide*0.6666666667 < 1 && Simulator.aantalCarInvalide*0.6666666667 > 0.5) {Simulator.aantalCarInvalide++;}
-		//else if (Simulator.aantalCarInvalide < 0.5) {Simulator.aantalCarInvalide--;}
+		g.fillArc(10, 10, 180, 180, (int) (Simulator.aantalCarAdHoc/1.5), (int) (Simulator.aantalCarPass/1.5));
 		
 		g.setColor(Color.BLUE);
-		g.fillArc(10, 10, 180, 180, (int) ((Simulator.aantalCarPass*0.6666666667)+(Simulator.aantalCarAdHoc*0.6666666667)), 
-				(int) (Simulator.aantalCarInvalide*0.6666666667));
+		g.fillArc(10, 10, 180, 180, (int) (Math.floor((aantalBerekening(Simulator.aantalCarAdHoc)+aantalBerekening(Simulator.aantalCarPass)))), 
+				aantalBerekening(Simulator.aantalCarInvalide));
+	}
+	
+	private int aantalBerekening(int aantal) {
+		if (aantal > 0 && aantal <= 1) {return 1;}
+		else {return (int) (Math.floor(aantal/1.5));}
 	}
 }
