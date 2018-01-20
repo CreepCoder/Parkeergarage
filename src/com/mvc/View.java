@@ -11,6 +11,7 @@ public class View extends JPanel {
 		model.addView(this);
 		setSize(200, 200);
 		setVisible(true);
+		setLayout(null);
 	}
 	
 	public void setModel(Model model) {

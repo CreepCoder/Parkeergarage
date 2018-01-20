@@ -7,6 +7,7 @@ import com.main.car.CarAdHoc;
 import com.main.car.CarInvalide;
 import com.main.car.CarParkingPass;
 import com.main.lib.ColorList;
+import com.main.view.ViewPieNumbers;
 
 public class Simulator {
 
@@ -14,6 +15,7 @@ public class Simulator {
 	private static final String PASS = "2";
 	private static final String INVALIDE = "3";
 	
+	public static int aantalLegeVakken = 540;
 	public static int aantalCarAdHoc;
 	public static int aantalCarPass;
 	public static int aantalCarInvalide;
@@ -29,6 +31,7 @@ public class Simulator {
     private int minute = 0;
 
     private int tickPause = 100;
+    public static boolean run = true;
 
     int weekDayArrivals = 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -58,16 +61,19 @@ public class Simulator {
     }
 
     private void tick() {
-    	advanceTime();
-    	handleExit();
-    	updateViews();
-    	// Pause.
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    	handleEntrance();
+    	if (run == true) {
+    		advanceTime();
+    		handleExit();
+    		updateViews();
+    		ViewPieNumbers.updateNumbers();
+    		// Pause.
+        	try {
+            	Thread.sleep(tickPause);
+        	} catch (InterruptedException e) {
+        		e.printStackTrace();
+        	}
+    		handleEntrance();
+    	}
     }
 
     private void advanceTime(){
@@ -183,18 +189,21 @@ public class Simulator {
             for (int i = 0; i < numberOfCars; i++) {
             	entranceCarQueue.addCar(new CarAdHoc());
             	aantalCarAdHoc++;
+            	aantalLegeVakken--;
             }
             break;
     	case PASS:
             for (int i = 0; i < numberOfCars; i++) {
             	entrancePassQueue.addCar(new CarParkingPass());
             	aantalCarPass++;
+            	aantalLegeVakken--;
             }
             break;
     	case INVALIDE:
             for (int i = 0; i < numberOfCars; i++) {
             	entranceCarQueue.addCar(new CarInvalide());
             	aantalCarInvalide++;
+            	aantalLegeVakken--;
             }
             break;	
     	}
@@ -205,12 +214,15 @@ public class Simulator {
         exitCarQueue.addCar(car);
         if (car.getColor() == ColorList.NORMAL_CAR){
         	aantalCarAdHoc--;
+        	aantalLegeVakken++;
         }
         else if (car.getColor() == ColorList.PARKING_PASS_CAR){
         	aantalCarPass--;
+        	aantalLegeVakken++;
         }
         else if (car.getColor() == ColorList.INVALIDE_CAR){
         	aantalCarInvalide--;
+        	aantalLegeVakken++;
         }	
     }
     

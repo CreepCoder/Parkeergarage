@@ -2,6 +2,8 @@ package com.mvc;
 
 import javax.swing.*;
 
+import com.main.Simulator;
+
 import java.awt.event.*;
 
 @SuppressWarnings("serial")

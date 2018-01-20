@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import com.main.car.Car;
 import com.main.view.ViewCarPark;
 import com.main.view.ViewPie;
+import com.main.view.ViewPieNumbers;
 import com.mvc.Controller;
 import com.mvc.Model;
 
@@ -16,8 +17,9 @@ import com.mvc.Model;
 public class SimulatorFrame extends JFrame {
     private ViewCarPark viewCarPark;
     private ViewPie viewPie;
-    public Model model;
+    private Model model;
     private Controller controller;
+    private ViewPieNumbers viewPieNumbers;
     
     private int numberOfFloors;
     private int numberOfRows;
@@ -35,6 +37,7 @@ public class SimulatorFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Project Parkeergarage C");
         this.setResizable(false);
+        this.setBackground(Color.white);
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         
         viewCarPark = new ViewCarPark();
@@ -43,13 +46,20 @@ public class SimulatorFrame extends JFrame {
         viewPie = new ViewPie(model);
         viewPie.setLocation(70, 400);
          
-        controller = new Controller(model);
-        controller.setLocation(15, 700);
+        //controller = new Controller(model);
+        //controller.setLocation(15, 700);
+        //controller.setBackground(Color.white);
+        
+        viewPieNumbers = new ViewPieNumbers(model);
+        viewPieNumbers.setLocation(270, 400);
+        viewPieNumbers.setSize(250,200);
 
         Container contentPane = getContentPane();
-        contentPane.add(controller);
+        //contentPane.add(controller);
         contentPane.add(viewPie);
+        contentPane.add(viewPieNumbers);
         contentPane.add(viewCarPark);
+        
         
         //viewPie.setBounds(230, 10, 200, 200);
         
@@ -179,7 +189,7 @@ public class SimulatorFrame extends JFrame {
                     for(int place = 0; place < getNumberOfPlaces(); place++) {
                         Location location = new Location(floor, row, place);
                         Car car = getCarAt(location);
-                        Color color = car == null ? Color.white : car.getColor();
+                        Color color = car == null ? Color.LIGHT_GRAY : car.getColor();
                         drawPlace(graphics, location, color);
                     }
                 }

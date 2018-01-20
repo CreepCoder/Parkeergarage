@@ -31,6 +31,11 @@ public class ViewPie extends View {
 		g.setColor(Color.BLUE);
 		g.fillArc(10, 10, 180, 180, (int) (Math.floor((aantalBerekening(Simulator.aantalCarAdHoc)+aantalBerekening(Simulator.aantalCarPass)))), 
 				aantalBerekening(Simulator.aantalCarInvalide));
+		
+		g.setColor(Color.black);
+		g.drawLine(1, 1, 200, 1);
+		g.drawLine(1, 1, 1, 199);
+		g.drawLine(1, 199, 200, 199);
 	}
 	
 	private int aantalBerekening(int aantal) {

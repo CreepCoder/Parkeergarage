@@ -2,6 +2,8 @@ package com.mvc;
 
 import java.util.*;
 
+import com.main.Simulator;
+
 public class Model implements Runnable {
 	private int aantal;
 	private List<View> views;
@@ -24,10 +26,12 @@ public class Model implements Runnable {
 	
 	public void start() {
 		new Thread(this).start();
+		Simulator.run=true;
 	}
 	
 	public void stop() {
 		run=false;
+		Simulator.run=false;
 	}
 	
 	public void addView(View view) {
@@ -42,7 +46,7 @@ public class Model implements Runnable {
 	public void run() {
 		run=true;
 		while(run) {
-			setAantal(getAantal()+1);
+			//setAantal(getAantal()+1);
 			try {
 				Thread.sleep(100);
 			} catch (Exception e) {} 
