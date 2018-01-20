@@ -7,11 +7,11 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 
 import com.main.car.Car;
-import com.main.view.ViewCarPark;
-import com.main.view.ViewPie;
-import com.main.view.ViewPieNumbers;
-import com.mvc.Controller;
-import com.mvc.Model;
+import com.mvc.controller.Controller;
+import com.mvc.model.Model;
+import com.mvc.view.ViewCarPark;
+import com.mvc.view.ViewPie;
+import com.mvc.view.ViewPieNumbers;
 
 @SuppressWarnings("serial")
 public class SimulatorFrame extends JFrame {

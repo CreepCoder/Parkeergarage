@@ -1,4 +1,4 @@
-package com.main.view;
+package com.mvc.view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

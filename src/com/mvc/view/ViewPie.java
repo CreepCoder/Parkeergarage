@@ -1,14 +1,17 @@
-package com.main.view;
+package com.mvc.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Shape;
+
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Position.Bias;
 
 import com.main.Simulator;
-import com.mvc.Model;
-import com.mvc.View;
+import com.mvc.model.Model;
 
 @SuppressWarnings("serial")
-public class ViewPie extends View {
+public class ViewPie extends AbstractView {
 
 	
 	public ViewPie(Model model) {

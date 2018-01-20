@@ -1,15 +1,10 @@
-package com.mvc;
+package com.mvc.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Model implements Runnable {
+public class Model extends AbstractModel implements Runnable {
 	private int aantal;
-	private List<View> views;
 	private boolean run;
 	
 	public Model() {
-		views=new ArrayList<View>();
 	}
 	
 	public int getAantal() {
@@ -31,14 +26,6 @@ public class Model implements Runnable {
 		run=false;
 	}
 	
-	public void addView(View view) {
-		views.add(view);
-	}
-	
-	private void notifyViews() {
-		for(View v: views) v.updateView();
-	}
-
 	@Override
 	public void run() {
 		run=true;

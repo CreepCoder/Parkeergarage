@@ -1,4 +1,4 @@
-package com.main.view;
+package com.mvc.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,11 +7,10 @@ import javax.swing.JLabel;
 
 import com.main.Simulator;
 import com.main.lib.ColorList;
-import com.mvc.Model;
-import com.mvc.View;
+import com.mvc.model.Model;
 
 @SuppressWarnings("serial")
-public class ViewPieNumbers extends View {	
+public class ViewPieNumbers extends AbstractView {	
 	private static JLabel aantalCarAdHoc 	 = new JLabel(""+Simulator.aantalCarAdHoc);
 	private static JLabel aantalCarPass 	 = new JLabel(""+Simulator.aantalCarPass);
 	private static JLabel aantalCarInvalide  = new JLabel(""+Simulator.aantalCarInvalide);

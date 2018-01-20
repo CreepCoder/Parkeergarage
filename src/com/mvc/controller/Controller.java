@@ -1,21 +1,21 @@
-package com.mvc;
+package com.mvc.controller;
 
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import com.main.Simulator;
+import javax.swing.JButton;
 
-import java.awt.event.*;
+import com.mvc.model.Model;
 
-@SuppressWarnings("serial")
-public class Controller extends JPanel implements ActionListener {
-	private Model model;
+public class Controller extends AbstractController implements ActionListener {
+	private static final long serialVersionUID = -7413164724294460746L;
 	private JButton mineen;
 	private JButton pluseen;
 	private JButton start;
 	private JButton stop;
 	
 	public Controller(Model model) {
-		this.model=model;
+		super(model);
 		
 		setSize(450, 50);
 		mineen=new JButton("-1");

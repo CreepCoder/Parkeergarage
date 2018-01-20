@@ -7,7 +7,7 @@ import com.main.car.CarAdHoc;
 import com.main.car.CarInvalide;
 import com.main.car.CarParkingPass;
 import com.main.lib.ColorList;
-import com.main.view.ViewPieNumbers;
+import com.mvc.view.ViewPieNumbers;
 
 public class Simulator {
 
