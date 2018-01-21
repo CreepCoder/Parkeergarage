@@ -1,11 +1,12 @@
 package com.car;
 
 import java.util.Random;
+
+import com.lib.ColorList;
+
 import java.awt.*;
 
-public class CarParkingPass extends Car {
-	private static final Color COLOR=Color.blue;
-	
+public class CarParkingPass extends Car {	
     public CarParkingPass() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
@@ -13,7 +14,8 @@ public class CarParkingPass extends Car {
         this.setHasToPay(false);
     }
     
+    // Return the given color
     public Color getColor(){
-    	return COLOR;
+    	return ColorList.CAR_PARKING_PASS;
     }
 }

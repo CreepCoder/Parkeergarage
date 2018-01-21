@@ -7,6 +7,7 @@ import java.awt.Image;
 
 import com.car.Car;
 import com.car.Location;
+import com.lib.ColorList;
 import com.mvc.model.Model;
 
 @SuppressWarnings("serial")
@@ -63,6 +64,7 @@ public class ViewCarPark extends AbstractView {
             // Rescale the previous image.
             g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
         }
+        // Creëer buiten belijning
         g.setColor(Color.black);
         g.drawRect(30, 10, 790, 390);
     }
@@ -79,7 +81,7 @@ public class ViewCarPark extends AbstractView {
                 for(int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
                     Car car = getCarAt(location);
-                    Color color = car == null ? Color.lightGray : car.getColor();
+                    Color color = car == null ? ColorList.LEGE_VAKKEN : car.getColor();
                     drawPlace(graphics, location, color);
                 }
             }

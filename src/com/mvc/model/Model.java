@@ -1,12 +1,13 @@
 package com.mvc.model;
 
-import java.awt.Color;
 import java.util.Random;
 
 import com.car.Car;
 import com.car.CarAdHoc;
 import com.car.CarParkingPass;
 import com.car.Location;
+import com.lib.ColorList;
+import com.lib.CoreVariables;
 import com.main.Parkeergarage;
 import com.mechanic.CarQueue;
 
@@ -51,7 +52,7 @@ public class Model extends AbstractModel implements Runnable {
 	}
 	
 	public void setAantal(int aantal) {
-		if (aantal>=0 && aantal <=10000) {
+		if (aantal>=0 && aantal <=10080) {
 			this.aantal=aantal;
 			notifyViews();
 		}
@@ -78,16 +79,16 @@ public class Model extends AbstractModel implements Runnable {
 		}
 	}
 	
+	// Tick zorgt ervoor dat alles geüpdate wordt. Dit gebeurt na elke stap en wordt ook gebruikt door de knop +1
 	public void tick() {
     	advanceTime();
     	handleExit();
     	updateViews();
-    	Parkeergarage.viewCarPark.updateView();	
+    	Parkeergarage.viewcarpark.updateView();	
 		try {
-			Thread.sleep(20);
+			Thread.sleep(CoreVariables.simulatorSpeed);
 		} catch (Exception e) {}
 		handleEntrance();
-		//Parkeergarage.viewCarPark.updateView();	
 	}
 
 	    private void advanceTime(){
@@ -120,9 +121,9 @@ public class Model extends AbstractModel implements Runnable {
 	    }
 	    
 	    private void updateViews(){
-	    	Parkeergarage.viewCarPark.tick();
+	    	Parkeergarage.viewcarpark.tick();
 	        // Update the car park view.
-	    	Parkeergarage.viewCarPark.updateView();	
+	    	Parkeergarage.viewcarpark.updateView();	
 	        
 	    }
 	    
@@ -137,20 +138,21 @@ public class Model extends AbstractModel implements Runnable {
 	        int i=0;
 	        // Remove car from the front of the queue and assign to a parking space.
 	    	while (queue.carsInQueue()>0 && 
-	    			Parkeergarage.viewCarPark.getNumberOfOpenSpots()>0 && 
+	    			Parkeergarage.viewcarpark.getNumberOfOpenSpots()>0 && 
 	    			i<enterSpeed) {
 	            Car car = queue.removeCar();
-	            Location freeLocation = Parkeergarage.viewCarPark.getFirstFreeLocation();
-	            Parkeergarage.viewCarPark.setCarAt(freeLocation, car);
-	            if (car.getColor() == Color.red) {aantalCarAdHoc++; aantalLegeVakken--;}
-	            if (car.getColor() == Color.blue) {aantalCarParkingPass++; aantalLegeVakken--;}
+	            Location freeLocation = Parkeergarage.viewcarpark.getFirstFreeLocation();
+	            Parkeergarage.viewcarpark.setCarAt(freeLocation, car);
+	            // Statement om de bijgehoude numemrs te veranderen
+	            if (car.getColor() == ColorList.CAR_AD_HOC) 		{aantalCarAdHoc++; aantalLegeVakken--;}
+	            if (car.getColor() == ColorList.CAR_PARKING_PASS) 	{aantalCarParkingPass++; aantalLegeVakken--;}
 	            i++;
 	        }
 	    }
 	    
 	    private void carsReadyToLeave(){
 	        // Add leaving cars to the payment queue.
-	        Car car = Parkeergarage.viewCarPark.getFirstLeavingCar();
+	        Car car = Parkeergarage.viewcarpark.getFirstLeavingCar();
 	        while (car!=null) {
 	        	if (car.getHasToPay()){
 		            car.setIsPaying(true);
@@ -159,7 +161,7 @@ public class Model extends AbstractModel implements Runnable {
 	        	else {
 	        		carLeavesSpot(car);
 	        	}
-	            car = Parkeergarage.viewCarPark.getFirstLeavingCar();
+	            car = Parkeergarage.viewcarpark.getFirstLeavingCar();
 	        }
 	    }
 
@@ -214,11 +216,11 @@ public class Model extends AbstractModel implements Runnable {
 	    }
 	    
 	    private void carLeavesSpot(Car car){
-	    	Parkeergarage.viewCarPark.removeCarAt(car.getLocation());
+	    	Parkeergarage.viewcarpark.removeCarAt(car.getLocation());
 	        exitCarQueue.addCar(car);
 	        
-	        
-	        if (car.getColor().equals(Color.red)) {aantalCarAdHoc--; aantalLegeVakken++;}
-	        if (car.getColor().equals(Color.blue)) {aantalCarParkingPass--; aantalLegeVakken++;}
+	        // Statements om de bijgehoude nummers te veranderen
+	        if (car.getColor().equals(ColorList.CAR_AD_HOC)) 		{aantalCarAdHoc--; aantalLegeVakken++;}
+	        if (car.getColor().equals(ColorList.CAR_PARKING_PASS)) 	{aantalCarParkingPass--; aantalLegeVakken++;}
 	    }
 }

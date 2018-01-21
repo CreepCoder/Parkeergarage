@@ -1,9 +1,11 @@
 package com.main;
 
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JFrame;
 
+import com.lib.CoreVariables;
 import com.mvc.controller.Controller;
 import com.mvc.model.Model;
 import com.mvc.view.AbstractView;
@@ -11,48 +13,63 @@ import com.mvc.view.ViewCarPark;
 import com.mvc.view.ViewPie;
 
 public class Parkeergarage {
+	
+	/*
+	 * Hier wordt het hele programma gemaakt.
+	 * Het model wordt aangemaakt en daar worden alle views aan toegevoegd.
+	 * Ook alle informatie van het venster staat hier.
+	 * Deze klasse dient verder gebruikt te worden om nieuwe elementen en functies toe te voegen.
+	 * Let op dat de volgorde van het aanmaken van alles in de constructor erg belangrijk is.
+	 * Zo kan er geen attribuut worden aangepast van een object als deze nog niet bestaat.
+	 * Dit doen we dus eerst bovenaan.
+	 * Een controller kan niet aangemaakt worden zonder model, dus die moet sowieso NA het aanmaken van het model
+	 * etc. etc. etc.
+	 * Zo voorkom je NullPointerExceptions.
+	 */
+	
 	private Model model;
-	private JFrame screen;
-	//private AbstractView countview;
-	private AbstractView pieview;
+	private JFrame scherm;
+	private AbstractView viewpie;
 	private Controller controller;
-	public static ViewCarPark viewCarPark;
+	public static ViewCarPark viewcarpark;
 	
 	public Parkeergarage() {
+		// Maak alle objecten aan
 		model=new Model();
+		viewcarpark = new ViewCarPark(model, 3, 6, 30);
+		viewpie=new ViewPie(model);
 		controller=new Controller(model);
-		//countview=new ViewCount(model);
-		pieview=new ViewPie(model);
-		viewCarPark = new ViewCarPark(model, 3, 6, 30);
 		
-		screen=new JFrame("Parkeergarage Simulator Project C");
-		screen.setSize(1200, 800);
-		screen.setResizable(false);
-		screen.setLocationRelativeTo(null);
-		screen.setLayout(null);	
-		screen.setBackground(Color.white);
+		// Informatie over het scherm
+		scherm=new JFrame(CoreVariables.SIMULATOR_NAAM);
+		scherm.setSize(1200, 800);
+		scherm.setResizable(false);
+		scherm.setLocationRelativeTo(null);
+		scherm.setLayout(null);	
+		scherm.setBackground(Color.white);
+		scherm.getContentPane().setBackground(Color.white);
 		
-		screen.getContentPane().setBackground(Color.white);
+		// Voeg alle elementen toe
+		voegElementToe(scherm, viewcarpark, 0, 0, 1000, 450);
+		voegElementToe(scherm, viewpie, 30, 500, 400, 200);
+		voegElementToe(scherm, controller, 10, 710, 450, 50);
 		
-		//screen.getContentPane().add(countview);
-		screen.getContentPane().add(pieview);
-		screen.getContentPane().add(controller);
-		screen.getContentPane().add(viewCarPark);	
-		
-		//countview.setBounds(500, 500, 200, 200);
-		pieview.setBounds(30, 500, 400, 200);
-		controller.setBounds(10, 710, 450, 50);
-		viewCarPark.setBounds(0, 0, 1000, 450);
-		
-		screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		screen.setVisible(true);
+		// Overige scherm informatie
+		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		scherm.setVisible(true);
 		
 		updateView();
 	}
 	
+	// Update alle views met de nieuwe informatie van het scherm
     public static void updateView() {
-    	viewCarPark.updateView();
-    	
+    	viewcarpark.updateView();
+    }
+    
+    // Deze methode heb ik gemaakt zodat er gemakkelijk elementen toegevoegd kunnen worden aan het scherm. Ook scheelt het lijnen code om het overzicht te behouden
+    public void voegElementToe(JFrame frame, Component element, int x, int y, int width, int height) {
+    	frame.getContentPane().add(element);
+    	element.setBounds(x, y, width, height);
     }
 	
 	public static void main(String[] args) {

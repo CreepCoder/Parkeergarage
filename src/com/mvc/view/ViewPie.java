@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
+import com.lib.ColorList;
 import com.mvc.model.Model;
 
 public class ViewPie extends AbstractView {
@@ -24,12 +25,15 @@ public class ViewPie extends AbstractView {
 		this.addNumberView(aantalCarParkingPass, 230, 70, 250, 20, true);
 	}
 	
+	// Methode om de nummers in de legenda te updaten
 	public void updateNumbers() {
 		aantalLegeVakken.setText("Lege Vakken                   "+model.aantalLegeVakken);
 		aantalCarAdHoc.setText("AdHoc Parkeerders      "+model.aantalCarAdHoc);
 		aantalCarParkingPass.setText("Abonnementhouders    "+model.aantalCarParkingPass);
 	}
 	
+
+	// Methode om gemakkelijk een legenda toe te voegen (tekst)
 	public void addNumberView(JLabel label, int x, int y, int width, int height, boolean visible) {
 		label.setLocation(x, y);
 		label.setSize(width, height);
@@ -38,36 +42,46 @@ public class ViewPie extends AbstractView {
 	}
 
 	public void paintComponent(Graphics g) {
+		// Creëer achtergrond
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 400, 200);
 		
+		// Creëer belijning
 		g.setColor(Color.black);
 		g.drawLine(0, 0, 399, 0);
 		g.drawLine(0, 0, 0, 200);
 		g.drawLine(0, 199, 399, 199);
 		g.drawLine(399, 0, 399, 199);
 		
-		g.setColor(Color.lightGray);
+		// Creëer pieview voor de lege vakken
+		g.setColor(ColorList.LEGE_VAKKEN);
 		g.fillArc(10, 10, 180, 180, 360-(aantalBerekening(model.aantalCarAdHoc)+aantalBerekening(model.aantalCarParkingPass)), 360);
 		
-		g.setColor(Color.RED);
+		// Creëer pieview voor de AdHoc autos
+		g.setColor(ColorList.CAR_AD_HOC);
 		g.fillArc(10, 10, 180, 180, 0, (int) (aantalBerekening(model.aantalCarAdHoc)));
 		
-		g.setColor(Color.BLUE);
+		// Creëer pieview voor de autos met een ParkingPass
+		g.setColor(ColorList.CAR_PARKING_PASS);
 		g.fillArc(10, 10, 180, 180, (int) (aantalBerekening(model.aantalCarAdHoc)), (int) (aantalBerekening(model.aantalCarParkingPass)));
 		
-		g.setColor(Color.LIGHT_GRAY);
+		// Creëer legenda voor de lege vakken
+		g.setColor(ColorList.LEGE_VAKKEN);
 		g.fillRect(aantalLegeVakken.getX()-15, aantalLegeVakken.getY()+6, 8, 8);
 		
-		g.setColor(Color.red);
+		// Creëer legenda voor de AdHoc cars
+		g.setColor(ColorList.CAR_AD_HOC);
 		g.fillRect(aantalCarAdHoc.getX()-15, aantalCarAdHoc.getY()+6, 8, 8);
 		
-		g.setColor(Color.blue);
+		// Creëer legenda voor de cars with a ParkingPass
+		g.setColor(ColorList.CAR_PARKING_PASS);
 		g.fillRect(aantalCarParkingPass.getX()-15, aantalCarParkingPass.getY()+6, 8, 8);
 		
+		// Update de getallen in de legenda (moet altijd gedaan worden als de getallen worden geüpdate)
 		updateNumbers();
 	}
 	
+	// Een methode om 540 plekken te berekenen in een 360 graden cirkel
 	private int aantalBerekening(int aantal) {
 		if (aantal > 0 && aantal <= 1) {return 1;}
 		else {return (int) (Math.floor(aantal/1.5));}
