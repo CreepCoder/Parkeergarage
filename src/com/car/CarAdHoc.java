@@ -1,11 +1,11 @@
-package com.main.car;
+package com.car;
 
 import java.util.Random;
-
-import com.main.lib.ColorList;
 import java.awt.*;
 
 public class CarAdHoc extends Car {
+	private static final Color COLOR=Color.red;
+	
     public CarAdHoc() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
@@ -14,6 +14,6 @@ public class CarAdHoc extends Car {
     }
     
     public Color getColor(){
-    	return ColorList.NORMAL_CAR;
+    	return COLOR;
     }
 }

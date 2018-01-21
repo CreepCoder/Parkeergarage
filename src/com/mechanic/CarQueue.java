@@ -1,8 +1,8 @@
-package com.main;
+package com.mechanic;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.main.car.Car;
+import com.car.Car;
 
 public class CarQueue {
     private Queue<Car> queue = new LinkedList<>();
