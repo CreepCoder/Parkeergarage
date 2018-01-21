@@ -1,12 +1,16 @@
-package com.main.view;
+package com.mvc.view;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
 
-@SuppressWarnings("serial")
-public class CountView extends View {
+import com.mvc.model.Model;
 
-	public CountView(Model model) {
+public class ViewCount extends AbstractView {
+	private static final long serialVersionUID = -7503377039578042533L;
+
+	public ViewCount(Model model) {
 		super(model);
+		setSize(200, 200);
 	}
 	
 	public void paintComponent(Graphics g) {

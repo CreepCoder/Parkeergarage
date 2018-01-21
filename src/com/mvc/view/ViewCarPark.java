@@ -1,44 +1,105 @@
-package com.main;
+package com.mvc.view;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 
-import com.main.car.Car;
+import com.car.Car;
+import com.car.Location;
+import com.mvc.model.Model;
 
-import java.awt.*;
-
-public class SimulatorView extends JFrame {
-    private CarParkView carParkView;
+@SuppressWarnings("serial")
+public class ViewCarPark extends AbstractView {
+    
+    private Dimension size;
+    private Image carParkImage;    
+    
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
 
-    public SimulatorView(int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    /**
+     * Constructor for objects of class CarPark
+     * @param numberOfFloors 
+     * @param numberOfRows 
+     * @param numberOfPlaces 
+     */
+    public ViewCarPark(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    	super(model);
+    	
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(850, 700);
-        this.setLocationRelativeTo(null);
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
-        
-        carParkView = new CarParkView();
+    	
+        size = new Dimension(0, 0);
+    }
 
-        Container contentPane = getContentPane();
-        contentPane.add(carParkView, BorderLayout.CENTER);
-        pack();
-        setVisible(true);
+    /**
+     * Overridden. Tell the GUI manager how big we would like to be.
+     */
+    public Dimension getPreferredSize() {
+        return new Dimension(1000, 400);
+    }
 
-        updateView();
+    /**
+     * Overriden. The car park view component needs to be redisplayed. Copy the
+     * internal image to screen.
+     */
+    public void paintComponent(Graphics g) {
+        if (carParkImage == null) {
+            return;
+        }
+
+        Dimension currentSize = getSize();
+        if (size.equals(currentSize)) {
+            g.drawImage(carParkImage, 0, 0, null);
+        }
+        else {
+            // Rescale the previous image.
+            g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
+        }
+        g.setColor(Color.black);
+        g.drawRect(30, 10, 790, 390);
     }
 
     public void updateView() {
-        carParkView.updateView();
+        // Create a new car park image if the size has changed.
+        if (!size.equals(getSize())) {
+            size = getSize();
+            carParkImage = createImage(size.width, size.height);
+        }
+        Graphics graphics = carParkImage.getGraphics();
+        for(int floor = 0; floor < getNumberOfFloors(); floor++) {
+            for(int row = 0; row < getNumberOfRows(); row++) {
+                for(int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    Car car = getCarAt(location);
+                    Color color = car == null ? Color.lightGray : car.getColor();
+                    drawPlace(graphics, location, color);
+                }
+            }
+        }
+        repaint();
+    }
+
+    /**
+     * Paint a place on this car park view in a given color.
+     */
+    private void drawPlace(Graphics graphics, Location location, Color color) {
+        graphics.setColor(color);
+        graphics.fillRect(
+                location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
+                60 + location.getPlace() * 10,
+                20 - 1,
+                10 - 1); // TODO use dynamic size or constants
     }
     
-	public int getNumberOfFloors() {
+    public int getNumberOfFloors() {
         return numberOfFloors;
     }
 
@@ -142,75 +203,4 @@ public class SimulatorView extends JFrame {
         return true;
     }
     
-    private class CarParkView extends JPanel {
-        
-        private Dimension size;
-        private Image carParkImage;    
-    
-        /**
-         * Constructor for objects of class CarPark
-         */
-        public CarParkView() {
-            size = new Dimension(0, 0);
-        }
-    
-        /**
-         * Overridden. Tell the GUI manager how big we would like to be.
-         */
-        public Dimension getPreferredSize() {
-            return new Dimension(850, 700);
-        }
-    
-        /**
-         * Overriden. The car park view component needs to be redisplayed. Copy the
-         * internal image to screen.
-         */
-        public void paintComponent(Graphics g) {
-            if (carParkImage == null) {
-                return;
-            }
-    
-            Dimension currentSize = getSize();
-            if (size.equals(currentSize)) {
-                g.drawImage(carParkImage, 0, 0, null);
-            }
-            else {
-                // Rescale the previous image.
-                g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
-            }
-        }
-    
-        public void updateView() {
-            // Create a new car park image if the size has changed.
-            if (!size.equals(getSize())) {
-                size = getSize();
-                carParkImage = createImage(size.width, size.height);
-            }
-            Graphics graphics = carParkImage.getGraphics();
-            for(int floor = 0; floor < getNumberOfFloors(); floor++) {
-                for(int row = 0; row < getNumberOfRows(); row++) {
-                    for(int place = 0; place < getNumberOfPlaces(); place++) {
-                        Location location = new Location(floor, row, place);
-                        Car car = getCarAt(location);
-                        Color color = car == null ? Color.white : car.getColor();
-                        drawPlace(graphics, location, color);
-                    }
-                }
-            }
-            repaint();
-        }
-    
-        /**
-         * Paint a place on this car park view in a given color.
-         */
-        private void drawPlace(Graphics graphics, Location location, Color color) {
-            graphics.setColor(color);
-            graphics.fillRect(
-                    location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
-                    60 + location.getPlace() * 10,
-                    20 - 1,
-                    10 - 1); // TODO use dynamic size or constants
-        }
-    }
-
 }
