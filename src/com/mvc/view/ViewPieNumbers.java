@@ -18,6 +18,7 @@ public class ViewPieNumbers extends AbstractView {
 	
 	public ViewPieNumbers(Model model) {
 		super(model);
+		this.setLayout(null);
 		this.setBackground(Color.WHITE);
 		
 		this.addNumberView(aantalLegeVakken, 50, 10, 250, 20, true);

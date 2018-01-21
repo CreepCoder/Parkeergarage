@@ -44,25 +44,22 @@ public class SimulatorFrame extends JFrame {
         
         model=new Model();
         viewPie = new ViewPie(model);
-        viewPie.setLocation(70, 400);
-         
-        //controller = new Controller(model);
-        //controller.setLocation(15, 700);
-        //controller.setBackground(Color.white);
+        viewPie.setBounds(70, 400, 200, 200);
+        
+        controller = new Controller(model);
+        controller.setBounds(15, 700, 450, 50);
+        controller.setBackground(Color.white);
         
         viewPieNumbers = new ViewPieNumbers(model);
         viewPieNumbers.setLocation(270, 400);
         viewPieNumbers.setSize(250,200);
 
         Container contentPane = getContentPane();
-        //contentPane.add(controller);
+        contentPane.add(controller);
         contentPane.add(viewPie);
         contentPane.add(viewPieNumbers);
         contentPane.add(viewCarPark);
-        
-        
-        //viewPie.setBounds(230, 10, 200, 200);
-        
+
         pack();
         setVisible(true);
 
