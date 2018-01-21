@@ -1,4 +1,4 @@
-package com.car;
+package com.main;
 
 public class Location {
 
