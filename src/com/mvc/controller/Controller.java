@@ -1,10 +1,13 @@
+//C CreepCoder
 package com.mvc.controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import com.main.Parkeergarage;
 import com.mvc.model.Model;
 
 public class Controller extends AbstractController implements ActionListener {
@@ -16,6 +19,8 @@ public class Controller extends AbstractController implements ActionListener {
 	
 	public Controller(Model model) {
 		super(model);
+		
+		this.setBackground(Color.white);
 		
 		setSize(450, 50);
 		mineen=new JButton("-1");
@@ -47,6 +52,8 @@ public class Controller extends AbstractController implements ActionListener {
 		
 		if (e.getSource()==pluseen) {
 			model.setAantal(model.getAantal()+1);
+			model.tick();
+			Parkeergarage.updateView();
 		}
 		
 		if (e.getSource()==start) {

@@ -1,8 +1,6 @@
-package com.main.car;
+package com.car;
 
 import java.awt.*;
-
-import com.main.Location;
 
 public abstract class Car {
 
