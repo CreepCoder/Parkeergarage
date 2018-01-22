@@ -11,5 +11,8 @@ import java.awt.Color;
 public class ColorList {
 	public static final Color LEGE_VAKKEN = Color.lightGray;
 	public static final Color CAR_AD_HOC = Color.red;
-	public static final Color CAR_PARKING_PASS = Color.green;
+	public static final Color CAR_PARKING_PASS = Color.yellow;
+	public static final Color INVALIDE_CAR = Color.blue;
+	public static final Color ELEKTRISCHE_CAR = Color.green;
+	public static final Color MOTOR = Color.pink;
 }

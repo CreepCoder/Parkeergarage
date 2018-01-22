@@ -8,3 +8,4 @@ bin/com/main/AdHocCar.class
 bin/com/main/Car.class
 bin/com/main/CarQueue.class
 *.class
+/bin/
