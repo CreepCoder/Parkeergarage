@@ -6,8 +6,8 @@ import com.lib.ColorList;
 
 import java.awt.*;
 
-public class ElektrischeCar extends Car {
-    public ElektrischeCar() {
+public class CarElektrische extends Car {
+    public CarElektrische() {
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);
