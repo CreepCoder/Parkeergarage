@@ -24,9 +24,9 @@ public class Model extends AbstractModel implements Runnable {
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
 
-    private int day = 0;
-    private int hour = 0;
-    private int minute = 0;
+    public static int day = 0;
+    public static int hour = 0;
+    public static int minute = 0;
     
     int weekDayArrivals= 100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour

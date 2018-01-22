@@ -10,6 +10,7 @@ import com.mvc.controller.Controller;
 import com.mvc.model.Model;
 import com.mvc.view.AbstractView;
 import com.mvc.view.ViewCarPark;
+import com.mvc.view.ViewKlok;
 import com.mvc.view.ViewPie;
 
 public class Parkeergarage {
@@ -30,6 +31,7 @@ public class Parkeergarage {
 	private Model model;
 	private JFrame scherm;
 	private AbstractView viewpie;
+	private AbstractView viewKlok;
 	private Controller controller;
 	public static ViewCarPark viewcarpark;
 	
@@ -39,6 +41,7 @@ public class Parkeergarage {
 		viewcarpark = new ViewCarPark(model, 3, 6, 30);
 		viewpie=new ViewPie(model);
 		controller=new Controller(model);
+		viewKlok=new ViewKlok(model);
 		
 		// Informatie over het scherm
 		scherm=new JFrame(CoreVariables.SIMULATOR_NAAM);
@@ -50,9 +53,10 @@ public class Parkeergarage {
 		scherm.getContentPane().setBackground(Color.white);
 		
 		// Voeg alle elementen toe
-		voegElementToe(scherm, viewcarpark, 0, 0, 1000, 400);
+		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);
 		voegElementToe(scherm, viewpie, 30, 400, 400, 200);
 		voegElementToe(scherm, controller, 10, 610, 450, 50);
+		voegElementToe(scherm, viewKlok, 900, 30, 200, 100);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
