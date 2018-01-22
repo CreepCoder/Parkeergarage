@@ -42,7 +42,7 @@ public class Parkeergarage {
 		
 		// Informatie over het scherm
 		scherm=new JFrame(CoreVariables.SIMULATOR_NAAM);
-		scherm.setSize(1200, 800);
+		scherm.setSize(CoreVariables.schermBreedte, CoreVariables.schermHoogte);
 		scherm.setResizable(false);
 		scherm.setLocationRelativeTo(null);
 		scherm.setLayout(null);	
@@ -50,9 +50,9 @@ public class Parkeergarage {
 		scherm.getContentPane().setBackground(Color.white);
 		
 		// Voeg alle elementen toe
-		voegElementToe(scherm, viewcarpark, 0, 0, 1000, 450);
-		voegElementToe(scherm, viewpie, 30, 500, 400, 200);
-		voegElementToe(scherm, controller, 10, 710, 450, 50);
+		voegElementToe(scherm, viewcarpark, 0, 0, 1000, 400);
+		voegElementToe(scherm, viewpie, 30, 400, 400, 200);
+		voegElementToe(scherm, controller, 10, 610, 450, 50);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

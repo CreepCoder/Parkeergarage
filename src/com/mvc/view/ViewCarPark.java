@@ -66,7 +66,7 @@ public class ViewCarPark extends AbstractView {
         }
         // Creëer buiten belijning
         g.setColor(Color.black);
-        g.drawRect(30, 10, 790, 390);
+        g.drawRect(30, 10, 790, 380);
     }
 
     public void updateView() {

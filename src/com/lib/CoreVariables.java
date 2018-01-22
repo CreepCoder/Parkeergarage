@@ -11,4 +11,8 @@ public class CoreVariables {
 	
 	// Titel van het programma
 	public static final String SIMULATOR_NAAM = "Parkeergarage Simulator Project C";
+	
+	// Resolutie
+	public static final int schermBreedte = 1200;
+	public static final int schermHoogte = 700;
 }
