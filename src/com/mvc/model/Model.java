@@ -14,6 +14,7 @@ import com.mechanic.CarQueue;
 public class Model extends AbstractModel implements Runnable {
 	private int aantal;
 	private boolean run;
+	private boolean running;
 	
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
@@ -62,11 +63,15 @@ public class Model extends AbstractModel implements Runnable {
 	}
 	
 	public void start() {
+		if (running == false) {
 		new Thread(this).start();
+		running = true;
+		}
 	}
 	
 	public void stop() {
-		run=false;
+		run = false;
+		running = false;
 	}
 	
 	@Override
