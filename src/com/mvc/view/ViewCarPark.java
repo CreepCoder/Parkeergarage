@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import javax.swing.JLabel;
+
 import com.car.Car;
 import com.car.Location;
 import com.lib.ColorList;
@@ -21,6 +23,10 @@ public class ViewCarPark extends AbstractView {
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
+    
+    private JLabel eersteVerdieping 	 = new JLabel("Eerste Verdieping");
+	private JLabel tweedeVerdieping 	 = new JLabel("Tweede Verdieping");
+	private JLabel derdeVerdieping  	 = new JLabel("Derde Verdieping");
 
     /**
      * Constructor for objects of class CarPark
@@ -31,11 +37,17 @@ public class ViewCarPark extends AbstractView {
     public ViewCarPark(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	super(model);
     	
+    	this.setLayout(null);
+    	
         this.numberOfFloors = numberOfFloors;
         this.numberOfRows = numberOfRows;
         this.numberOfPlaces = numberOfPlaces;
         this.numberOfOpenSpots =numberOfFloors*numberOfRows*numberOfPlaces;
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
+        
+        this.addVerdiepingTekst(eersteVerdieping, 70, 25, 120, 20, true);
+        this.addVerdiepingTekst(tweedeVerdieping, 265, 25, 120, 20, true);
+        this.addVerdiepingTekst(derdeVerdieping, 470, 25, 120, 20, true);
     	
         size = new Dimension(0, 0);
     }
@@ -95,8 +107,8 @@ public class ViewCarPark extends AbstractView {
     private void drawPlace(Graphics graphics, Location location, Color color) {
         graphics.setColor(color);
         graphics.fillRect(
-                location.getFloor() * 260 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 75 + (location.getRow() % 2) * 20,
-                60 + location.getPlace() * 10,
+                location.getFloor() * 200 + (1 + (int)Math.floor(location.getRow() * 0.5)) * 50 + (location.getRow() % 2) * 20,
+                50 + location.getPlace() * 10,
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
@@ -204,5 +216,13 @@ public class ViewCarPark extends AbstractView {
         }
         return true;
     }
+    
+	// Methode om gemakkelijk een legenda toe te voegen (tekst)
+	public void addVerdiepingTekst(JLabel label, int x, int y, int width, int height, boolean visible) {
+		label.setLocation(x, y);
+		label.setSize(width, height);
+		label.setVisible(true);
+		this.add(label);
+	}
     
 }

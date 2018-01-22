@@ -11,9 +11,9 @@ import com.mvc.model.Model;
 public class ViewPie extends AbstractView {
 	private static final long serialVersionUID = 5455934187803194147L;
 	
-	private JLabel aantalCarAdHoc 	 = new JLabel(""+model.aantalCarAdHoc);
+	private JLabel aantalCarAdHoc 			 = new JLabel(""+model.aantalCarAdHoc);
 	private JLabel aantalCarParkingPass 	 = new JLabel(""+model.aantalCarParkingPass);
-	private JLabel aantalLegeVakken  = new JLabel(""+model.aantalLegeVakken);
+	private JLabel aantalLegeVakken  		 = new JLabel(""+model.aantalLegeVakken);
 
 	public ViewPie(Model model) {
 		super(model);
