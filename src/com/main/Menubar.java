@@ -34,7 +34,7 @@ public class Menubar extends JMenuBar{
 		view.add(viewPie);
 		view.add(viewClock);
 		settings.add(defaultSettings);
-		
+		//test
 		// voeg de addActionListener toe aan de menu items
 		openFile.addActionListener(new MenuActionListener());
 		exitFile.addActionListener(new MenuActionListener());
