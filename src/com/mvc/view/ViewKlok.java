@@ -5,12 +5,15 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
+import com.car.CarAdHoc;
+import com.car.CarParkingPass;
 import com.mvc.model.Model;
 
 @SuppressWarnings("serial")
 public class ViewKlok extends AbstractView {
 
-	private JLabel dag = new JLabel(""+Model.day);
+	private String weekDag = new String ();
+	private JLabel dag = new JLabel(weekDag);
 	private JLabel uur = new JLabel(""+Model.hour);
 	private JLabel minuut = new JLabel(""+Model.minute);
 	
@@ -35,9 +38,30 @@ public class ViewKlok extends AbstractView {
 		this.add(minuut);		
 		
 	}
+
+	public void dagNaam(){
+		int weekDay = Model.day;
+		weekDag = "default";
+		if (weekDay == 0) {
+		    weekDag = "Maandag";
+		} else if (weekDay == 1) {
+		    weekDag = ("Dinsdag");
+		} else if (weekDay == 2) {
+		    weekDag = ("Woensdag");
+		} else if (weekDay == 3) {
+		    weekDag = ("Donderdag");
+		} else if (weekDay == 4) {
+		    weekDag = ("Vrijdag");
+		} else if (weekDay == 5) {
+		    weekDag = ("Zaterdag");
+		} else if (weekDay == 6) {
+		    weekDag = ("Zondag");
+		}
+	        
+	}
 	
 	public void updateNumbers() {
-		dag.setText("Dag "+Model.day);
+		dag.setText(weekDag);
 		uur.setText(""+Model.hour);
 		minuut.setText(":"+Model.minute);
 		
@@ -50,12 +74,14 @@ public class ViewKlok extends AbstractView {
 		// Creëer belijning
 		g.setColor(Color.black);
 		g.drawLine(0, 0, 99, 0);
-		g.drawLine(0, 0, 0, 199);
-		g.drawLine(0, 199, 99, 199);
-		g.drawLine(99, 0, 99, 199);
+		g.drawLine(0, 0, 0, 59);
+		g.drawLine(0, 59, 99, 59);
+		g.drawLine(99, 0, 99, 59);
 		
 		
 		updateNumbers();
 	}
+	
+	
 }
 
