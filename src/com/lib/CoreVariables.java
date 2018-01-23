@@ -7,7 +7,11 @@ package com.lib;
 public class CoreVariables {
 	
 	// Snelheid van de simulatie
-	public static final int simulatorSpeed = 50;
+	public static int simulatorSpeed = 1;
+	
+	public static void setSimulatorSpeed(int i) {
+		simulatorSpeed = i;
+	}
 	
 	// Titel van het programma
 	public static final String SIMULATOR_NAAM = "Parkeergarage Simulator Project C";

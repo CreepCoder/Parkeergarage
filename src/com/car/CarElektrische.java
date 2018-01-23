@@ -7,7 +7,9 @@ import com.lib.ColorList;
 import java.awt.*;
 
 public class CarElektrische extends Car {
-    public CarElektrische() {
+    public CarElektrische(CarType type) {
+    	super(type);
+    	this.setType(CarType.ELEKTRISCH);
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

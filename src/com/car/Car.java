@@ -8,12 +8,13 @@ public abstract class Car {
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
+    private CarType type;
 
     /**
      * Constructor for objects of class Car
      */
-    public Car() {
-
+    public Car(CarType type) {
+    	this.type = type;
     }
 
     public Location getLocation() {
@@ -53,4 +54,12 @@ public abstract class Car {
     }
     
     public abstract Color getColor();
+
+	public CarType getType() {
+		return type;
+	}
+
+	public void setType(CarType type) {
+		this.type = type;
+	}
 }
