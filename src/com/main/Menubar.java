@@ -1,6 +1,5 @@
 package com.main;
 
-import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -10,20 +9,23 @@ import javax.swing.JMenuItem;
 @SuppressWarnings("serial")
 public class Menubar extends JMenuBar{
 
-	// maak een menubar aan
+	// Maak een menubar aan.
 	JMenuBar menubar = new JMenuBar();
 	
 	public Menubar(JFrame scherm)
 	{
 		super();
 		
-		// voeg menus toe aan de menubar
+		// Voeg menus toe aan de menubar.
 		JMenu file = new JMenu("File");
 		JMenu view = new JMenu("View");
 		JMenu settings = new JMenu("Settings");
-		// voeg menu items toe aan de menus van de menubar
+		
+		// Voeg menu items toe aan de menus van de menubar.
 		JMenuItem newFile = new JMenuItem("New file");
 		JMenuItem exitFile = new JMenuItem("Exit");
+		
+		// Voeg checkbox menu items aan de view-menu.
 		JCheckBoxMenuItem viewPie = new JCheckBoxMenuItem("Pie chart", true);
 		JCheckBoxMenuItem viewClock = new JCheckBoxMenuItem("Clock", true);
 		JCheckBoxMenuItem viewSlider = new JCheckBoxMenuItem("Slider", true);
@@ -31,7 +33,7 @@ public class Menubar extends JMenuBar{
 		
 		JMenuItem defaultSettings = new JMenuItem("Default settings");
 		
-		// Voeg de menus inclusief de menu items toe aan de menubar
+		// Voeg de menus inclusief de menu items toe aan de menubar.
 		menubar.add(file);
 		menubar.add(view);
 		menubar.add(settings);
@@ -42,8 +44,8 @@ public class Menubar extends JMenuBar{
 		view.add(viewSlider);
 		view.add(viewCarPark);
 		settings.add(defaultSettings);
-		//test
-		// voeg de addActionListener toe aan de menu items
+		
+		// Voeg de addActionListener toe aan de menu items.
 		newFile.addActionListener(new MenuActionListener());
 		exitFile.addActionListener(new MenuActionListener());
 		viewPie.addActionListener(new MenuActionListener());
