@@ -10,11 +10,10 @@ import javax.swing.JLabel;
 import com.car.Car;
 import com.car.Location;
 import com.lib.ColorList;
-import com.location.Map;
 import com.mvc.model.Model;
 
 @SuppressWarnings("serial")
-public class ViewCarPark extends AbstractView {
+public class ViewCarParkBackup extends AbstractView {
     
     private Dimension size;
     private Image carParkImage;    
@@ -28,8 +27,6 @@ public class ViewCarPark extends AbstractView {
     private JLabel eersteVerdieping 	 = new JLabel("Eerste Verdieping");
 	private JLabel tweedeVerdieping 	 = new JLabel("Tweede Verdieping");
 	private JLabel derdeVerdieping  	 = new JLabel("Derde Verdieping");
-	
-	
 
     /**
      * Constructor for objects of class CarPark
@@ -37,7 +34,7 @@ public class ViewCarPark extends AbstractView {
      * @param numberOfRows 
      * @param numberOfPlaces 
      */
-    public ViewCarPark(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces) {
+    public ViewCarParkBackup(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	super(model);
     	
     	this.setLayout(null);
@@ -51,8 +48,6 @@ public class ViewCarPark extends AbstractView {
         this.addVerdiepingTekst(eersteVerdieping, 70, 25, 120, 20, true);
         this.addVerdiepingTekst(tweedeVerdieping, 265, 25, 120, 20, true);
         this.addVerdiepingTekst(derdeVerdieping, 470, 25, 120, 20, true);
-        
-        
     	
         size = new Dimension(0, 0);
     }
@@ -81,7 +76,6 @@ public class ViewCarPark extends AbstractView {
             // Rescale the previous image.
             g.drawImage(carParkImage, 0, 0, currentSize.width, currentSize.height, null);
         }
-        
         // Creëer buiten belijning
         g.setColor(Color.black);
         g.drawRect(30, 10, 790, 380);
@@ -94,7 +88,7 @@ public class ViewCarPark extends AbstractView {
             carParkImage = createImage(size.width, size.height);
         }
         Graphics graphics = carParkImage.getGraphics();
-       for(int floor = 0; floor < getNumberOfFloors(); floor++) {
+        for(int floor = 0; floor < getNumberOfFloors(); floor++) {
             for(int row = 0; row < getNumberOfRows(); row++) {
                 for(int place = 0; place < getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);

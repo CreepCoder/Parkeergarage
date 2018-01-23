@@ -3,15 +3,12 @@ package com.mvc.view;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.BoundedRangeModel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.lib.CoreVariables;
 import com.mvc.model.Model;
-
-import javafx.scene.control.Slider;
 
 public class ViewSlide extends AbstractView {
 

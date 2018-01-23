@@ -1,15 +1,15 @@
 package com.car;
 
+import java.awt.Color;
 import java.util.Random;
 
 import com.lib.ColorList;
-
-import java.awt.*;
+import com.location.LocationType;
 
 public class CarAdHoc extends Car {
-    public CarAdHoc(CarType type) {
+    public CarAdHoc(LocationType type) {
     	super(type);
-    	this.setType(CarType.AD_HOC);
+    	this.setType(LocationType.AD_HOC);
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

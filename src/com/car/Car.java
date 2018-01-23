@@ -1,6 +1,8 @@
 package com.car;
 
-import java.awt.*;
+import java.awt.Color;
+
+import com.location.LocationType;
 
 public abstract class Car {
 
@@ -8,13 +10,13 @@ public abstract class Car {
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
-    private CarType type;
+    private LocationType type;
 
     /**
      * Constructor for objects of class Car
      */
-    public Car(CarType type) {
-    	this.type = type;
+    public Car(LocationType type) {
+    	this.setType(type);
     }
 
     public Location getLocation() {
@@ -55,11 +57,11 @@ public abstract class Car {
     
     public abstract Color getColor();
 
-	public CarType getType() {
+	public LocationType getType() {
 		return type;
 	}
 
-	public void setType(CarType type) {
+	public void setType(LocationType type) {
 		this.type = type;
 	}
 }

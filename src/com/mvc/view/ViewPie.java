@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 
 import com.lib.ColorList;
+import com.location.Map;
 import com.mvc.model.Model;
 
 public class ViewPie extends AbstractView {

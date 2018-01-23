@@ -6,6 +6,7 @@ import java.awt.Component;
 import javax.swing.JFrame;
 
 import com.lib.CoreVariables;
+import com.location.Map;
 import com.mvc.controller.Controller;
 import com.mvc.model.Model;
 import com.mvc.view.AbstractView;
@@ -36,8 +37,6 @@ public class Parkeergarage {
 	public static AbstractView viewSlide;
 	private Controller controller;
 	public static ViewCarPark viewcarpark;
-	private Menubar menubar;
-	
 	public Parkeergarage() {
 		// Maak alle objecten aan
 		model=new Model();
@@ -46,6 +45,7 @@ public class Parkeergarage {
 		controller=new Controller(model);
 		viewKlok=new ViewKlok(model);
 		viewSlide= new ViewSlide(model);
+		Map map = new Map(model);
 		
 		// Informatie over het scherm
 		scherm=new JFrame(CoreVariables.SIMULATOR_NAAM);
@@ -55,7 +55,7 @@ public class Parkeergarage {
 		scherm.setLayout(null);	
 		scherm.setBackground(Color.white);
 		scherm.getContentPane().setBackground(Color.white);
-		menubar=new Menubar(scherm);
+		new Menubar(scherm);
 		
 		// Voeg alle elementen toe
 		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);
@@ -63,6 +63,7 @@ public class Parkeergarage {
 		voegElementToe(scherm, controller, 10, 600, 450, 50);
 		voegElementToe(scherm, viewKlok, 900, 30, 200, 100);
 		voegElementToe(scherm, viewSlide, 450, 590, 220 ,80);
+		voegElementToe(scherm, map, 900, 200, 200, 540);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

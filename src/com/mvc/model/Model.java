@@ -8,6 +8,7 @@ import com.car.CarParkingPass;
 import com.car.CarType;
 import com.car.Location;
 import com.lib.CoreVariables;
+import com.location.LocationType;
 import com.main.Parkeergarage;
 import com.mechanic.CarQueue;
 
@@ -152,11 +153,11 @@ public class Model extends AbstractModel implements Runnable {
 	            Location freeLocation = Parkeergarage.viewcarpark.getFirstFreeLocation();
 	            Parkeergarage.viewcarpark.setCarAt(freeLocation, car);
 	            // Statement om de bijgehoude numemrs te veranderen
-	            if (car.getType().equals(CarType.AD_HOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
-	            if (car.getType().equals(CarType.PARKING_PASS)) 	{aantalCarParkingPass++; aantalLegeVakken--;}
-	            if (car.getType().equals(CarType.ELEKTRISCH)) 		{aantalCarElektrisch++; aantalLegeVakken--;}
-	            if (car.getType().equals(CarType.INVALIDE)) 		{aantalCarInvalide++; aantalLegeVakken--;}
-	            if (car.getType().equals(CarType.MOTOR)) 			{aantalCarMotor++; aantalLegeVakken--;}
+	            if (car.getType().equals(LocationType.AD_HOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
+	            if (car.getType().equals(LocationType.PARKING_PASS)) 	{aantalCarParkingPass++; aantalLegeVakken--;}
+	            if (car.getType().equals(LocationType.ELEKTRISCH)) 		{aantalCarElektrisch++; aantalLegeVakken--;}
+	            if (car.getType().equals(LocationType.INVALIDE)) 		{aantalCarInvalide++; aantalLegeVakken--;}
+	            if (car.getType().equals(LocationType.MOTOR)) 			{aantalCarMotor++; aantalLegeVakken--;}
 	            i++;
 	        }
 	    }
@@ -215,12 +216,12 @@ public class Model extends AbstractModel implements Runnable {
 	    	switch(type) {
 	    	case AD_HOC: 
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entranceCarQueue.addCar(new CarAdHoc(CarType.AD_HOC));
+	            	entranceCarQueue.addCar(new CarAdHoc(LocationType.AD_HOC));
 	            }
 	            break;
 	    	case PASS:
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarParkingPass(CarType.PARKING_PASS));
+	            	entrancePassQueue.addCar(new CarParkingPass(LocationType.PARKING_PASS));
 	            }
 	            break;	            
 	    	}
@@ -231,10 +232,10 @@ public class Model extends AbstractModel implements Runnable {
 	        exitCarQueue.addCar(car);
 	        
 	        // Statements om de bijgehoude nummers te veranderen
-	        if (car.getType().equals(CarType.AD_HOC)) 			{aantalCarAdHoc--; aantalLegeVakken++;}
-	        if (car.getType().equals(CarType.PARKING_PASS)) 	{aantalCarParkingPass--; aantalLegeVakken++;}
-	        if (car.getType().equals(CarType.ELEKTRISCH)) 		{aantalCarElektrisch--; aantalLegeVakken++;}
-	        if (car.getType().equals(CarType.INVALIDE)) 		{aantalCarInvalide--; aantalLegeVakken++;}
-	        if (car.getType().equals(CarType.MOTOR)) 			{aantalCarMotor--; aantalLegeVakken++;}
+	        if (car.getType().equals(LocationType.AD_HOC)) 			{aantalCarAdHoc--; aantalLegeVakken++;}
+	        if (car.getType().equals(LocationType.PARKING_PASS)) 	{aantalCarParkingPass--; aantalLegeVakken++;}
+	        if (car.getType().equals(LocationType.ELEKTRISCH)) 		{aantalCarElektrisch--; aantalLegeVakken++;}
+	        if (car.getType().equals(LocationType.INVALIDE)) 		{aantalCarInvalide--; aantalLegeVakken++;}
+	        if (car.getType().equals(LocationType.MOTOR)) 			{aantalCarMotor--; aantalLegeVakken++;}
 	    }
 }
