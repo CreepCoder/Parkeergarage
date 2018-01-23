@@ -33,7 +33,7 @@ public class Parkeergarage {
 	private JFrame scherm;
 	public static AbstractView viewpie;
 	public static AbstractView viewKlok;
-	private AbstractView viewSlide;
+	public static AbstractView viewSlide;
 	private Controller controller;
 	public static ViewCarPark viewcarpark;
 	private Menubar menubar;
