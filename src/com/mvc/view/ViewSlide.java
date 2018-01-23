@@ -10,9 +10,8 @@ import javax.swing.event.ChangeListener;
 import com.lib.CoreVariables;
 import com.mvc.model.Model;
 
+@SuppressWarnings("serial")
 public class ViewSlide extends AbstractView {
-
-private int test;
 
 public ViewSlide(Model model) {
 	super(model);
@@ -36,7 +35,6 @@ public ViewSlide(Model model) {
 		}
 	});
     
-    // We'll just use the standard numeric labels for now...
     slider.setLabelTable(slider.createStandardLabels(5));
     
     this.add(slider);

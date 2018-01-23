@@ -5,8 +5,6 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import com.car.CarAdHoc;
-import com.car.CarParkingPass;
 import com.mvc.model.Model;
 
 @SuppressWarnings("serial")

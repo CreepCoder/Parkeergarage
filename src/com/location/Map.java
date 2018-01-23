@@ -15,37 +15,41 @@ public class Map extends AbstractView{
 	public static int height;
 	public static LocationType type;
 
+	/* Hier wordt een grid aangemaakt voor de nieuwe opzet voor de parkeergarage.
+	 * Alle verschillende vakjes worden hier aangegeven met een id.
+	 * Uiteindelijk is het de bedoeling dat alleen de auto's waarvoor het vakje bedoeld is hier parkeren.
+	 */
     double[][] map = {
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 4, 4},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3},
-			{0, 0, 	 1, 1, 	 3, 3}			
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 4, 4,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2},
+			{0, 0, 	 1, 1, 	 3, 3,   2, 2}
 	};
 
 	public Map(Model model) {
@@ -82,8 +86,9 @@ public class Map extends AbstractView{
 		g.drawLine(199, 0, 199, 400);
 		
 		int spaceX = 0;
-		for (int i=0; i<6; i++) {
+		for (int i=0; i<8; i++) {
 			if (i == 2 || i == 4) {spaceX = spaceX + 8;}
+			if (i == 6) {spaceX = spaceX +32;}
 			for (int j=0; j<30; j++) {
 				if (map[j][i] == 0) {
 			        g.setColor(LocationType.AD_HOC.getColor());
@@ -106,9 +111,6 @@ public class Map extends AbstractView{
 					g.fillRect(26+(i*22)+spaceX, 20+(j*12), 20, 10);
 					}
 			}
-			//spaceX = 0;
 		}
-        //g.setColor(Map.type.getColor());
-		//g.fillRect(Map.x, Map.y, Map.x+20, Map.y+30);
 	}
 }

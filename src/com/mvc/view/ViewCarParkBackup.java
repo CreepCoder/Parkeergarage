@@ -8,8 +8,8 @@ import java.awt.Image;
 import javax.swing.JLabel;
 
 import com.car.Car;
-import com.car.Location;
 import com.lib.ColorList;
+import com.location.Location;
 import com.mvc.model.Model;
 
 @SuppressWarnings("serial")

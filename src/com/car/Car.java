@@ -2,6 +2,7 @@ package com.car;
 
 import java.awt.Color;
 
+import com.location.Location;
 import com.location.LocationType;
 
 public abstract class Car {

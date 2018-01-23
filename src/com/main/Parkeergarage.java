@@ -35,20 +35,22 @@ public class Parkeergarage {
 	public static AbstractView viewpie;
 	public static AbstractView viewKlok;
 	public static AbstractView viewSlide;
-	private Controller controller;
 	public static ViewCarPark viewcarpark;
+	private Controller controller;
+	private Map map;
+	
 	public Parkeergarage() {
 		// Maak alle objecten aan
-		model=new Model();
+		model = new Model();
 		viewcarpark = new ViewCarPark(model, 3, 6, 30);
-		viewpie=new ViewPie(model);
-		controller=new Controller(model);
-		viewKlok=new ViewKlok(model);
-		viewSlide= new ViewSlide(model);
-		Map map = new Map(model);
+		viewpie = new ViewPie(model);
+		viewKlok = new ViewKlok(model);
+		viewSlide = new ViewSlide(model);
+		controller = new Controller(model);
+		map = new Map(model);
 		
 		// Informatie over het scherm
-		scherm=new JFrame(CoreVariables.SIMULATOR_NAAM);
+		scherm = new JFrame(CoreVariables.SIMULATOR_NAAM);
 		scherm.setSize(CoreVariables.schermBreedte, CoreVariables.schermHoogte);
 		scherm.setResizable(false);
 		scherm.setLocationRelativeTo(null);
@@ -72,7 +74,7 @@ public class Parkeergarage {
 		updateView();
 	}
 	
-	// Update alle views met de nieuwe informatie van het scherm
+	// Update de ViewCarPark met de nieuwe informatie van het scherm
     public static void updateView() {
     	viewcarpark.updateView();
     }
