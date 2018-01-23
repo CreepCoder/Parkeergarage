@@ -31,8 +31,8 @@ public class Parkeergarage {
 	
 	private Model model;
 	private JFrame scherm;
-	private AbstractView viewpie;
-	private AbstractView viewKlok;
+	public static AbstractView viewpie;
+	public static AbstractView viewKlok;
 	private AbstractView viewSlide;
 	private Controller controller;
 	public static ViewCarPark viewcarpark;

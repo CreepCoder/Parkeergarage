@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import com.mvc.view.ViewKlok;
+import com.mvc.view.ViewPie;
+
 public class MenuActionListener implements ActionListener {
 	
 	String boxMessage = null;
@@ -24,9 +27,28 @@ public class MenuActionListener implements ActionListener {
 		}
 		if (e.getActionCommand().equals("Piechart")) {
 			boxMessage = "View pie chart...";
+			
+			if (Parkeergarage.viewpie.isShowing()) {
+				boxMessage += "WAS SHOWING";
+				Parkeergarage.viewpie.setVisible(false);
+			}
+			else {
+				boxMessage += "WAS NOT SHOWING";
+				Parkeergarage.viewpie.setVisible(true);
+			}
 		}
 		if (e.getActionCommand().equals("Clock")) {
 			boxMessage = "View clock...";
+			
+			if (Parkeergarage.viewKlok.isShowing()) {
+				boxMessage += "WAS SHOWING";
+				Parkeergarage.viewKlok.setVisible(false);
+			}
+			else {
+				boxMessage += "WAS NOT SHOWING";
+				Parkeergarage.viewKlok.setVisible(true);
+			}
+
 		}
 		if (e.getActionCommand().equals("Default settings")) {
 			boxMessage = "Set default settings...";
