@@ -14,9 +14,7 @@ public static void main (String[] args)
 public static void CheckIfFree(int i)
 {
 	// System.out.println("" + i);
-	if() {
-		
-	}
+
 }
 
 
