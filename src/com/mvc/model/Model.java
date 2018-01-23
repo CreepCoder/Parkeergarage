@@ -5,8 +5,8 @@ import java.util.Random;
 import com.car.Car;
 import com.car.CarAdHoc;
 import com.car.CarParkingPass;
+import com.car.CarType;
 import com.car.Location;
-import com.lib.ColorList;
 import com.lib.CoreVariables;
 import com.main.Parkeergarage;
 import com.mechanic.CarQueue;
@@ -37,9 +37,12 @@ public class Model extends AbstractModel implements Runnable {
     int paymentSpeed = 7; // number of cars that can pay per minute
     int exitSpeed = 5; // number of cars that can leave per minute
     
+    public int aantalLegeVakken = 540;
     public int aantalCarAdHoc;
     public int aantalCarParkingPass;
-    public int aantalLegeVakken = 540;
+    public int aantalCarElektrisch;
+    public int aantalCarInvalide;
+    public int aantalCarMotor;
 	
 	public Model() {
 			entranceCarQueue = new CarQueue();
@@ -149,8 +152,11 @@ public class Model extends AbstractModel implements Runnable {
 	            Location freeLocation = Parkeergarage.viewcarpark.getFirstFreeLocation();
 	            Parkeergarage.viewcarpark.setCarAt(freeLocation, car);
 	            // Statement om de bijgehoude numemrs te veranderen
-	            if (car.getColor() == ColorList.CAR_AD_HOC) 		{aantalCarAdHoc++; aantalLegeVakken--;}
-	            if (car.getColor() == ColorList.CAR_PARKING_PASS) 	{aantalCarParkingPass++; aantalLegeVakken--;}
+	            if (car.getType().equals(CarType.AD_HOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
+	            if (car.getType().equals(CarType.PARKING_PASS)) 	{aantalCarParkingPass++; aantalLegeVakken--;}
+	            if (car.getType().equals(CarType.ELEKTRISCH)) 		{aantalCarElektrisch++; aantalLegeVakken--;}
+	            if (car.getType().equals(CarType.INVALIDE)) 		{aantalCarInvalide++; aantalLegeVakken--;}
+	            if (car.getType().equals(CarType.MOTOR)) 			{aantalCarMotor++; aantalLegeVakken--;}
 	            i++;
 	        }
 	    }
@@ -209,12 +215,12 @@ public class Model extends AbstractModel implements Runnable {
 	    	switch(type) {
 	    	case AD_HOC: 
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entranceCarQueue.addCar(new CarAdHoc());
+	            	entranceCarQueue.addCar(new CarAdHoc(CarType.AD_HOC));
 	            }
 	            break;
 	    	case PASS:
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarParkingPass());
+	            	entrancePassQueue.addCar(new CarParkingPass(CarType.PARKING_PASS));
 	            }
 	            break;	            
 	    	}
@@ -225,7 +231,10 @@ public class Model extends AbstractModel implements Runnable {
 	        exitCarQueue.addCar(car);
 	        
 	        // Statements om de bijgehoude nummers te veranderen
-	        if (car.getColor().equals(ColorList.CAR_AD_HOC)) 		{aantalCarAdHoc--; aantalLegeVakken++;}
-	        if (car.getColor().equals(ColorList.CAR_PARKING_PASS)) 	{aantalCarParkingPass--; aantalLegeVakken++;}
+	        if (car.getType().equals(CarType.AD_HOC)) 			{aantalCarAdHoc--; aantalLegeVakken++;}
+	        if (car.getType().equals(CarType.PARKING_PASS)) 	{aantalCarParkingPass--; aantalLegeVakken++;}
+	        if (car.getType().equals(CarType.ELEKTRISCH)) 		{aantalCarElektrisch--; aantalLegeVakken++;}
+	        if (car.getType().equals(CarType.INVALIDE)) 		{aantalCarInvalide--; aantalLegeVakken++;}
+	        if (car.getType().equals(CarType.MOTOR)) 			{aantalCarMotor--; aantalLegeVakken++;}
 	    }
 }

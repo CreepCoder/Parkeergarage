@@ -7,7 +7,9 @@ import com.lib.ColorList;
 import java.awt.*;
 
 public class CarInvalide extends Car {
-    public CarInvalide() {
+    public CarInvalide(CarType type) {
+    	super(type);
+    	this.setType(CarType.INVALIDE);
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

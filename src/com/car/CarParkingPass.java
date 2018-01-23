@@ -7,7 +7,9 @@ import com.lib.ColorList;
 import java.awt.*;
 
 public class CarParkingPass extends Car {	
-    public CarParkingPass() {
+    public CarParkingPass(CarType type) {
+    	super(type);
+    	this.setType(CarType.PARKING_PASS);
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);
