@@ -12,17 +12,17 @@ import com.mvc.model.Model;
 @SuppressWarnings("serial")
 public class ViewKlok extends AbstractView {
 
-	private String weekDag = new String ();
-	private JLabel dag = new JLabel(weekDag);
+	private static JLabel dag = new JLabel("");
 	private JLabel uur = new JLabel(""+Model.hour);
 	private JLabel minuut = new JLabel(""+Model.minute);
+	
 	
 	public ViewKlok(Model model) {
 		super(model);
 		this.setSize(200, 100);
 		this.setLayout(null);
 		
-		dag.setSize(60, 20);
+		dag.setSize(90, 20);
 		dag.setLocation(10, 10);
 		dag.setVisible(true);
 		this.add(dag);
@@ -39,32 +39,39 @@ public class ViewKlok extends AbstractView {
 		
 	}
 
-	public void dagNaam(){
-		int weekDay = Model.day;
-		weekDag = "default";
-		if (weekDay == 0) {
-		    weekDag = "Maandag";
-		} else if (weekDay == 1) {
-		    weekDag = ("Dinsdag");
-		} else if (weekDay == 2) {
-		    weekDag = ("Woensdag");
-		} else if (weekDay == 3) {
-		    weekDag = ("Donderdag");
-		} else if (weekDay == 4) {
-		    weekDag = ("Vrijdag");
-		} else if (weekDay == 5) {
-		    weekDag = ("Zaterdag");
-		} else if (weekDay == 6) {
-		    weekDag = ("Zondag");
-		}
-	        
+	public static void dagNaam(){
+	 int number= Model.day;  
+	 switch(number){  
+	case 0:
+		dag.setText("Maandag");
+		break;
+	case 1:
+		dag.setText("Dinsdag");
+		break;
+	case 2:
+		dag.setText("Woensdag");
+		break;
+	case 3:
+		dag.setText("Donderdag");
+		break;
+	case 4:
+		dag.setText("Vrijdag");
+		break;
+	case 5:
+		dag.setText("Zaterdag");
+		break;
+	case 6:
+		dag.setText("Zondag");
+		break;
+	}
+		
 	}
 	
 	public void updateNumbers() {
-		dag.setText(weekDag);
+		dag.setText(""+Model.day);
 		uur.setText(""+Model.hour);
 		minuut.setText(":"+Model.minute);
-		
+		ViewKlok.dagNaam();
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -81,7 +88,6 @@ public class ViewKlok extends AbstractView {
 		
 		updateNumbers();
 	}
-	
-	
+
 }
 
