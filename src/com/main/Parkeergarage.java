@@ -60,9 +60,9 @@ public class Parkeergarage {
 		// Voeg alle elementen toe
 		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);
 		voegElementToe(scherm, viewpie, 30, 400, 400, 200);
-		voegElementToe(scherm, controller, 10, 610, 450, 50);
+		voegElementToe(scherm, controller, 10, 600, 450, 50);
 		voegElementToe(scherm, viewKlok, 900, 30, 200, 100);
-		voegElementToe(scherm, viewSlide, 450, 610, 220 ,80);
+		voegElementToe(scherm, viewSlide, 450, 590, 220 ,80);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
