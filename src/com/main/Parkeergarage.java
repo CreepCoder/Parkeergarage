@@ -36,6 +36,7 @@ public class Parkeergarage {
 	private AbstractView viewSlide;
 	private Controller controller;
 	public static ViewCarPark viewcarpark;
+	private Menubar menubar;
 	
 	public Parkeergarage() {
 		// Maak alle objecten aan
@@ -54,6 +55,7 @@ public class Parkeergarage {
 		scherm.setLayout(null);	
 		scherm.setBackground(Color.white);
 		scherm.getContentPane().setBackground(Color.white);
+		menubar=new Menubar(scherm);
 		
 		// Voeg alle elementen toe
 		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);
