@@ -1,5 +1,6 @@
 package com.mvc.view;
 
+// Importeren van Color package
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -12,22 +13,26 @@ import com.lib.ColorList;
 import com.location.Location;
 import com.mvc.model.Model;
 
+// Dit is om te voorkomen dat er een bepaalde warning in beeld kom 
+// "The warning comes whenever you extend a class that is serialisable"
 @SuppressWarnings("serial")
 public class ViewCarPark extends AbstractView {
-    
+
+// Dimension en Image zijn nodig om het beeld in de simulatie te scheppen
     private Dimension size;
     private Image carParkImage;    
-    
+
+// (?) Het tekenen van bepaalde dingen in de simulator
     private int numberOfFloors;
     private int numberOfRows;
     private int numberOfPlaces;
     private int numberOfOpenSpots;
     private Car[][][] cars;
-    
+  
+// Tekst boven de rijen van de parkeerplekken in de simulatie
     private JLabel eersteVerdieping 	 = new JLabel("Eerste Verdieping");
 	private JLabel tweedeVerdieping 	 = new JLabel("Tweede Verdieping");
 	private JLabel derdeVerdieping  	 = new JLabel("Derde Verdieping");
-	
 	
 
     /**
