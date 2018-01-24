@@ -12,10 +12,10 @@ import com.mvc.model.Model;
 import com.mvc.view.AbstractView;
 import com.mvc.view.ViewCarPark;
 import com.mvc.view.ViewGraph;
+import com.mvc.view.ViewHistogram;
 import com.mvc.view.ViewKlok;
 import com.mvc.view.ViewPie;
 import com.mvc.view.ViewSlide;
-import com.mvc.view.ViewGraph;
 
 public class Parkeergarage {
 	
@@ -41,6 +41,7 @@ public class Parkeergarage {
 	public static ViewCarPark viewcarpark;
 	private Controller controller;
 	private Map map;
+	private static ViewHistogram viewhistogram;
 	
 	public Parkeergarage() {
 		// Maak alle objecten aan
@@ -51,7 +52,9 @@ public class Parkeergarage {
 		viewSlide = new ViewSlide(model);
 		viewGraph = new ViewGraph(model);
 		controller = new Controller(model);
+		viewhistogram = new ViewHistogram(model);
 		map = new Map(model);
+		
 		
 		// Informatie over het scherm
 		scherm = new JFrame(CoreVariables.SIMULATOR_NAAM);
@@ -71,6 +74,7 @@ public class Parkeergarage {
 		voegElementToe(scherm, viewSlide, 450, 590, 220 ,80);
 		voegElementToe(scherm, viewGraph, 30, 400, 400, 200);
 		voegElementToe(scherm, map, 900, 200, 200, 540);
+		voegElementToe(scherm, viewhistogram, 600, 300,800,600);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
