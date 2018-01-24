@@ -1,5 +1,10 @@
 package com.mvc.view;
 
+/*
+ * Deze klasse zorgt ervoor dat de slider wordt toegevoegd aan de simulatie
+ * 
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 

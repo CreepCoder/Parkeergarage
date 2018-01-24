@@ -41,6 +41,8 @@ public class ViewCarPark extends AbstractView {
      * @param numberOfRows 
      * @param numberOfPlaces 
      */
+
+
     public ViewCarPark(Model model, int numberOfFloors, int numberOfRows, int numberOfPlaces) {
     	super(model);
     	
