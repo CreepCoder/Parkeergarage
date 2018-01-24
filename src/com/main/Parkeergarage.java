@@ -11,9 +11,11 @@ import com.mvc.controller.Controller;
 import com.mvc.model.Model;
 import com.mvc.view.AbstractView;
 import com.mvc.view.ViewCarPark;
+import com.mvc.view.ViewGraph;
 import com.mvc.view.ViewKlok;
 import com.mvc.view.ViewPie;
 import com.mvc.view.ViewSlide;
+import com.mvc.view.ViewGraph;
 
 public class Parkeergarage {
 	
@@ -35,6 +37,7 @@ public class Parkeergarage {
 	public static AbstractView viewpie;
 	public static AbstractView viewKlok;
 	public static AbstractView viewSlide;
+	public static AbstractView viewGraph;
 	public static ViewCarPark viewcarpark;
 	private Controller controller;
 	private Map map;
@@ -46,6 +49,7 @@ public class Parkeergarage {
 		viewpie = new ViewPie(model);
 		viewKlok = new ViewKlok(model);
 		viewSlide = new ViewSlide(model);
+		viewGraph = new ViewGraph(model);
 		controller = new Controller(model);
 		map = new Map(model);
 		
@@ -65,6 +69,7 @@ public class Parkeergarage {
 		voegElementToe(scherm, controller, 10, 600, 450, 50);
 		voegElementToe(scherm, viewKlok, 900, 30, 200, 100);
 		voegElementToe(scherm, viewSlide, 450, 590, 220 ,80);
+		voegElementToe(scherm, viewGraph, 30, 400, 400, 200);
 		voegElementToe(scherm, map, 900, 200, 200, 540);
 		
 		// Overige scherm informatie

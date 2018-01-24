@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import com.mvc.view.ViewCarPark;
+import com.mvc.view.ViewKlok;
+
 
 public class MenuActionListener implements ActionListener {
 	
@@ -33,7 +36,6 @@ public class MenuActionListener implements ActionListener {
 		if (e.getActionCommand().equals("Pie chart")) {
 			if (Parkeergarage.viewpie.isShowing()) {
 				Parkeergarage.viewpie.setVisible(false);
-				
 			}
 			else {
 				Parkeergarage.viewpie.setVisible(true);
@@ -57,6 +59,15 @@ public class MenuActionListener implements ActionListener {
 				Parkeergarage.viewSlide.setVisible(true);
 			}
 		}
+		// VIEW GRAPH
+		if (e.getActionCommand().equals("Graph")) {
+			if (Parkeergarage.viewGraph.isShowing()) {
+				Parkeergarage.viewGraph.setVisible(false);
+			}
+			else {
+				Parkeergarage.viewGraph.setVisible(true);
+			}
+		}
 		// VIEW CARPARK
 		if (e.getActionCommand().equals("Carpark")) {
 			if (Parkeergarage.viewcarpark.isShowing()) {
@@ -68,7 +79,20 @@ public class MenuActionListener implements ActionListener {
 		}
 		// DEFAULT SETTINGS
 		if (e.getActionCommand().equals("Default settings")) {
-			boxMessage = "Set to default settings.";
+			//boxMessage = "Set to default settings.";
+			
+			// Maak de default views zichtbaar
+			Parkeergarage.viewpie.setVisible(true);
+			Parkeergarage.viewKlok.setVisible(true);
+			Parkeergarage.viewSlide.setVisible(true);
+			Parkeergarage.viewGraph.setVisible(true);
+			Parkeergarage.viewcarpark.setVisible(true);
+			// Maak de geselecteerde items gelijk aan de zichtbare items
+			Menubar.viewPie.setSelected(true);
+			Menubar.viewClock.setSelected(true);
+			Menubar.viewSlider.setSelected(true);
+			Parkeergarage.viewGraph.setVisible(true);
+			Menubar.viewCarPark.setSelected(true);
 		}
 		// Stuur een bericht naar een venster als er een boxMessage is.
 		if (boxMessage != null) {
