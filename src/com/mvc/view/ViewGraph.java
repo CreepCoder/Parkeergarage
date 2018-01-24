@@ -60,7 +60,8 @@ public class ViewGraph extends AbstractView {
 		else {
 			x1 = x2;
 			y1 = y2;
-			x2 = model.minute * 6;
+			// aantal minuten in een dag = 1440 minuten / x-as lengte = 400 -->
+			x2 = (model.minute + 60 * model.hour) / 4;
 			y2 = 199 - model.aantalCarAdHoc;
 		}
 
@@ -102,7 +103,6 @@ public class ViewGraph extends AbstractView {
 //		linesList.add(x2);
 //		linesList.add(y2);
 //		lines.add(linesList);
-
 		
 		//System.out.println(lines);
 		//linesList.clear();
@@ -112,7 +112,7 @@ public class ViewGraph extends AbstractView {
 				//lines.clear();
 				lines = new ArrayList<ArrayList<Integer>>();
 			}
-			
+			//System.out.println();
 			CreateLine(g, Color.red, i.get(0), i.get(1), i.get(2), i.get(3));
 			
 			//for (int value : i) {
