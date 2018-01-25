@@ -40,7 +40,7 @@ public class Parkeergarage {
 	public static AbstractView viewGraph;
 	public static ViewCarPark viewcarpark;
 	private Controller controller;
-	private Map map;
+	public static Map map;
 	private static ViewHistogram viewhistogram;
 	
 	public Parkeergarage() {
@@ -73,8 +73,9 @@ public class Parkeergarage {
 		voegElementToe(scherm, viewKlok, 900, 30, 200, 100);
 		voegElementToe(scherm, viewSlide, 880, 90, 220 ,80);
 		voegElementToe(scherm, viewGraph, 30, 400, 400, 200);
-		voegElementToe(scherm, map, 900, 200, 200, 540);
 		voegElementToe(scherm, viewhistogram, 450, 400,400,200);
+		voegElementToe(scherm, map, 30, 10, 850, 400);
+		viewcarpark.setVisible(false);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
