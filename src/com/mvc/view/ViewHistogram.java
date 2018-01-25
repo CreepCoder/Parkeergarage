@@ -10,13 +10,6 @@ import com.mvc.model.Model;
 
 public class ViewHistogram extends AbstractView {
 	private static final long serialVersionUID = 5455934187803194147L;
-	
-	private JLabel aantalLegeVakken  		 = new JLabel(""+model.aantalLegeVakken);
-	private JLabel aantalCarAdHoc 			 = new JLabel(""+model.aantalCarAdHoc);
-	private JLabel aantalCarParkingPass 	 = new JLabel(""+model.aantalCarParkingPass);
-	private JLabel aantalCarElektrisch  		 = new JLabel(""+model.aantalCarElektrisch);
-	private JLabel aantalCarInvalide  		 	 = new JLabel(""+model.aantalCarInvalide);
-	private JLabel aantalCarMotor  		 	 = new JLabel(""+model.aantalCarMotor);
 
 	public ViewHistogram(Model model) {
 		super(model);
@@ -40,18 +33,20 @@ public class ViewHistogram extends AbstractView {
 		g.drawLine(0, 0, 0, 200);
 		g.drawLine(0, 199, 399, 199);
 		g.drawLine(399, 0, 399, 199);
-     
-		createBar(g, ColorList.LEGE_VAKKEN, 3, 1, 60, model.aantalLegeVakken/2);
-		createBar(g, ColorList.CAR_AD_HOC, 66, 50, 60, model.aantalCarAdHoc/2);
-		createBar(g, ColorList.CAR_PARKING_PASS, 135, -1, 60, model.aantalCarParkingPass/2);
+    
+		
+		createBar(g, ColorList.LEGE_VAKKEN, 3, 199-model.aantalLegeVakken/2, 60, 199);
+		createBar(g, ColorList.CAR_AD_HOC, 66, 199-model.aantalCarAdHoc/2, 60, 199);
+		createBar(g, ColorList.CAR_PARKING_PASS, 135, 199-model.aantalCarParkingPass/2, 60, 199);
 		createBar(g, ColorList.ELEKTRISCHE_CAR, 201, 1, 60, model.aantalCarElektrisch/2);
 		createBar(g, ColorList.INVALIDE_CAR, 267, 1, 60, model.aantalCarInvalide/2);
 		createBar(g, ColorList.MOTOR, 333, 1, 60, model.aantalCarMotor/2);
+		System.out.println(199-model.aantalLegeVakken/2);
 	}
 	
 	private void createBar(Graphics g, Color color, int x, int y, int width, int height) {
 		g.setColor(color);
-		g.fill3DRect(x, y, width, height, true);
+		g.fillRect(x, y, width, height);
 		 	}
 	
 }
