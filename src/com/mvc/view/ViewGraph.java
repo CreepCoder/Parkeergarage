@@ -53,6 +53,18 @@ public class ViewGraph extends AbstractView {
 		g.drawLine(0, 199, 399, 199);
 		g.drawLine(399, 0, 399, 199);
 		
+		g.setColor(Color.lightGray);
+		g.drawLine(0, 100, 399, 100);
+		g.drawLine(0, 50, 399, 50);
+		g.drawLine(0, 150, 399, 150);
+		g.drawLine(50, 399, 50, 0);
+		g.drawLine(100, 399, 100, 0);
+		g.drawLine(150, 399, 150, 0);
+		g.drawLine(200, 399, 200, 0);
+		g.drawLine(250, 399, 250, 0);
+		g.drawLine(300, 399, 300, 0);
+		g.drawLine(350, 399, 350, 0);
+		
 		// creeër lijn voor totaal aantal ... autos
 		x1 = x2;
 		y1 = y2;
