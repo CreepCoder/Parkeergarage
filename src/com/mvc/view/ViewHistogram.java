@@ -42,7 +42,7 @@ public class ViewHistogram extends AbstractView {
 		g.drawLine(399, 0, 399, 199);
      
 		createBar(g, ColorList.LEGE_VAKKEN, 3, 199, 60, model.aantalLegeVakken/2);
-		createBar(g, ColorList.CAR_AD_HOC, 66, -199, 60, model.aantalCarAdHoc/2);
+		createBar(g, ColorList.CAR_AD_HOC, 66, 199, 60, model.aantalCarAdHoc/2);
 		createBar(g, ColorList.CAR_PARKING_PASS, 135, 1, 60, model.aantalCarParkingPass/2);
 		createBar(g, ColorList.ELEKTRISCHE_CAR, 201, 1, 60, model.aantalCarElektrisch/2);
 		createBar(g, ColorList.INVALIDE_CAR, 267, 1, 60, model.aantalCarInvalide/2);

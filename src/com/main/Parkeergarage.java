@@ -70,8 +70,8 @@ public class Parkeergarage {
 		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);
 		voegElementToe(scherm, viewpie, 30, 400, 400, 200);
 		voegElementToe(scherm, controller, 10, 600, 450, 50);
-		voegElementToe(scherm, viewKlok, 900, 30, 200, 100);
-		voegElementToe(scherm, viewSlide, 880, 90, 220 ,80);
+		voegElementToe(scherm, viewKlok, 900, 30, 200, 60);
+		voegElementToe(scherm, viewSlide, 880, 90, 250 ,100);
 		voegElementToe(scherm, viewGraph, 30, 400, 400, 200);
 		voegElementToe(scherm, viewhistogram, 450, 400,400,200);
 		voegElementToe(scherm, map, 30, 10, 850, 400);
