@@ -19,4 +19,11 @@ public class CoreVariables {
 	// Resolutie
 	public static final int schermBreedte = 1200;
 	public static final int schermHoogte = 700;
+	
+	// De locaties van de views
+	public static final int locatie1X = 10;
+	public static final int locatie2X = 420;
+	public static final int locatieY = 400;
+	public static final int locatieWidth = 400;
+	public static final int locatieHeight = 200;
 }

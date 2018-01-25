@@ -17,7 +17,7 @@ public class ViewKlok extends AbstractView {
 	
 	public ViewKlok(Model model) {
 		super(model);
-		this.setSize(200, 100);
+		this.setSize(100, 60);
 		this.setLayout(null);
 		
 		dag.setSize(90, 20);

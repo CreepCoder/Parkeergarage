@@ -68,14 +68,18 @@ public class Parkeergarage {
 		
 		// Voeg alle elementen toe
 		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);
-		voegElementToe(scherm, viewpie, 30, 400, 400, 200);
-		voegElementToe(scherm, controller, 10, 600, 450, 50);
-		voegElementToe(scherm, viewKlok, 900, 30, 200, 60);
-		voegElementToe(scherm, viewSlide, 880, 90, 250 ,100);
-		voegElementToe(scherm, viewGraph, 30, 400, 400, 200);
-		voegElementToe(scherm, viewhistogram, 450, 400,400,200);
-		voegElementToe(scherm, map, 30, 10, 850, 400);
+		voegElementToe(scherm, viewpie, CoreVariables.locatie1X, CoreVariables.locatieY, CoreVariables.locatieWidth, CoreVariables.locatieHeight);
+		voegElementToe(scherm, controller, 830, 80, 170, 50);
+		voegElementToe(scherm, viewKlok, 830, 10, 100, 60);
+		voegElementToe(scherm, viewSlide, 950, 8, 250, 100);
+		voegElementToe(scherm, viewGraph, CoreVariables.locatie2X, CoreVariables.locatieY, CoreVariables.locatieWidth, CoreVariables.locatieHeight);
+		voegElementToe(scherm, viewhistogram, 450, 400, 400, 200);
+		voegElementToe(scherm, map, 10, 10, 810, 380);
+		
+		// Zet de normale CarParkView uit, deze moet wel blijven, omdat het achterliggende systeem nog gebruikt wordt
 		viewcarpark.setVisible(false);
+		
+		viewhistogram.setVisible(false);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

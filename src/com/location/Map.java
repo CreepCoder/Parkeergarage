@@ -80,13 +80,13 @@ public class Map extends AbstractView{
 		
 		// Creëer omlijning
 		g.setColor(Color.black);
-		g.drawRect(0, 0, 799, 379);
+		g.drawRect(0, 0, 809, 379);
 
 		if (added == false) {
 		spaceX = 0;
 		for (int i=0; i<18; i++) {
-			if (i == 2 || i == 4 || i == 8 || i == 10 || i == 14 || i == 16) {spaceX = spaceX + 8;}
-			if (i == 6 || i == 12) {spaceX = spaceX +32;}
+			if (i == 2 || i == 4 || i == 8 || i == 10 || i == 14 || i == 16) {spaceX = spaceX + 16;}
+			if (i == 6 || i == 12) {spaceX = spaceX + 146;}
 			for (int j=0; j<30; j++) {
 				if (map[j][i] == 0) {
 					LocationMap location = new LocationMap(15+(i*22)+spaceX, 10+(j*12), LocationType.AD_HOC, null);
@@ -200,7 +200,6 @@ public class Map extends AbstractView{
     	if (location != null && car != null) {
     		car.setLocationmap(location);
     		location.setCar(new Car(car.getType()));
-    		
     		}    
     	}
 
@@ -208,14 +207,10 @@ public class Map extends AbstractView{
         Car car = location.getCar();
         location.setCar(null);
         if (car == null) {
-            //return null;
         }
         else {
         	car.setLocation(null);
         }
-		//return car;
-		
-        
     }
     
     public LocationMap getFreePosition(Car car) {
