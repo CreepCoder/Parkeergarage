@@ -25,5 +25,5 @@ public class CoreVariables {
 	public static final int locatie2X = 420;
 	public static final int locatieY = 400;
 	public static final int locatieWidth = 400;
-	public static final int locatieHeight = 200;
+	public static final int locatieHeight = 230;
 }
