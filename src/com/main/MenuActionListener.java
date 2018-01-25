@@ -24,20 +24,20 @@ public class MenuActionListener implements ActionListener {
 		// krijg de waarde waarop de gebruiker drukt en voer daarvoor de juiste actie.
 		
 		// NEW FILE
-		if (e.getActionCommand().equals("New file")) {
+		if (e.getActionCommand().equals("Nieuwe Instantie")) {
 			//boxMessage = "A new file is opened...";
 			Parkeergarage.main(null);
 			//System.exit(0);
 		}
 		// EXIT FILE
-		if (e.getActionCommand().equals("Exit")) {
+		if (e.getActionCommand().equals("Afsluiten")) {
 			if (JOptionPane.showConfirmDialog(null, "Are you sure about that?",
 					e.getActionCommand(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 					System.exit(0);
 			}
 		}
 		// VIEW PIE CHART
-		if (e.getActionCommand().equals("Pie chart")) {
+		if (e.getActionCommand().equals("Taart Weergave")) {
 			if (viewpieAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
 					System.out.println("1 van de views is nog beschikbaar (of allebei)");
@@ -66,27 +66,9 @@ public class MenuActionListener implements ActionListener {
 			}
 		}
 		
-		// VIEW CLOCK
-		if (e.getActionCommand().equals("Clock")) {
-			if (Parkeergarage.viewKlok.isShowing()) {
-				Parkeergarage.viewKlok.setVisible(false);
-			}
-			else {
-				Parkeergarage.viewKlok.setVisible(true);
-			}
-		}
-		
-		// VIEW SLIDER
-		if (e.getActionCommand().equals("Slider")) {
-			if (Parkeergarage.viewSlide.isShowing()) {
-				Parkeergarage.viewSlide.setVisible(false);
-			}
-			else {
-				Parkeergarage.viewSlide.setVisible(true);
-			}
-		}
+
 		// VIEW GRAPH
-		if (e.getActionCommand().equals("Graph")) {
+		if (e.getActionCommand().equals("Grafiek Weergave")) {
 			if (viewgraphAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
 					System.out.println("1 van de views is nog beschikbaar (of allebei)");
@@ -115,7 +97,7 @@ public class MenuActionListener implements ActionListener {
 			}
 		}
 		// VIEW HISTOGRAM
-		if (e.getActionCommand().equals("Histogram")) {
+		if (e.getActionCommand().equals("Histogram Weergave")) {
 			if (viewhistogramAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
 					System.out.println("1 van de views is nog beschikbaar (of allebei)");
@@ -143,8 +125,29 @@ public class MenuActionListener implements ActionListener {
 				viewhistogramAdded = false;
 			}
 		}
+		
+		// VIEW CLOCK
+		if (e.getActionCommand().equals("Klok")) {
+			if (Parkeergarage.viewKlok.isShowing()) {
+				Parkeergarage.viewKlok.setVisible(false);
+			}
+			else {
+				Parkeergarage.viewKlok.setVisible(true);
+			}
+		}
+		
+		// VIEW SLIDER
+		if (e.getActionCommand().equals("Snelheid Slider")) {
+			if (Parkeergarage.viewSlide.isShowing()) {
+				Parkeergarage.viewSlide.setVisible(false);
+			}
+			else {
+				Parkeergarage.viewSlide.setVisible(true);
+			}
+		}
+		
 		// DEFAULT SETTINGS
-		if (e.getActionCommand().equals("Default settings")) {
+		if (e.getActionCommand().equals("Standaard Instellingen Herstellen")) {
 			//boxMessage = "Set to default settings.";
 			
 			// Maak de default views zichtbaar
