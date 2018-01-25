@@ -22,14 +22,15 @@ public class MenuActionListener implements ActionListener {
 		
 		// NEW FILE
 		if (e.getActionCommand().equals("New file")) {
-			boxMessage = "A new file is opened...";
+			//boxMessage = "A new file is opened...";
 			Parkeergarage.main(null);
+			//System.exit(0);
 		}
 		// EXIT FILE
 		if (e.getActionCommand().equals("Exit")) {
 			if (JOptionPane.showConfirmDialog(null, "Are you sure about that?",
 					e.getActionCommand(), JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-				System.exit(0);
+					System.exit(0);
 			}
 		}
 		// VIEW PIE CHART
@@ -68,7 +69,7 @@ public class MenuActionListener implements ActionListener {
 				Parkeergarage.viewGraph.setVisible(true);
 			}
 		}
-		// VIEW CARPARK
+		// VIEW HISTOGRAM
 		if (e.getActionCommand().equals("Histogram")) {
 			if (Parkeergarage.viewhistogram.isShowing()) {
 				Parkeergarage.viewhistogram.setVisible(false);

@@ -23,15 +23,16 @@ public class Menubar extends JMenuBar{
 	public static Boolean pieVisible = Parkeergarage.viewpie.isVisible();
 	public static Boolean clockVisible = Parkeergarage.viewKlok.isVisible();
 	public static Boolean sliderVisible = Parkeergarage.viewSlide.isVisible();
-	public static Boolean carparkVisible = Parkeergarage.viewGraph.isVisible();
+	public static Boolean graphVisible = Parkeergarage.viewGraph.isVisible();
 	public static Boolean histogramVisible = Parkeergarage.viewhistogram.isVisible();
 	
 	// Voeg checkbox menu items aan de view-menu.
 	public static JCheckBoxMenuItem viewPie = new JCheckBoxMenuItem("Pie chart", pieVisible);
 	public static JCheckBoxMenuItem viewClock = new JCheckBoxMenuItem("Clock", clockVisible);
 	public static JCheckBoxMenuItem viewSlider = new JCheckBoxMenuItem("Slider", sliderVisible);
-	public static JCheckBoxMenuItem viewGraph = new JCheckBoxMenuItem("Graph", true);
+	public static JCheckBoxMenuItem viewGraph = new JCheckBoxMenuItem("Graph", graphVisible);
 	public static JCheckBoxMenuItem viewHistogram = new JCheckBoxMenuItem("Histogram", histogramVisible);
+	
 	public static JMenuItem defaultSettings = new JMenuItem("Default settings");
 	
 	public Menubar(JFrame scherm)
