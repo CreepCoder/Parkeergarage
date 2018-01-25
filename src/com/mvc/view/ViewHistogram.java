@@ -3,8 +3,6 @@ package com.mvc.view;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.JLabel;
-
 import com.lib.ColorList;
 import com.mvc.model.Model;
 

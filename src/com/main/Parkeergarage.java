@@ -6,6 +6,7 @@ import java.awt.Component;
 import javax.swing.JFrame;
 
 import com.lib.CoreVariables;
+import com.location.LocationView;
 import com.location.Map;
 import com.mvc.controller.Controller;
 import com.mvc.model.Model;
@@ -33,7 +34,7 @@ public class Parkeergarage {
 	 */
 	
 	private Model model;
-	private JFrame scherm;
+	public static JFrame scherm;
 	public static AbstractView viewpie;
 	public static AbstractView viewKlok;
 	public static AbstractView viewSlide;
@@ -67,19 +68,14 @@ public class Parkeergarage {
 		new Menubar(scherm);
 		
 		// Voeg alle elementen toe
-		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);
-		voegElementToe(scherm, viewpie, CoreVariables.locatie1X, CoreVariables.locatieY, CoreVariables.locatieWidth, CoreVariables.locatieHeight);
+		voegElementToe(scherm, viewcarpark, 0, 0, 850, 400);		
 		voegElementToe(scherm, controller, 830, 80, 170, 50);
 		voegElementToe(scherm, viewKlok, 830, 10, 100, 60);
 		voegElementToe(scherm, viewSlide, 950, 8, 250, 70);
-		voegElementToe(scherm, viewGraph, CoreVariables.locatie2X, CoreVariables.locatieY, CoreVariables.locatieWidth, CoreVariables.locatieHeight);
-		voegElementToe(scherm, viewhistogram, 450, 400, 400, 200);
 		voegElementToe(scherm, map, 10, 10, 810, 380);
 		
 		// Zet de normale CarParkView uit, deze moet wel blijven, omdat het achterliggende systeem nog gebruikt wordt
 		viewcarpark.setVisible(false);
-		
-		viewhistogram.setVisible(false);
 		
 		// Overige scherm informatie
 		scherm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,10 +89,34 @@ public class Parkeergarage {
     	viewcarpark.updateView();
     }
     
-    // Deze methode heb ik gemaakt zodat er gemakkelijk elementen toegevoegd kunnen worden aan het scherm. Ook scheelt het lijnen code om het overzicht te behouden
-    public void voegElementToe(JFrame frame, Component element, int x, int y, int width, int height) {
+    // Deze methodes heb ik gemaakt zodat er gemakkelijk elementen toegevoegd kunnen worden aan het scherm. Ook scheelt het lijnen code om het overzicht te behouden
+    public static void voegElementToe(JFrame frame, Component element, int x, int y, int width, int height) {
     	frame.getContentPane().add(element);
     	element.setBounds(x, y, width, height);
+    }
+    
+    public static void voegViewToe(JFrame frame, Component element, LocationView view) {
+    	if (view.isOccupied() == false) {
+    		frame.getContentPane().add(element);
+    		element.setBounds(view.getX(), view.getY(), view.getWidth(), view.getHeight());
+    		view.setOccupied(true);
+    		frame.repaint();
+    	}
+    }
+    
+    // Haalt een element van het scherm
+    public static void haalElementWeg(JFrame frame, Component element) {
+    	if (element.getX() == LocationView.links.getX()) {
+    		LocationView.links.setOccupied(false);
+    		frame.getContentPane().remove(element);
+    		frame.repaint();
+    	}
+    	else if (element.getX() == LocationView.rechts.getX()) {
+    		LocationView.rechts.setOccupied(false);
+    		frame.getContentPane().remove(element);
+    		frame.repaint();
+    	}
+    	frame.getContentPane().remove(element);
     }
 	
 	public static void main(String[] args) {

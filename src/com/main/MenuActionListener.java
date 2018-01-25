@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import com.mvc.view.ViewCarPark;
-import com.mvc.view.ViewKlok;
+import com.location.LocationView;
 
 
 public class MenuActionListener implements ActionListener {
@@ -14,7 +13,11 @@ public class MenuActionListener implements ActionListener {
 	String boxMessage = null;
 	// activeView laat zien welke view op dit moment actief is.
 	//String activeView;
-
+	
+	boolean viewpieAdded = false;
+	boolean viewgraphAdded = false;
+	boolean viewhistogramAdded = false;
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -35,13 +38,34 @@ public class MenuActionListener implements ActionListener {
 		}
 		// VIEW PIE CHART
 		if (e.getActionCommand().equals("Pie chart")) {
-			if (Parkeergarage.viewpie.isShowing()) {
-				Parkeergarage.viewpie.setVisible(false);
+			if (viewpieAdded == false) {
+				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
+					System.out.println("1 van de views is nog beschikbaar (of allebei)");
+					if (LocationView.links.isOccupied() == false) {
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewpie, LocationView.links);
+						LocationView.links.setOccupied(true);
+						viewpieAdded = true;
+						System.out.println("Links heeft een view ontvangen");
+					}
+					else if (LocationView.rechts.isOccupied() == false) {
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewpie, LocationView.rechts);
+						LocationView.rechts.setOccupied(true);
+						viewpieAdded = true;
+						System.out.println("Rechts heeft een view ontvangen");
+					}
+				}
+				else if (LocationView.links.isOccupied() == true && LocationView.rechts.isOccupied() == true) {
+					errorOccupied();
+					Menubar.viewPie.setSelected(false);
+				}
 			}
-			else {
-				Parkeergarage.viewpie.setVisible(true);
+			else if (viewpieAdded == true){
+				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewpie);
+				System.out.println("Er is een view verwijderd");
+				viewpieAdded = false;
 			}
 		}
+		
 		// VIEW CLOCK
 		if (e.getActionCommand().equals("Clock")) {
 			if (Parkeergarage.viewKlok.isShowing()) {
@@ -51,6 +75,7 @@ public class MenuActionListener implements ActionListener {
 				Parkeergarage.viewKlok.setVisible(true);
 			}
 		}
+		
 		// VIEW SLIDER
 		if (e.getActionCommand().equals("Slider")) {
 			if (Parkeergarage.viewSlide.isShowing()) {
@@ -62,20 +87,60 @@ public class MenuActionListener implements ActionListener {
 		}
 		// VIEW GRAPH
 		if (e.getActionCommand().equals("Graph")) {
-			if (Parkeergarage.viewGraph.isShowing()) {
-				Parkeergarage.viewGraph.setVisible(false);
+			if (viewgraphAdded == false) {
+				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
+					System.out.println("1 van de views is nog beschikbaar (of allebei)");
+					if (LocationView.links.isOccupied() == false) {
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewGraph, LocationView.links);
+						LocationView.links.setOccupied(true);
+						viewgraphAdded = true;
+						System.out.println("Links heeft een graphview ontvangen");
+					}
+					else if (LocationView.rechts.isOccupied() == false) {
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewGraph, LocationView.rechts);
+						LocationView.rechts.setOccupied(true);
+						viewgraphAdded = true;
+						System.out.println("Rechts heeft een graphview ontvangen");
+					}
+				}
+				else if (LocationView.links.isOccupied() == true && LocationView.rechts.isOccupied() == true) {
+					errorOccupied();
+					Menubar.viewGraph.setSelected(false);
+				}
 			}
-			else {
-				Parkeergarage.viewGraph.setVisible(true);
+			else if (viewgraphAdded == true){
+				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewGraph);
+				System.out.println("Er is een view verwijderd");
+				viewgraphAdded = false;
 			}
 		}
 		// VIEW HISTOGRAM
 		if (e.getActionCommand().equals("Histogram")) {
-			if (Parkeergarage.viewhistogram.isShowing()) {
-				Parkeergarage.viewhistogram.setVisible(false);
+			if (viewhistogramAdded == false) {
+				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
+					System.out.println("1 van de views is nog beschikbaar (of allebei)");
+					if (LocationView.links.isOccupied() == false) {
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewhistogram, LocationView.links);
+						LocationView.links.setOccupied(true);
+						viewhistogramAdded = true;
+						System.out.println("Links heeft een view ontvangen");
+					}
+					else if (LocationView.rechts.isOccupied() == false) {
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewhistogram, LocationView.rechts);
+						LocationView.rechts.setOccupied(true);
+						viewhistogramAdded = true;
+						System.out.println("Rechts heeft een view ontvangen");
+					}
+				}
+				else if (LocationView.links.isOccupied() == true && LocationView.rechts.isOccupied() == true) {
+					errorOccupied();
+					Menubar.viewHistogram.setSelected(false);
+				}
 			}
-			else {
-				Parkeergarage.viewhistogram.setVisible(true);
+			else if (viewhistogramAdded == true){
+				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewhistogram);
+				System.out.println("Er is een view verwijderd");
+				viewhistogramAdded = false;
 			}
 		}
 		// DEFAULT SETTINGS
@@ -99,5 +164,8 @@ public class MenuActionListener implements ActionListener {
 		if (boxMessage != null) {
 			JOptionPane.showMessageDialog(null, boxMessage, e.getActionCommand(), JOptionPane.DEFAULT_OPTION);
 		}
+	}
+	private void errorOccupied() {
+		JOptionPane.showMessageDialog(null, "U dient eerst een view weg te halen voordat u een nieuwe toevoegd.");
 	}
 }

@@ -7,7 +7,7 @@ package com.lib;
 public class CoreVariables {
 	
 	// Snelheid van de simulatie
-	public static int simulatorSpeed = 1;
+	public static int simulatorSpeed = 25;
 	
 	public static void setSimulatorSpeed(int i) {
 		simulatorSpeed = i;
