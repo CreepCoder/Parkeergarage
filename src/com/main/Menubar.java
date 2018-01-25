@@ -21,17 +21,17 @@ public class Menubar extends JMenuBar{
 	
 	// laat zien welke views zichtbaar zijn
 	public static Boolean pieVisible = Parkeergarage.viewpie.isVisible();
-	public static Boolean clockVisible = Parkeergarage.viewpie.isVisible();
-	public static Boolean sliderVisible = Parkeergarage.viewpie.isVisible();
-	public static Boolean carparkVisible = Parkeergarage.viewpie.isVisible();
+	public static Boolean clockVisible = Parkeergarage.viewKlok.isVisible();
+	public static Boolean sliderVisible = Parkeergarage.viewSlide.isVisible();
+	public static Boolean carparkVisible = Parkeergarage.viewGraph.isVisible();
+	public static Boolean histogramVisible = Parkeergarage.viewhistogram.isVisible();
 	
 	// Voeg checkbox menu items aan de view-menu.
 	public static JCheckBoxMenuItem viewPie = new JCheckBoxMenuItem("Pie chart", pieVisible);
-	public static JCheckBoxMenuItem viewClock = new JCheckBoxMenuItem("Clock", true);
-	public static JCheckBoxMenuItem viewSlider = new JCheckBoxMenuItem("Slider", true);
-	public static JCheckBoxMenuItem viewCarPark = new JCheckBoxMenuItem("Carpark", true);
+	public static JCheckBoxMenuItem viewClock = new JCheckBoxMenuItem("Clock", clockVisible);
+	public static JCheckBoxMenuItem viewSlider = new JCheckBoxMenuItem("Slider", sliderVisible);
 	public static JCheckBoxMenuItem viewGraph = new JCheckBoxMenuItem("Graph", true);
-	public static JCheckBoxMenuItem view2 = new JCheckBoxMenuItem("view2", true);
+	public static JCheckBoxMenuItem viewHistogram = new JCheckBoxMenuItem("Histogram", histogramVisible);
 	public static JMenuItem defaultSettings = new JMenuItem("Default settings");
 	
 	public Menubar(JFrame scherm)
@@ -48,8 +48,7 @@ public class Menubar extends JMenuBar{
 		view.add(viewClock);
 		view.add(viewSlider);
 		view.add(viewGraph);
-		view.add(view2);
-		view.add(viewCarPark);
+		view.add(viewHistogram);
 		settings.add(defaultSettings);
 		
 		// Voeg de addActionListener toe aan de menu items.
@@ -59,8 +58,7 @@ public class Menubar extends JMenuBar{
 		viewClock.addActionListener(new MenuActionListener());
 		viewSlider.addActionListener(new MenuActionListener());
 		viewGraph.addActionListener(new MenuActionListener());
-		view2.addActionListener(new MenuActionListener());
-		viewCarPark.addActionListener(new MenuActionListener());
+		viewHistogram.addActionListener(new MenuActionListener());
 		defaultSettings.addActionListener(new MenuActionListener());
 		
 		menubar.setVisible(true);

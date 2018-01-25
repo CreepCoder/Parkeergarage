@@ -38,10 +38,10 @@ public class Parkeergarage {
 	public static AbstractView viewKlok;
 	public static AbstractView viewSlide;
 	public static AbstractView viewGraph;
+	public static ViewHistogram viewhistogram;
 	public static ViewCarPark viewcarpark;
 	private Controller controller;
 	public static Map map;
-	private static ViewHistogram viewhistogram;
 	
 	public Parkeergarage() {
 		// Maak alle objecten aan

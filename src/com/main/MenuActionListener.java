@@ -69,12 +69,12 @@ public class MenuActionListener implements ActionListener {
 			}
 		}
 		// VIEW CARPARK
-		if (e.getActionCommand().equals("Carpark")) {
-			if (Parkeergarage.viewcarpark.isShowing()) {
-				Parkeergarage.viewcarpark.setVisible(false);
+		if (e.getActionCommand().equals("Histogram")) {
+			if (Parkeergarage.viewhistogram.isShowing()) {
+				Parkeergarage.viewhistogram.setVisible(false);
 			}
 			else {
-				Parkeergarage.viewcarpark.setVisible(true);
+				Parkeergarage.viewhistogram.setVisible(true);
 			}
 		}
 		// DEFAULT SETTINGS
@@ -85,14 +85,14 @@ public class MenuActionListener implements ActionListener {
 			Parkeergarage.viewpie.setVisible(true);
 			Parkeergarage.viewKlok.setVisible(true);
 			Parkeergarage.viewSlide.setVisible(true);
-			Parkeergarage.viewGraph.setVisible(true);
-			Parkeergarage.viewcarpark.setVisible(true);
+			Parkeergarage.viewGraph.setVisible(false);
+			Parkeergarage.viewhistogram.setVisible(false);
 			// Maak de geselecteerde items gelijk aan de zichtbare items
 			Menubar.viewPie.setSelected(true);
 			Menubar.viewClock.setSelected(true);
 			Menubar.viewSlider.setSelected(true);
-			Parkeergarage.viewGraph.setVisible(true);
-			Menubar.viewCarPark.setSelected(true);
+			Menubar.viewGraph.setVisible(false);
+			Menubar.viewHistogram.setSelected(false);
 		}
 		// Stuur een bericht naar een venster als er een boxMessage is.
 		if (boxMessage != null) {
