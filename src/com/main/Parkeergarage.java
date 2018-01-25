@@ -71,7 +71,7 @@ public class Parkeergarage {
 		voegElementToe(scherm, viewpie, CoreVariables.locatie1X, CoreVariables.locatieY, CoreVariables.locatieWidth, CoreVariables.locatieHeight);
 		voegElementToe(scherm, controller, 830, 80, 170, 50);
 		voegElementToe(scherm, viewKlok, 830, 10, 100, 60);
-		voegElementToe(scherm, viewSlide, 950, 8, 250, 100);
+		voegElementToe(scherm, viewSlide, 950, 8, 250, 70);
 		voegElementToe(scherm, viewGraph, CoreVariables.locatie2X, CoreVariables.locatieY, CoreVariables.locatieWidth, CoreVariables.locatieHeight);
 		voegElementToe(scherm, viewhistogram, 450, 400, 400, 200);
 		voegElementToe(scherm, map, 10, 10, 810, 380);

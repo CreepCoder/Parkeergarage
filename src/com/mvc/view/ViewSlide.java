@@ -28,20 +28,18 @@ public ViewSlide(Model model) {
     slider.setMajorTickSpacing(10);
     slider.setPaintTicks(true);
     slider.setPaintLabels(true);
-    slider.setVisible(true);
+    slider.setValue(25);
     slider.setSize(200,50);
-    slider.setBackground(Color.WHITE);
+    slider.setBackground(Color.white);
+    slider.setVisible(true);
     slider.addChangeListener(new ChangeListener() {
-		
 		@Override
 		public void stateChanged(ChangeEvent e) {
 			JSlider source = (JSlider) e.getSource();
 			CoreVariables.setSimulatorSpeed(source.getValue());
 		}
 	});
-    
     slider.setLabelTable(slider.createStandardLabels(5));
-    
     this.add(slider);
   }
 

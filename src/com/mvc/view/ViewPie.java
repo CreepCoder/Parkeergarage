@@ -14,8 +14,8 @@ public class ViewPie extends AbstractView {
 	private JLabel aantalLegeVakken  		 = new JLabel(""+model.aantalLegeVakken);
 	private JLabel aantalCarAdHoc 			 = new JLabel(""+model.aantalCarAdHoc);
 	private JLabel aantalCarParkingPass 	 = new JLabel(""+model.aantalCarParkingPass);
-	private JLabel aantalCarElektrisch  		 = new JLabel(""+model.aantalCarElektrisch);
-	private JLabel aantalCarInvalide  		 	 = new JLabel(""+model.aantalCarInvalide);
+	private JLabel aantalCarElektrisch  	 = new JLabel(""+model.aantalCarElektrisch);
+	private JLabel aantalCarInvalide  		 = new JLabel(""+model.aantalCarInvalide);
 	private JLabel aantalCarMotor  		 	 = new JLabel(""+model.aantalCarMotor);
 
 	public ViewPie(Model model) {
