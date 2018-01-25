@@ -3,15 +3,17 @@ package com.car;
 import java.awt.Color;
 
 import com.location.Location;
+import com.location.LocationMap;
 import com.location.LocationType;
 
-public abstract class Car {
+public class Car {
 
     private Location location;
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
     private LocationType type;
+	private LocationMap locationmap;
 
     /**
      * Constructor for objects of class Car
@@ -56,7 +58,9 @@ public abstract class Car {
         minutesLeft--;
     }
     
-    public abstract Color getColor();
+    public Color getColor() {
+		return type.getColor();
+    }
 
 	public LocationType getType() {
 		return type;
@@ -64,5 +68,13 @@ public abstract class Car {
 
 	public void setType(LocationType type) {
 		this.type = type;
+	}
+
+	public LocationMap getLocationmap() {
+		return locationmap;
+	}
+
+	public void setLocationmap(LocationMap locationmap) {
+		this.locationmap = locationmap;
 	}
 }

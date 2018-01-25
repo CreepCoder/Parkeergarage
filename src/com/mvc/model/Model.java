@@ -7,6 +7,7 @@ import com.car.CarAdHoc;
 import com.car.CarParkingPass;
 import com.lib.CoreVariables;
 import com.location.Location;
+import com.location.LocationMap;
 import com.location.LocationType;
 import com.main.Parkeergarage;
 import com.mechanic.CarQueue;
@@ -60,7 +61,7 @@ public class Model extends AbstractModel implements Runnable {
 			this.aantal=aantal;
 			notifyViews();
 		}
-		if (aantal > 10000) {
+		if (aantal > 10080) {
 			stop();
 		}
 	}
@@ -151,7 +152,11 @@ public class Model extends AbstractModel implements Runnable {
 	            Car car = queue.removeCar();
 	            Location freeLocation = Parkeergarage.viewcarpark.getFirstFreeLocation();
 	            Parkeergarage.viewcarpark.setCarAt(freeLocation, car);
-	            // Statement om de bijgehoude numemrs te veranderen
+	            
+	            LocationMap freeLocationMap = Parkeergarage.map.getFreePosition(car);
+	            Parkeergarage.map.setCarAt(freeLocationMap, car);
+	            
+	            // Statement om de bijgehoude nummers te veranderen
 	            if (car.getType().equals(LocationType.AD_HOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
 	            if (car.getType().equals(LocationType.PARKING_PASS)) 	{aantalCarParkingPass++; aantalLegeVakken--;}
 	            if (car.getType().equals(LocationType.ELEKTRISCH)) 		{aantalCarElektrisch++; aantalLegeVakken--;}
@@ -159,6 +164,7 @@ public class Model extends AbstractModel implements Runnable {
 	            if (car.getType().equals(LocationType.MOTOR)) 			{aantalCarMotor++; aantalLegeVakken--;}
 	            i++;
 	        }
+	    	
 	    }
 	    
 	    private void carsReadyToLeave(){
@@ -229,6 +235,9 @@ public class Model extends AbstractModel implements Runnable {
 	    private void carLeavesSpot(Car car){
 	    	Parkeergarage.viewcarpark.removeCarAt(car.getLocation());
 	        exitCarQueue.addCar(car);
+	        
+	        Parkeergarage.map.removeCarAt(car.getLocationmap());
+	        
 	        
 	        // Statements om de bijgehoude nummers te veranderen
 	        if (car.getType().equals(LocationType.AD_HOC)) 			{aantalCarAdHoc--; aantalLegeVakken++;}
