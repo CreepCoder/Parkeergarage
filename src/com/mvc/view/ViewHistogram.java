@@ -1,41 +1,66 @@
 package com.mvc.view;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.stage.Stage;
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JLabel;
+
+import com.lib.ColorList;
 import com.mvc.model.Model;
 
-
 public class ViewHistogram extends AbstractView {
-    public ViewHistogram(Model model) {
+	private static final long serialVersionUID = 5455934187803194147L;
+	
+	private JLabel aantalLegeVakken  		 = new JLabel(""+model.aantalLegeVakken);
+	private JLabel aantalCarAdHoc 			 = new JLabel(""+model.aantalCarAdHoc);
+	private JLabel aantalCarParkingPass 	 = new JLabel(""+model.aantalCarParkingPass);
+	private JLabel aantalCarElektrisch  		 = new JLabel(""+model.aantalCarElektrisch);
+	private JLabel aantalCarInvalide  		 	 = new JLabel(""+model.aantalCarInvalide);
+	private JLabel aantalCarMotor  		 	 = new JLabel(""+model.aantalCarMotor);
+
+	public ViewHistogram(Model model) {
 		super(model);
 		this.setSize(400, 200);
 		this.setLayout(null);
-    }
-    public void Histogram() {
-		final CategoryAxis xAxis = new CategoryAxis();
-        final NumberAxis yAxis = new NumberAxis();
-        final BarChart<String,Number> bc = 
-            new BarChart<String,Number>(xAxis,yAxis);
-       
-        xAxis.setLabel("voertuig");       
-        yAxis.setLabel("Hoeveelheid");
- 
-        XYChart.Series series1 = new XYChart.Series();
-     
-        series1.getData().add(new XYChart.Data("aids ding", 111));
-        series1.getData().add(new XYChart.Data("rip", 112));
-      
-       
-        Scene scene  = new Scene(bc,800,600);
-        bc.getData().addAll(series1);
-    }
+	}
+	
 
-	final static String caradhoc = "CARADHOC";
-    final static String carparkingpass = "CARPARKINGPASS";
+	// Methode om gemakkelijk een legenda toe te voegen (tekst)
+	
 
+	public void paintComponent(Graphics g) {
+		// Creëer achtergrond
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, 400, 200);
+		
+		// Creëer belijning
+		g.setColor(Color.black);
+		g.drawLine(0, 0, 399, 0);
+		g.drawLine(0, 0, 0, 200);
+		g.drawLine(0, 199, 399, 199);
+		g.drawLine(399, 0, 399, 199);
+		
+		createBar(g, ColorList.LEGE_VAKKEN, 3, 1, 60, model.aantalLegeVakken/2);
+		createBar(g, ColorList.CAR_AD_HOC, 69, 1, 60, model.aantalCarAdHoc/2);
+		createBar(g, ColorList.CAR_PARKING_PASS, 135, 1, 60, model.aantalCarParkingPass/2);
+		createBar(g, ColorList.ELEKTRISCHE_CAR, 201, 1, 60, model.aantalCarElektrisch/2);
+		createBar(g, ColorList.INVALIDE_CAR, 267, 1, 60, model.aantalCarInvalide/2);
+		createBar(g, ColorList.MOTOR, 333, 1, 60, model.aantalCarMotor/2);
+		System.out.println(model.aantalLegeVakken);
+	}
+	
+	// Een methode om 540 plekken te berekenen in een 360 graden cirkel
+	private int aantalBerekening(int aantal) {
+		if (aantal > 0 && aantal <= 1) {return 1;}
+		else {return (int) (Math.floor(aantal/1.5));}
+	}	
+	
+	private void createBar(Graphics g, Color color, int x, int y, int width, int height) {
+		g.setColor(color);
+		g.fillRect(x, y, width, height);
+	 	}
+	private void createLegend(Graphics g, Color color, int x, int y, int width, int height) {
+		g.setColor(color);
+		g.fillRect(x, y, width, height);
+	}
 }
