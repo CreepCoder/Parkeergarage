@@ -27,7 +27,7 @@ public class ViewGraph extends AbstractView {
 	//public ArrayList<Integer> linesList = new ArrayList<Integer>();
 	public ArrayList<Integer> linesList;
 	public ArrayList<Integer> linesList2;
-
+	public ArrayList<Integer> i;
 	
 	// Voor CarAdHoc
 	public int x1 = 0;

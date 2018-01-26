@@ -78,6 +78,9 @@ public class Parkeergarage {
 		voegElementToe(scherm, viewMoney, 830, 140, 300, 460);
 		voegElementToe(scherm, map, 10, 10, 810, 380);
 		
+		// Zorgt ervoor dat de grafiek altijd wordt geüpdate
+
+		
 		// Zet de normale CarParkView uit, deze moet wel blijven, omdat het achterliggende systeem nog gebruikt wordt
 		viewcarpark.setVisible(false);
 		
