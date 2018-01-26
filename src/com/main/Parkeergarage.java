@@ -15,6 +15,7 @@ import com.mvc.view.ViewCarPark;
 import com.mvc.view.ViewGraph;
 import com.mvc.view.ViewHistogram;
 import com.mvc.view.ViewKlok;
+import com.mvc.view.ViewMoney;
 import com.mvc.view.ViewPie;
 import com.mvc.view.ViewSlide;
 
@@ -40,6 +41,7 @@ public class Parkeergarage {
 	public static AbstractView viewSlide;
 	public static AbstractView viewGraph;
 	public static ViewHistogram viewhistogram;
+	public static ViewMoney viewMoney;
 	public static ViewCarPark viewcarpark;
 	private Controller controller;
 	public static Map map;
@@ -54,6 +56,7 @@ public class Parkeergarage {
 		viewGraph = new ViewGraph(model);
 		controller = new Controller(model);
 		viewhistogram = new ViewHistogram(model);
+		viewMoney = new ViewMoney(model);
 		map = new Map(model);
 		
 		
@@ -72,6 +75,7 @@ public class Parkeergarage {
 		voegElementToe(scherm, controller, 830, 80, 170, 50);
 		voegElementToe(scherm, viewKlok, 830, 10, 100, 60);
 		voegElementToe(scherm, viewSlide, 950, 8, 250, 70);
+		voegElementToe(scherm, viewMoney, 830, 140, 300, 460);
 		voegElementToe(scherm, map, 10, 10, 810, 380);
 		
 		// Zet de normale CarParkView uit, deze moet wel blijven, omdat het achterliggende systeem nog gebruikt wordt

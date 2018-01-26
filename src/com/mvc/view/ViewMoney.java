@@ -18,46 +18,43 @@ public class ViewMoney extends AbstractView {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel aantalLegeVakken  		 = new JLabel(""+model.aantalLegeVakken);
-	private JLabel aantalCarAdHoc 			 = new JLabel(""+model.aantalCarAdHoc);
-	private JLabel aantalCarParkingPass 	 = new JLabel(""+model.aantalCarParkingPass);
-	private JLabel aantalCarElektrisch  		 = new JLabel(""+model.aantalCarElektrisch);
-	private JLabel aantalCarInvalide  		 	 = new JLabel(""+model.aantalCarInvalide);
-	private JLabel aantalCarMotor  		 	 = new JLabel(""+model.aantalCarMotor);
+	private int geldCarAdHoc;
+	private int geldCarElektrisch;
+	private int geldCarInvalide;
+	private int geldCarMotor;
+	private int geldCarParkingPass;
 	
 	public ViewMoney(Model model) {
 		super(model);
 		this.setSize(400, 200);
 		this.setLayout(null);
 		
+		this.geldCarAdHoc = 0;
+		this.geldCarElektrisch = 0;
+		this.geldCarInvalide = 0;
+		this.geldCarMotor = 0;
+		this.geldCarParkingPass = 0;
 	}
 	
 	
-	public void getNumbers(Graphics g) {
+	public void paintComponent(Graphics g) {
 		// Creëer achtergrond
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 400, 200);
+		g.fillRect(0, 0, 300, 460);
 		
 		// Creëer belijning
 		g.setColor(Color.black);
 		g.drawLine(0, 0, 399, 0);
-		g.drawLine(0, 0, 0, 200);
-		g.drawLine(0, 199, 399, 199);
-		g.drawLine(399, 0, 399, 199);
+		g.drawLine(0, 0, 0, 459);
+		g.drawLine(0, 459, 299, 459);
+		g.drawLine(299, 0, 299, 459);
 	}
 	
-	public void Calculate(String car) {
-		//
+	
+	public void CalculateNumbers(String car) {
+		
 		ArrayList<Integer> loc = new ArrayList<Integer>();
 		Map m = new Map(model);
-//		m.getCarAt(location);
-//		
-//    	if (location != null && car != null) {
-//    		car.setLocationmap(location);
-//    		location.setCar(new Car(car.getType()));
-//    	}
-
-		
 		
 		
 		// bereken de hoeveelheid geld voor de juiste auto
@@ -79,13 +76,7 @@ public class ViewMoney extends AbstractView {
 //		if (int i == aantalLegeVakken)) {
 //			int waarde = 1;
 //		}
-
 		
-		
-	}
-	
-	public void updateNumbers() {
-		//
 	}
 	
 	
