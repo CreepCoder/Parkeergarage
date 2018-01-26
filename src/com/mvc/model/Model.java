@@ -28,10 +28,10 @@ public class Model extends AbstractModel implements Runnable {
 	private static final String INVALIDE = "4";
 	private static final String MOTOR = "5";
 	
-	private CarQueue entranceCarQueue;
-    private CarQueue entrancePassQueue;
-    private CarQueue paymentCarQueue;
-    private CarQueue exitCarQueue;
+	public static CarQueue entranceCarQueue;
+	public static CarQueue entrancePassQueue;
+	public static CarQueue paymentCarQueue;
+	public static CarQueue exitCarQueue;
 
     public static int day = 0;
     public static int hour = 0;
