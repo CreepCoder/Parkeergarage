@@ -99,7 +99,6 @@ public class ViewHistogram extends AbstractView {
 		}else {
 		label0.setLocation(23, aantallege);
 		}
-		System.out.println(aantallege);
 		label1.setLocation(99, 218-model.aantalCarAdHoc/2);
 		label2.setLocation(165, 218-model.aantalCarParkingPass/2);
 		label3.setLocation(231, 218-model.aantalCarElektrisch/2);

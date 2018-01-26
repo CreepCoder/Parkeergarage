@@ -14,6 +14,7 @@ import com.location.LocationMap;
 import com.location.LocationType;
 import com.main.Parkeergarage;
 import com.mechanic.CarQueue;
+import com.mvc.view.ViewGraph;
 import com.mvc.view.ViewKlok;
 
 public class Model extends AbstractModel implements Runnable {
@@ -97,7 +98,7 @@ public class Model extends AbstractModel implements Runnable {
 		run=true;
 		while(run) {
 			setAantal(getAantal()+1);
-			System.out.println(getAantal());
+			//System.out.println(getAantal());
 			tick();
 		}
 	}
@@ -114,6 +115,7 @@ public class Model extends AbstractModel implements Runnable {
 			Thread.sleep(CoreVariables.simulatorSpeed);
 		} catch (Exception e) {}
 		handleEntrance();
+		ViewGraph.updateGraph(Parkeergarage.model.aantalCarAdHoc);
 	}
 
 	    private void advanceTime(){

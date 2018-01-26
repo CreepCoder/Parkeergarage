@@ -3,19 +3,17 @@ package com.mvc.view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.swing.JLabel;
 
-import com.lib.ColorList;
+import com.location.LocationType;
 import com.mvc.model.Model;
 
 
 public class ViewGraph extends AbstractView {
 	
 	/**
-	 * Deze klasse weergeeft een lijngrafiek
+	 * Deze klasse geeft een lijngrafiek weer
 	 */
 	private static final long serialVersionUID = 1L;
 	//public ArrayList lines;
@@ -52,6 +50,8 @@ public class ViewGraph extends AbstractView {
 	private JLabel label77 = new JLabel("21");
 	private JLabel label88 = new JLabel("24");
 	private JLabel label99 = new JLabel(">  Dag in uren ");
+
+	private static ArrayList<Integer> carAdHocY = new ArrayList<Integer>();
 	
 	public ViewGraph(Model model) {
 		super(model);
@@ -106,64 +106,11 @@ public class ViewGraph extends AbstractView {
 		g.drawLine(300, 199, 300, 0);
 		g.drawLine(350, 199, 350, 0);
 		
-		
-		double xas = (Model.minute + 60 * Model.hour) / 3.6*1;
-		int x2 = (int) xas;
-		
-		// creeër lijn voor totaal aantal ... autos
-		x1 = x2;
-		y1 = y2;
-		// aantal minuten in een dag = 1440 minuten / x-as lengte = 400 -->
-		y2 = 199 - model.aantalCarAdHoc;
-	
-		int x4 = (int) xas;
-		
-		// creeër lijn voor totaal aantal ... abonnees
-				x3 = x4;
-				y3 = y4;
-				// aantal minuten in een dag = 1440 minuten / x-as lengte = 400 -->
-				y4 = 199 - model.aantalCarParkingPass;
-				
-		
-		ArrayList<Integer> linesList = new ArrayList<Integer>();
-		ArrayList<Integer> linesList2 = new ArrayList<Integer>();
-		
-		
-		linesList.add(x1);
-		linesList.add(y1);
-		linesList.add(x2);
-		linesList.add(y2);
-		lines.add(linesList);
-		
-		linesList2.add(x3);
-		linesList2.add(y3);
-		linesList2.add(x4);
-		linesList2.add(y4);
-		lines2.add(linesList2);
-		
-	
-		for (ArrayList<Integer> i : lines) {
-			if (Model.hour == 0 && Model.minute == 0) {
-				lines = new ArrayList<ArrayList<Integer>>();
-			}
-			CreateLine(g, ColorList.CAR_AD_HOC, i.get(0), i.get(1), i.get(2), i.get(3));
+		int x = 0;
+		for(int coordy : carAdHocY) {
+			CreateLine(g, LocationType.AD_HOC.getColor(), (int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
+			x++;
 		}
-		
-		for (ArrayList<Integer> i : lines2) {
-			if (Model.hour == 0 && Model.minute == 0) {
-				lines2 = new ArrayList<ArrayList<Integer>>();
-			}
-			CreateLine(g, ColorList.CAR_PARKING_PASS, i.get(0), i.get(1), i.get(2), i.get(3));
-		}    
-		    
-		
-		ExecutorService service = Executors.newFixedThreadPool(4);
-	    service.submit(new Runnable() {
-	        public void run() {
-	            paintComponent(g);
-	        }
-	    });
-		
 	}
 	
 	public void CreateLine(Graphics g, Color color, int x1, int y1, int x2, int y2) {
@@ -173,5 +120,8 @@ public class ViewGraph extends AbstractView {
 			
 	}
 	
+	public static void updateGraph(int y) {
+		carAdHocY.add(y);
+	}
 	
 }
