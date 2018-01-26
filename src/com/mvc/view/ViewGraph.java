@@ -3,6 +3,8 @@ package com.mvc.view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JLabel;
 
@@ -21,19 +23,24 @@ public class ViewGraph extends AbstractView {
 	
 	public ArrayList<ArrayList<Integer>> lines = new ArrayList<ArrayList<Integer>>();
 	public ArrayList<ArrayList<Integer>> lines2 = new ArrayList<ArrayList<Integer>>();
+
 	//public ArrayList<Integer> linesList = new ArrayList<Integer>();
 	public ArrayList<Integer> linesList;
 	public ArrayList<Integer> linesList2;
+
 	
+	// Voor CarAdHoc
 	public int x1 = 0;
 	public int y1 = 0;
 	public int x2 = 0;
 	public int y2 = 0;
 	
+	// Voor CarParkingPass
 	public int x3 = 0;
 	public int y3 = 0;
 	public int x4 = 0;
 	public int y4 = 0;
+
 	
 	private JLabel label00 = new JLabel("0");
 	private JLabel label11 = new JLabel("3");
@@ -71,9 +78,6 @@ public class ViewGraph extends AbstractView {
 		this.add(label);
 	}
 
-	
-
-	
 	public void paintComponent(Graphics g) {
 		// Creëer achtergrond
 		g.setColor(Color.WHITE);
@@ -86,8 +90,10 @@ public class ViewGraph extends AbstractView {
 		g.drawLine(0, 199, 399, 199);
 		g.drawLine(399, 0, 399, 199);
 		
+		// Voor de pijl
 		g.drawLine(70, 223, 303, 223);
 		
+		// Voor de grid
 		g.setColor(Color.lightGray);
 		g.drawLine(0, 100, 399, 100);
 		g.drawLine(0, 50, 399, 50);
@@ -117,9 +123,11 @@ public class ViewGraph extends AbstractView {
 				y3 = y4;
 				// aantal minuten in een dag = 1440 minuten / x-as lengte = 400 -->
 				y4 = 199 - model.aantalCarParkingPass;
+				
 		
 		ArrayList<Integer> linesList = new ArrayList<Integer>();
 		ArrayList<Integer> linesList2 = new ArrayList<Integer>();
+		
 		
 		linesList.add(x1);
 		linesList.add(y1);
@@ -133,6 +141,7 @@ public class ViewGraph extends AbstractView {
 		linesList2.add(y4);
 		lines2.add(linesList2);
 		
+	
 		for (ArrayList<Integer> i : lines) {
 			if (Model.hour == 0 && Model.minute == 0) {
 				lines = new ArrayList<ArrayList<Integer>>();
@@ -145,7 +154,15 @@ public class ViewGraph extends AbstractView {
 				lines2 = new ArrayList<ArrayList<Integer>>();
 			}
 			CreateLine(g, ColorList.CAR_PARKING_PASS, i.get(0), i.get(1), i.get(2), i.get(3));
-		}
+		}    
+		    
+		
+		ExecutorService service = Executors.newFixedThreadPool(4);
+	    service.submit(new Runnable() {
+	        public void run() {
+	            paintComponent(g);
+	        }
+	    });
 		
 	}
 	
@@ -153,8 +170,8 @@ public class ViewGraph extends AbstractView {
 		// teken lijn
 		g.setColor(color);
 		g.drawLine(x1, y1, x2, y2);
-		
-		
+			
 	}
+	
 	
 }
