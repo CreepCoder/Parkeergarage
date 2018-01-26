@@ -86,38 +86,38 @@ public class Map extends AbstractView{
 		spaceX = 0;
 		for (int i=0; i<18; i++) {
 			if (i == 2 || i == 4 || i == 8 || i == 10 || i == 14 || i == 16) {spaceX = spaceX + 16;}
-			if (i == 6 || i == 12) {spaceX = spaceX + 100;}
+			if (i == 6 || i == 12) {spaceX = spaceX + 85;}
 			for (int j=0; j<30; j++) {
 				if (map[j][i] == 0) {
-					LocationMap location = new LocationMap(15+(i*22)+spaceX, 10+(j*12), LocationType.AD_HOC, null);
+					LocationMap location = new LocationMap(70+(i*22)+spaceX, 10+(j*12), LocationType.AD_HOC, null);
 					tiles[i][j] = location;
 					if (location.getCar() == null || location.getCar().getType() != location.getType()) {
 						location.drawLocation(g, ColorList.LEGE_VAKKEN, location.getX()+1, location.getY()+1);
 						}
 				}
 				if (map[j][i] == 1) {
-					LocationMap location = new LocationMap(15+(i*22)+spaceX, 10+(j*12), LocationType.PARKING_PASS, null);
+					LocationMap location = new LocationMap(70+(i*22)+spaceX, 10+(j*12), LocationType.PARKING_PASS, null);
 					tiles[i][j] = location;
 					if (location.getCar() == null || location.getCar().getType() != location.getType()) {
 						location.drawLocation(g, ColorList.LEGE_VAKKEN, location.getX()+1, location.getY()+1);
 						}
 					}
 				if (map[j][i] == 2) {
-					LocationMap location = new LocationMap(15+(i*22)+spaceX, 10+(j*12), LocationType.ELEKTRISCH, null);
+					LocationMap location = new LocationMap(70+(i*22)+spaceX, 10+(j*12), LocationType.ELEKTRISCH, null);
 					tiles[i][j] = location;
 					if (location.getCar() == null || location.getCar().getType() != location.getType()) {
 						location.drawLocation(g, ColorList.LEGE_VAKKEN, location.getX()+1, location.getY()+1);
 						}
 					}
 				if (map[j][i] == 3) {
-					LocationMap location = new LocationMap(15+(i*22)+spaceX, 10+(j*12), LocationType.INVALIDE, null);
+					LocationMap location = new LocationMap(70+(i*22)+spaceX, 10+(j*12), LocationType.INVALIDE, null);
 					tiles[i][j] = location;
 					if (location.getCar() == null || location.getCar().getType() != location.getType()) {
 						location.drawLocation(g, ColorList.LEGE_VAKKEN, location.getX()+1, location.getY()+1);
 						}
 					}
 				if (map[j][i] == 4) {
-					LocationMap location = new LocationMap(15+(i*22)+spaceX, 10+(j*12), LocationType.MOTOR, null);
+					LocationMap location = new LocationMap(70+(i*22)+spaceX, 10+(j*12), LocationType.MOTOR, null);
 					tiles[i][j] = location;
 					if (location.getCar() == null || location.getCar().getType() != location.getType()) {
 						location.drawLocation(g, ColorList.LEGE_VAKKEN, location.getX()+1, location.getY()+1);
@@ -202,13 +202,11 @@ public class Map extends AbstractView{
     	}
 
     public void removeCarAt(LocationMap location) {
-        Car car = location.getCar();
-        location.setCar(null);
-        if (car == null) {
-        }
-        else {
-        	car.setLocation(null);
-        }
+    	Car car = location.getCar();
+    	location.setCar(null);
+    	if (car != null) {
+    		car.setLocation(null);
+    	}
     }
     
     public LocationMap getFreePosition(Car car) {

@@ -41,11 +41,11 @@ public class Model extends AbstractModel implements Runnable {
     private int weekDayPassArrivals = 50;
     private int weekendPassArrivals = 5;
     private int weekDayElektrischArrivals = 22;
-    private int weekendElektrischArrivals = 17;
+    private int weekendElektrischArrivals = 19;
     private int weekDayInvalideArrivals = 20;
-    private int weekendInvalideArrivals = 27;
+    private int weekendInvalideArrivals = 22;
     private int weekDayMotorArrivals = 20;
-    private int weekendMotorArrivals = 17;
+    private int weekendMotorArrivals = 19;
 
     int enterSpeed = 6; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -279,8 +279,9 @@ public class Model extends AbstractModel implements Runnable {
 	    	Parkeergarage.viewcarpark.removeCarAt(car.getLocation());
 	        exitCarQueue.addCar(car);
 	        
-	        Parkeergarage.map.removeCarAt(car.getLocationmap());
-	        
+	        if (car.getLocationmap() != null) {
+	        	Parkeergarage.map.removeCarAt(car.getLocationmap());
+	        }
 	        
 	        // Statements om de bijgehoude nummers te veranderen
 	        if (car.getType().equals(LocationType.AD_HOC)) 			{aantalCarAdHoc--; aantalLegeVakken++;}
