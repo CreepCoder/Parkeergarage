@@ -21,7 +21,7 @@ public class ViewSlide extends AbstractView {
 public ViewSlide(Model model) {
 	super(model);
     this.setLayout(null);
-    JSlider slider = new JSlider(JSlider.HORIZONTAL, 5, 50, CoreVariables.simulatorSpeed);
+    JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 50, 25);
     
     slider.setLocation(10, 10);
     slider.setMinorTickSpacing(2);

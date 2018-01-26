@@ -11,10 +11,10 @@ import com.mvc.model.Model;
 @SuppressWarnings("serial")
 public class ViewKlok extends AbstractView {
 
-	private JLabel dag = new JLabel("");
-	private JLabel uur = new JLabel(""+Model.hour);
-	private JLabel minuut = new JLabel(""+Model.minute);
-	private JLabel dubbelePunt = new JLabel(":");
+	private static JLabel dag = new JLabel("");
+	private static JLabel uur = new JLabel(""+Model.hour);
+	private static JLabel minuut = new JLabel(""+Model.minute);
+	private static JLabel dubbelePunt = new JLabel(":");
 
 	public ViewKlok(Model model) {
 		super(model);
@@ -44,7 +44,7 @@ public class ViewKlok extends AbstractView {
 		this.add(dubbelePunt);
 	}
 
-	public void dagNaam(){
+	public static void dagNaam(){
 		int number= Model.day;  
 		switch(number){  
 	case 0:
@@ -71,7 +71,7 @@ public class ViewKlok extends AbstractView {
 		}
 	 }
 	
-	public void updateNumbers() {
+	public static void updateTime() {
 		dag.setText(""+Model.day);
 		if (Model.hour < 10) {
 			uur.setText("0"+Model.hour);
@@ -96,8 +96,6 @@ public class ViewKlok extends AbstractView {
 		// Creëer belijning
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 99, 59);
-
-		updateNumbers();
 	}
 
 }

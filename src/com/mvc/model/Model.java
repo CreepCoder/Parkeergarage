@@ -14,6 +14,7 @@ import com.location.LocationMap;
 import com.location.LocationType;
 import com.main.Parkeergarage;
 import com.mechanic.CarQueue;
+import com.mvc.view.ViewKlok;
 
 public class Model extends AbstractModel implements Runnable {
 	private int aantal;
@@ -104,6 +105,8 @@ public class Model extends AbstractModel implements Runnable {
 	// Tick zorgt ervoor dat alles geüpdate wordt. Dit gebeurt na elke stap en wordt ook gebruikt door de knop +1
 	public void tick() {
     	advanceTime();
+    	ViewKlok.updateTime();
+    	handleTime(day, hour, minute);
     	handleExit();
     	updateViews();
     	Parkeergarage.viewcarpark.updateView();	
@@ -289,5 +292,41 @@ public class Model extends AbstractModel implements Runnable {
 	        if (car.getType().equals(LocationType.ELEKTRISCH)) 		{aantalCarElektrisch--; aantalLegeVakken++;}
 	        if (car.getType().equals(LocationType.INVALIDE)) 		{aantalCarInvalide--; aantalLegeVakken++;}
 	        if (car.getType().equals(LocationType.MOTOR)) 			{aantalCarMotor--; aantalLegeVakken++;}
+	    }
+	    
+	    private void handleTime(int dag, int uur, int minuut) {
+	    	// Tussen 00:00 en 07:00 (ochtendspits)
+	    	if (dag < 5 && uur == 0) {
+	    	    weekDayArrivals = 20; 
+	    	    weekDayPassArrivals = 10;
+	    	    weekDayElektrischArrivals = 5;
+	    	    weekDayInvalideArrivals = 5;
+	    	    weekDayMotorArrivals = 5;
+	    	}
+	    	
+	    	else if (dag < 5 && uur == 6) {
+	    	    weekDayArrivals = 100; 
+	    	    weekDayPassArrivals = 50;
+	    	    weekDayElektrischArrivals = 22;
+	    	    weekDayInvalideArrivals = 20;
+	    	    weekDayMotorArrivals = 20;
+	    	}
+	    	
+	    	// Tussen 16:00 en 19:00 (avondspits)
+	    	if (dag < 5 && uur == 16) {
+	    	    weekDayArrivals = 50; 
+	    	    weekDayPassArrivals = 25;
+	    	    weekDayElektrischArrivals = 18;
+	    	    weekDayInvalideArrivals = 15;
+	    	    weekDayMotorArrivals = 15;
+	    	}
+	    	
+	    	else if (dag < 5 && uur == 20) {
+	    	    weekDayArrivals = 20; 
+	    	    weekDayPassArrivals = 10;
+	    	    weekDayElektrischArrivals = 5;
+	    	    weekDayInvalideArrivals = 5;
+	    	    weekDayMotorArrivals = 5;
+	    	}
 	    }
 }
