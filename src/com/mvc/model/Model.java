@@ -321,12 +321,58 @@ public class Model extends AbstractModel implements Runnable {
 	    	    weekDayMotorArrivals = 15;
 	    	}
 	    	
-	    	else if (dag < 5 && uur == 20) {
+	    	else if ((dag < 3 || dag == 4) && uur == 20) {
 	    	    weekDayArrivals = 20; 
 	    	    weekDayPassArrivals = 10;
 	    	    weekDayElektrischArrivals = 5;
 	    	    weekDayInvalideArrivals = 5;
 	    	    weekDayMotorArrivals = 5;
+	    	}
+	    	
+	    	// Donderdagavond is er een voorstelling in het theater in de buurt
+	    	if (dag == 3 && uur == 20 && minuut == 1) {
+	    	    weekDayArrivals = 300; 
+	    	    weekDayPassArrivals = 20;
+	    	    weekDayElektrischArrivals = 30;
+	    	    weekDayInvalideArrivals = 40;
+	    	    weekDayMotorArrivals = 26;
+	    	}
+	    	
+	    	else if (dag == 3 && uur == 22 && minuut == 30) {
+	    	    weekDayArrivals = 20; 
+	    	    weekDayPassArrivals = 10;
+	    	    weekDayElektrischArrivals = 5;
+	    	    weekDayInvalideArrivals = 5;
+	    	    weekDayMotorArrivals = 5;
+	    	}
+	    	
+	    	// Zaterdag
+	    	if (dag == 5 && uur == 1 && minuut == 0) {
+	    	    weekendArrivals = 20; 
+	    	    weekendElektrischArrivals = 10;
+	    	    weekendInvalideArrivals = 10;
+	    	    weekendMotorArrivals = 10;
+	    	}
+	    	else if (dag == 5 && uur == 8 && minuut == 0) {
+	    		weekendArrivals = 180; 
+	    		weekendElektrischArrivals = 20;
+	    		weekendInvalideArrivals = 20;
+	    		weekendMotorArrivals = 20;
+	    	}
+	    	
+	    	// Zondag koopzondag
+	    	if (dag == 6 && uur == 1 && minuut == 0) {
+	    		weekendArrivals = 30; 
+	    		weekendElektrischArrivals = 10;
+	    		weekendInvalideArrivals = 10;
+	    		weekendMotorArrivals = 10;
+	    	}
+	    	
+	    	else if (dag == 6 && uur == 10 && minuut == 0) {
+	    		weekendArrivals = 250; 
+	    		weekendElektrischArrivals = 25;
+	    		weekendInvalideArrivals = 25;
+	    		weekendMotorArrivals = 25;
 	    	}
 	    }
 }

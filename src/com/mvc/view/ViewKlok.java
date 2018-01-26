@@ -42,6 +42,8 @@ public class ViewKlok extends AbstractView {
 		dubbelePunt.setHorizontalAlignment(SwingConstants.CENTER);
 		dubbelePunt.setVisible(true);
 		this.add(dubbelePunt);
+		
+		updateTime();
 	}
 
 	public static void dagNaam(){
