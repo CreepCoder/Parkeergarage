@@ -20,7 +20,7 @@ public class ViewPie extends AbstractView {
 
 	public ViewPie(Model model) {
 		super(model);
-		this.setSize(400, 200);
+		this.setSize(400, 230);
 		this.setLayout(null);
 		
 		this.addNumberView(aantalLegeVakken, 220, 10, 250, 20, true);
@@ -52,17 +52,14 @@ public class ViewPie extends AbstractView {
 	public void paintComponent(Graphics g) {
 		// Creëer achtergrond
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 400, 200);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
 		// Creëer belijning
 		g.setColor(Color.black);
-		g.drawLine(0, 0, 399, 0);
-		g.drawLine(0, 0, 0, 200);
-		g.drawLine(0, 199, 399, 199);
-		g.drawLine(399, 0, 399, 199);
+		g.drawRect(0, 0, 0+this.getWidth()-1, 0+this.getHeight()-1);
 		
 		// Creëer pieview voor de lege vakken
-		createSlice(g, ColorList.LEGE_VAKKEN, 10, 10, 180, 180, 360-(aantalBerekening(model.aantalCarAdHoc)+aantalBerekening(model.aantalCarParkingPass)), 360);
+		createSlice(g, ColorList.LEGE_VAKKEN, 10, 25, 180, 180, 360-(aantalBerekening(model.aantalCarAdHoc)+aantalBerekening(model.aantalCarParkingPass)), 360);
 		
 		// Creëer pieview voor de AdHoc autos
 		createSlice(g, ColorList.CAR_AD_HOC, 10, 10, 180, 180, 0, (int) (aantalBerekening(model.aantalCarAdHoc)));

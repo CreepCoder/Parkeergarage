@@ -66,6 +66,6 @@ public class LocationView {
 		this.view = view;
 	}
 
-	public static final LocationView links = new LocationView(10, 400, 400, 200, null, false);
-	public static final LocationView rechts = new LocationView(420, 400, 400, 200, null, false);
+	public static final LocationView links = new LocationView(10, 400, 400, 230, null, false);
+	public static final LocationView rechts = new LocationView(420, 400, 400, 230, null, false);
 }

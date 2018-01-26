@@ -34,7 +34,7 @@ public class Parkeergarage {
 	 * Zo voorkom je NullPointerExceptions.
 	 */
 	
-	private Model model;
+	public static Model model;
 	public static JFrame scherm;
 	public static AbstractView viewpie;
 	public static AbstractView viewKlok;

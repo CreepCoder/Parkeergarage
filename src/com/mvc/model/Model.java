@@ -4,6 +4,9 @@ import java.util.Random;
 
 import com.car.Car;
 import com.car.CarAdHoc;
+import com.car.CarElektrische;
+import com.car.CarInvalide;
+import com.car.CarMotor;
 import com.car.CarParkingPass;
 import com.lib.CoreVariables;
 import com.location.Location;
@@ -19,6 +22,9 @@ public class Model extends AbstractModel implements Runnable {
 	
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
+	private static final String ELEKTRISCH = "3";
+	private static final String INVALIDE = "4";
+	private static final String MOTOR = "5";
 	
 	private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -29,10 +35,17 @@ public class Model extends AbstractModel implements Runnable {
     public static int hour = 0;
     public static int minute = 0;
     
-    int weekDayArrivals= 100; // average number of arriving cars per hour
-    int weekendArrivals = 200; // average number of arriving cars per hour
-    int weekDayPassArrivals= 50; // average number of arriving cars per hour
-    int weekendPassArrivals = 5; // average number of arriving cars per hour
+    // average number of arriving cars per hour
+    private int weekDayArrivals = 100; 
+    private int weekendArrivals = 200;
+    private int weekDayPassArrivals = 50;
+    private int weekendPassArrivals = 5;
+    private int weekDayElektrischArrivals = 22;
+    private int weekendElektrischArrivals = 17;
+    private int weekDayInvalideArrivals = 20;
+    private int weekendInvalideArrivals = 27;
+    private int weekDayMotorArrivals = 20;
+    private int weekendMotorArrivals = 17;
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -137,10 +150,25 @@ public class Model extends AbstractModel implements Runnable {
 	    }
 	    
 	    private void carsArriving(){
+	    	// Voeg een aantal auto's toe aan het type AdHoc
 	    	int numberOfCars=getNumberOfCars(weekDayArrivals, weekendArrivals);
-	        addArrivingCars(numberOfCars, AD_HOC);    	
+	        addArrivingCars(numberOfCars, AD_HOC); 
+	        
+	        // Voeg een aantal auto's toe aan het type ParkingPass
 	    	numberOfCars=getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
-	        addArrivingCars(numberOfCars, PASS);    	
+	        addArrivingCars(numberOfCars, PASS);
+	        
+	        // Voeg een aantal auto's toe aan het type Elektrisch
+	        numberOfCars=getNumberOfCars(weekDayElektrischArrivals, weekendElektrischArrivals);
+	        addArrivingCars(numberOfCars, ELEKTRISCH);
+	        
+	        // Voeg een aantal auto's toe aan het type Invalide
+	        numberOfCars=getNumberOfCars(weekDayInvalideArrivals, weekendInvalideArrivals);
+	        addArrivingCars(numberOfCars, INVALIDE);
+	        
+	        // Voeg een aantal auto's toe aan het type Motor
+	        numberOfCars=getNumberOfCars(weekDayMotorArrivals, weekendMotorArrivals);
+	        addArrivingCars(numberOfCars, MOTOR);
 	    }
 
 	    private void carsEntering(CarQueue queue){
@@ -228,7 +256,22 @@ public class Model extends AbstractModel implements Runnable {
 	            for (int i = 0; i < numberOfCars; i++) {
 	            	entrancePassQueue.addCar(new CarParkingPass(LocationType.PARKING_PASS));
 	            }
-	            break;	            
+	            break;	   
+	    	case ELEKTRISCH:
+	            for (int i = 0; i < numberOfCars; i++) {
+	            	entrancePassQueue.addCar(new CarElektrische(LocationType.ELEKTRISCH));
+	            }
+	            break;	
+	    	case INVALIDE:
+	            for (int i = 0; i < numberOfCars; i++) {
+	            	entrancePassQueue.addCar(new CarInvalide(LocationType.INVALIDE));
+	            }
+	            break;	
+	    	case MOTOR:
+	            for (int i = 0; i < numberOfCars; i++) {
+	            	entrancePassQueue.addCar(new CarMotor(LocationType.MOTOR));
+	            }
+	            break;	
 	    	}
 	    }
 	    
