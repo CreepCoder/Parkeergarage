@@ -86,7 +86,7 @@ public class Map extends AbstractView{
 		spaceX = 0;
 		for (int i=0; i<18; i++) {
 			if (i == 2 || i == 4 || i == 8 || i == 10 || i == 14 || i == 16) {spaceX = spaceX + 16;}
-			if (i == 6 || i == 12) {spaceX = spaceX + 146;}
+			if (i == 6 || i == 12) {spaceX = spaceX + 100;}
 			for (int j=0; j<30; j++) {
 				if (map[j][i] == 0) {
 					LocationMap location = new LocationMap(15+(i*22)+spaceX, 10+(j*12), LocationType.AD_HOC, null);
@@ -131,8 +131,6 @@ public class Map extends AbstractView{
 		// Teken de locaties met de auto die gekoppeld is aan de locatie, als de locatie leeg is, wordt er een leeg vak getekend.
 		spaceX = 0;
 		for (int i=0; i<18; i++) {
-			if (i == 2 || i == 4) {spaceX = spaceX + 8;}
-			if (i == 6) {spaceX = spaceX +32;}
 			for (int j=0; j<30; j++) {
 				if (Model.day > 4) {
 					if (tiles[i][j].getType() == LocationType.PARKING_PASS) {
