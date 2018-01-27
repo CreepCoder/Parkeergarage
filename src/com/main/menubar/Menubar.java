@@ -1,4 +1,4 @@
-package com.main;
+package com.main.menubar;
 
 import java.awt.Toolkit;
 
@@ -17,11 +17,11 @@ public class Menubar extends JMenuBar{
 	// Voeg menus toe aan de menubar.
 	public static JMenu bestand = new JMenu("Bestand");
 	public static JMenu beeld = new JMenu("Beeld");
-	public static JMenu instellingen = new JMenu("Instellingen");
+	//public static JMenu instellingen = new JMenu("Instellingen");
 	public static JMenu simulatie = new JMenu("Simulatie");
 	
 	// Voeg menu items toe aan de menus van de menubar.
-	public static JMenuItem nieuweInstantie = new JMenuItem("Nieuwe Instantie");
+	public static JMenuItem over = new JMenuItem("Over");
 	public static JMenuItem afsluiten = new JMenuItem("Afsluiten");
 	
 	// Voeg checkbox menu items aan het beeld-menu.
@@ -30,8 +30,6 @@ public class Menubar extends JMenuBar{
 	public static JCheckBoxMenuItem viewHistogram = new JCheckBoxMenuItem("Histogram Weergave", false);
 	public static JCheckBoxMenuItem viewClock = new JCheckBoxMenuItem("Klok", true);
 	public static JCheckBoxMenuItem viewSlider = new JCheckBoxMenuItem("Snelheid Slider", true);
-	
-	public static JMenuItem defaultSettings = new JMenuItem("Standaard Instellingen Herstellen");
 	
 	public static JMenuItem startSimulatie = new JMenuItem("Start Simulatie");
 	public static JMenuItem stopSimulatie = new JMenuItem("Stop Simulatie");
@@ -42,15 +40,15 @@ public class Menubar extends JMenuBar{
 		// Voeg de menus inclusief de menu items toe aan de menubar.
 		menubar.add(bestand);
 		menubar.add(beeld);
-		menubar.add(instellingen);
+		//menubar.add(instellingen);
 		menubar.add(simulatie);
 		
 		bestand.setMnemonic('B');
 		beeld.setMnemonic('E');
-		instellingen.setMnemonic('I');
+		//instellingen.setMnemonic('I');
 		simulatie.setMnemonic('S');
 		
-		bestand.add(nieuweInstantie);
+		bestand.add(over);
 		bestand.add(afsluiten);
 		
 		beeld.add(viewPie);
@@ -58,8 +56,6 @@ public class Menubar extends JMenuBar{
 		beeld.add(viewHistogram);
 		beeld.add(viewClock);
 		beeld.add(viewSlider);
-		
-		instellingen.add(defaultSettings);
 		
 		simulatie.add(startSimulatie);
 		simulatie.add(stopSimulatie);
@@ -72,14 +68,13 @@ public class Menubar extends JMenuBar{
 		stopSimulatie.setAccelerator(KeyStroke.getKeyStroke('P', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
 		
 		// Voeg de addActionListener toe aan de menu items.
-		nieuweInstantie.addActionListener(new MenuActionListener());
+		over.addActionListener(new MenuActionListener());
 		afsluiten.addActionListener(new MenuActionListener());
 		viewPie.addActionListener(new MenuActionListener());
 		viewGraph.addActionListener(new MenuActionListener());
 		viewHistogram.addActionListener(new MenuActionListener());
 		viewClock.addActionListener(new MenuActionListener());
 		viewSlider.addActionListener(new MenuActionListener());
-		defaultSettings.addActionListener(new MenuActionListener());
 		startSimulatie.addActionListener(new MenuActionListener());
 		stopSimulatie.addActionListener(new MenuActionListener());
 		

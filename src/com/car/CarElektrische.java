@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.util.Random;
 
 import com.lib.ColorList;
-import com.location.LocationType;
+import com.mechanic.Type;
 
 public class CarElektrische extends Car {
-    public CarElektrische(LocationType type) {
+    public CarElektrische(Type type) {
     	super(type);
-    	this.setType(LocationType.ELEKTRISCH);
+    	this.setType(Type.ELEKTRISCH);
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

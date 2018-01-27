@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import com.location.Location;
 import com.location.LocationMap;
-import com.location.LocationType;
+import com.mechanic.Type;
 
 public class Car {
 
@@ -12,13 +12,13 @@ public class Car {
     private int minutesLeft;
     private boolean isPaying;
     private boolean hasToPay;
-    private LocationType type;
+    private Type type;
 	private LocationMap locationmap;
 
     /**
      * Constructor for objects of class Car
      */
-    public Car(LocationType type) {
+    public Car(Type type) {
     	this.setType(type);
     }
 
@@ -62,11 +62,11 @@ public class Car {
 		return type.getColor();
     }
 
-	public LocationType getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(LocationType type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 

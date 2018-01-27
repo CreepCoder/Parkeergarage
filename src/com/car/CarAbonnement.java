@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.util.Random;
 
 import com.lib.ColorList;
-import com.location.LocationType;
+import com.mechanic.Type;
 
-public class CarParkingPass extends Car {	
-    public CarParkingPass(LocationType type) {
+public class CarAbonnement extends Car {	
+    public CarAbonnement(Type type) {
     	super(type);
-    	this.setType(LocationType.PARKING_PASS);
+    	this.setType(Type.ABONNEMENT);
     	Random random = new Random();
     	int stayMinutes = (int) (15 + random.nextFloat() * 3 * 60);
         this.setMinutesLeft(stayMinutes);

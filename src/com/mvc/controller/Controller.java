@@ -17,7 +17,6 @@ public class Controller extends AbstractController implements ActionListener {
 	public Controller(Model model) {
 		super(model);
 		this.setLayout(null);
-		this.setBackground(Color.white);
 		this.setSize(169, 50);
 		
 		start=new JButton("Start");
@@ -28,8 +27,8 @@ public class Controller extends AbstractController implements ActionListener {
 		this.add(start);
 		this.add(stop);
 		
-		start.setBounds(10, 10, 70, 30);
-		stop.setBounds(90, 10, 70, 30);
+		start.setBounds(40, 15, 70, 30);
+		stop.setBounds(130, 15, 70, 30);
 		
 		start.setToolTipText("Start de Simulatie");
 		stop.setToolTipText("Stop de Simulatie");
@@ -38,8 +37,13 @@ public class Controller extends AbstractController implements ActionListener {
 	}
 	
 	public void paintComponent(Graphics g) {
+		// Teken achtergrond
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
+		// Teken belijning
 		g.setColor(Color.black);
-		g.drawRect(0, 0, 169, 49);
+		g.drawRect(0, 0, 0+this.getWidth()-1, 0+this.getHeight()-1);
 	}
 
 	public void actionPerformed(ActionEvent e) {		

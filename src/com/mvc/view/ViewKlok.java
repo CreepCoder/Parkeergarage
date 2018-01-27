@@ -12,8 +12,8 @@ import com.mvc.model.Model;
 public class ViewKlok extends AbstractView {
 
 	private static JLabel dag = new JLabel("");
-	private static JLabel uur = new JLabel(""+Model.hour);
-	private static JLabel minuut = new JLabel(""+Model.minute);
+	private static JLabel uur = new JLabel(""+Model.uur);
+	private static JLabel minuut = new JLabel(""+Model.minuut);
 	private static JLabel dubbelePunt = new JLabel(":");
 
 	public ViewKlok(Model model) {
@@ -47,7 +47,7 @@ public class ViewKlok extends AbstractView {
 	}
 
 	public static void dagNaam(){
-		int number= Model.day;  
+		int number= Model.dag;  
 		switch(number){  
 	case 0:
 		dag.setText("Maandag");
@@ -74,30 +74,31 @@ public class ViewKlok extends AbstractView {
 	 }
 	
 	public static void updateTime() {
-		dag.setText(""+Model.day);
-		if (Model.hour < 10) {
-			uur.setText("0"+Model.hour);
+		dag.setText(""+Model.dag);
+		if (Model.uur < 10) {
+			uur.setText("0"+Model.uur);
 		}
 		else {
-			uur.setText(""+Model.hour);
+			uur.setText(""+Model.uur);
 		}
 		
-		if (Model.minute < 10) {
-			minuut.setText("0"+Model.minute);
+		if (Model.minuut < 10) {
+			minuut.setText("0"+Model.minuut);
 		}
 		else {
-			minuut.setText(""+Model.minute);
+			minuut.setText(""+Model.minuut);
 		}
 		dagNaam();
 	}
 	
 	public void paintComponent(Graphics g) {
-		g.setColor(Color.white);
-		g.fillRect(0, 0, 200, 100);
+		// Teken achtergrond
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
-		// Creëer belijning
+		// Teken belijning
 		g.setColor(Color.black);
-		g.drawRect(0, 0, 99, 59);
+		g.drawRect(0, 0, 0+this.getWidth()-1, 0+this.getHeight()-1);
 	}
 
 }

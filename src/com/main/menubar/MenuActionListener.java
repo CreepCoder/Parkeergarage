@@ -1,4 +1,4 @@
-package com.main;
+package com.main.menubar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import com.location.LocationView;
+import com.main.Parkeergarage;
 
 
 public class MenuActionListener implements ActionListener {
@@ -20,11 +21,6 @@ public class MenuActionListener implements ActionListener {
 		
 		// Hier worden de verschillende acties voor de verschillende knoppen gedefinieerd
 		
-		// NEW FILE
-		if (e.getActionCommand().equals("Nieuwe Instantie")) {
-			Parkeergarage.main(null);
-		}
-		
 		// EXIT FILE
 		if (e.getActionCommand().equals("Afsluiten")) {
 			if (JOptionPane.showConfirmDialog(null, "Weet u zeker dat u het programma wilt afsluiten?",
@@ -33,17 +29,22 @@ public class MenuActionListener implements ActionListener {
 			}
 		}
 		
+		// OVER
+		if (e.getActionCommand().equals("Over")) {
+			JOptionPane.showMessageDialog(null, "<html><center>Parkeergarage Simulator<br>Gemaakt door: Daniëlle, Iris, Lorenzo, Marc en Sander<br>(C) 2017 Het KipComité (Groep C)</center></html>");
+		}
+		
 		// VIEW PIE CHART
 		if (e.getActionCommand().equals("Taart Weergave")) {
 			if (viewpieAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
 					if (LocationView.links.isOccupied() == false) {
-						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewpie, LocationView.links);
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewPie, LocationView.links);
 						LocationView.links.setOccupied(true);
 						viewpieAdded = true;
 					}
 					else if (LocationView.rechts.isOccupied() == false) {
-						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewpie, LocationView.rechts);
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewPie, LocationView.rechts);
 						LocationView.rechts.setOccupied(true);
 						viewpieAdded = true;
 					}
@@ -54,7 +55,7 @@ public class MenuActionListener implements ActionListener {
 				}
 			}
 			else if (viewpieAdded == true){
-				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewpie);
+				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewPie);
 				viewpieAdded = false;
 			}
 		}
@@ -65,12 +66,12 @@ public class MenuActionListener implements ActionListener {
 			if (viewgraphAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
 					if (LocationView.links.isOccupied() == false) {
-						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewGraph, LocationView.links);
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewGrafiek, LocationView.links);
 						LocationView.links.setOccupied(true);
 						viewgraphAdded = true;
 					}
 					else if (LocationView.rechts.isOccupied() == false) {
-						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewGraph, LocationView.rechts);
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewGrafiek, LocationView.rechts);
 						LocationView.rechts.setOccupied(true);
 						viewgraphAdded = true;
 					}
@@ -81,7 +82,7 @@ public class MenuActionListener implements ActionListener {
 				}
 			}
 			else if (viewgraphAdded == true){
-				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewGraph);
+				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewGrafiek);
 				viewgraphAdded = false;
 			}
 		}
@@ -91,12 +92,12 @@ public class MenuActionListener implements ActionListener {
 			if (viewhistogramAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
 					if (LocationView.links.isOccupied() == false) {
-						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewhistogram, LocationView.links);
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewHistogram, LocationView.links);
 						LocationView.links.setOccupied(true);
 						viewhistogramAdded = true;
 					}
 					else if (LocationView.rechts.isOccupied() == false) {
-						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewhistogram, LocationView.rechts);
+						Parkeergarage.voegViewToe(Parkeergarage.scherm, Parkeergarage.viewHistogram, LocationView.rechts);
 						LocationView.rechts.setOccupied(true);
 						viewhistogramAdded = true;
 					}
@@ -107,7 +108,7 @@ public class MenuActionListener implements ActionListener {
 				}
 			}
 			else if (viewhistogramAdded == true){
-				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewhistogram);
+				Parkeergarage.haalElementWeg(Parkeergarage.scherm, Parkeergarage.viewHistogram);
 				viewhistogramAdded = false;
 			}
 		}
@@ -124,30 +125,12 @@ public class MenuActionListener implements ActionListener {
 		
 		// VIEW SLIDER
 		if (e.getActionCommand().equals("Snelheid Slider")) {
-			if (Parkeergarage.viewSlide.isShowing()) {
-				Parkeergarage.viewSlide.setVisible(false);
+			if (Parkeergarage.viewSnelheid.isShowing()) {
+				Parkeergarage.viewSnelheid.setVisible(false);
 			}
 			else {
-				Parkeergarage.viewSlide.setVisible(true);
+				Parkeergarage.viewSnelheid.setVisible(true);
 			}
-		}
-		
-		// DEFAULT SETTINGS
-		if (e.getActionCommand().equals("Standaard Instellingen Herstellen")) {
-			//boxMessage = "Set to default settings.";
-			
-			// Maak de default views zichtbaar
-			Parkeergarage.viewpie.setVisible(true);
-			Parkeergarage.viewKlok.setVisible(true);
-			Parkeergarage.viewSlide.setVisible(true);
-			Parkeergarage.viewGraph.setVisible(false);
-			Parkeergarage.viewhistogram.setVisible(false);
-			// Maak de geselecteerde items gelijk aan de zichtbare items
-			Menubar.viewPie.setSelected(true);
-			Menubar.viewClock.setSelected(true);
-			Menubar.viewSlider.setSelected(true);
-			Menubar.viewGraph.setVisible(false);
-			Menubar.viewHistogram.setSelected(false);
 		}
 		
 		// START SIMULATIE

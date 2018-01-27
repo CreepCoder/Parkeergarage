@@ -7,14 +7,14 @@ import com.car.CarAdHoc;
 import com.car.CarElektrische;
 import com.car.CarInvalide;
 import com.car.CarMotor;
-import com.car.CarParkingPass;
+import com.car.CarAbonnement;
 import com.lib.CoreVariables;
 import com.location.Location;
 import com.location.LocationMap;
-import com.location.LocationType;
 import com.main.Parkeergarage;
-import com.mechanic.CarQueue;
-import com.mvc.view.ViewGraph;
+import com.mechanic.QueueCar;
+import com.mechanic.Type;
+import com.mvc.view.ViewGrafiek;
 import com.mvc.view.ViewKlok;
 
 public class Model extends AbstractModel implements Runnable {
@@ -28,14 +28,14 @@ public class Model extends AbstractModel implements Runnable {
 	private static final String INVALIDE = "4";
 	private static final String MOTOR = "5";
 	
-	public static CarQueue entranceCarQueue;
-	public static CarQueue entrancePassQueue;
-	public static CarQueue paymentCarQueue;
-	public static CarQueue exitCarQueue;
+	public static QueueCar entranceCarQueue;
+	public static QueueCar entrancePassQueue;
+	public static QueueCar paymentCarQueue;
+	public static QueueCar exitCarQueue;
 
-    public static int day = 0;
-    public static int hour = 0;
-    public static int minute = 0;
+    public static int dag = 0;
+    public static int uur = 0;
+    public static int minuut = 0;
     
     // average number of arriving cars per hour
     private int weekDayArrivals = 100; 
@@ -55,16 +55,16 @@ public class Model extends AbstractModel implements Runnable {
     
     public int aantalLegeVakken = 540;
     public int aantalCarAdHoc;
-    public int aantalCarParkingPass;
+    public int aantalCarAbonnement;
     public int aantalCarElektrisch;
     public int aantalCarInvalide;
     public int aantalCarMotor;
 	
 	public Model() {
-			entranceCarQueue = new CarQueue();
-	        entrancePassQueue = new CarQueue();
-	        paymentCarQueue = new CarQueue();
-	        exitCarQueue = new CarQueue();
+			entranceCarQueue = new QueueCar();
+	        entrancePassQueue = new QueueCar();
+	        paymentCarQueue = new QueueCar();
+	        exitCarQueue = new QueueCar();
 	}
 	
 	public int getAantal() {
@@ -107,30 +107,30 @@ public class Model extends AbstractModel implements Runnable {
 	public void tick() {
     	advanceTime();
     	ViewKlok.updateTime();
-    	handleTime(day, hour, minute);
+    	handleTime(dag, uur, minuut);
     	handleExit();
     	updateViews();
-    	Parkeergarage.viewcarpark.updateView();	
+    	Parkeergarage.viewCarPark.updateView();	
 		try {
 			Thread.sleep(CoreVariables.simulatorSpeed);
 		} catch (Exception e) {}
 		handleEntrance();
-		ViewGraph.updateGraph(Parkeergarage.model.aantalCarAdHoc);
+		ViewGrafiek.updateGraph(Parkeergarage.model.aantalCarAdHoc);
 	}
 
 	    private void advanceTime(){
 	        // Advance the time by one minute.
-	        minute++;
-	        while (minute > 59) {
-	            minute -= 60;
-	            hour++;
+	        minuut++;
+	        while (minuut > 59) {
+	            minuut -= 60;
+	            uur++;
 	        }
-	        while (hour > 23) {
-	            hour -= 24;
-	            day++;
+	        while (uur > 23) {
+	            uur -= 24;
+	            dag++;
 	        }
-	        while (day > 6) {
-	            day -= 7;
+	        while (dag > 6) {
+	            dag -= 7;
 	        }
 
 	    }
@@ -148,9 +148,9 @@ public class Model extends AbstractModel implements Runnable {
 	    }
 	    
 	    private void updateViews(){
-	    	Parkeergarage.viewcarpark.tick();
+	    	Parkeergarage.viewCarPark.tick();
 	        // Update the car park view.
-	    	Parkeergarage.viewcarpark.updateView();	
+	    	Parkeergarage.viewCarPark.updateView();	
 	        
 	    }
 	    
@@ -176,25 +176,25 @@ public class Model extends AbstractModel implements Runnable {
 	        addArrivingCars(numberOfCars, MOTOR);
 	    }
 
-	    private void carsEntering(CarQueue queue){
+	    private void carsEntering(QueueCar queue){
 	        int i=0;
 	        // Remove car from the front of the queue and assign to a parking space.
 	    	while (queue.carsInQueue()>0 && 
-	    			Parkeergarage.viewcarpark.getNumberOfOpenSpots()>0 && 
+	    			Parkeergarage.viewCarPark.getNumberOfOpenSpots()>0 && 
 	    			i<enterSpeed) {
 	            Car car = queue.removeCar();
-	            Location freeLocation = Parkeergarage.viewcarpark.getFirstFreeLocation();
-	            Parkeergarage.viewcarpark.setCarAt(freeLocation, car);
+	            Location freeLocation = Parkeergarage.viewCarPark.getFirstFreeLocation();
+	            Parkeergarage.viewCarPark.setCarAt(freeLocation, car);
 	            
 	            LocationMap freeLocationMap = Parkeergarage.map.getFreePosition(car);
 	            Parkeergarage.map.setCarAt(freeLocationMap, car);
 	            
 	            // Statement om de bijgehoude nummers te veranderen
-	            if (car.getType().equals(LocationType.AD_HOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
-	            if (car.getType().equals(LocationType.PARKING_PASS)) 	{aantalCarParkingPass++; aantalLegeVakken--;}
-	            if (car.getType().equals(LocationType.ELEKTRISCH)) 		{aantalCarElektrisch++; aantalLegeVakken--;}
-	            if (car.getType().equals(LocationType.INVALIDE)) 		{aantalCarInvalide++; aantalLegeVakken--;}
-	            if (car.getType().equals(LocationType.MOTOR)) 			{aantalCarMotor++; aantalLegeVakken--;}
+	            if (car.getType().equals(Type.ADHOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
+	            if (car.getType().equals(Type.ABONNEMENT)) 		{aantalCarAbonnement++; aantalLegeVakken--;}
+	            if (car.getType().equals(Type.ELEKTRISCH)) 		{aantalCarElektrisch++; aantalLegeVakken--;}
+	            if (car.getType().equals(Type.INVALIDE)) 		{aantalCarInvalide++; aantalLegeVakken--;}
+	            if (car.getType().equals(Type.MOTOR)) 			{aantalCarMotor++; aantalLegeVakken--;}
 	            i++;
 	        }
 	    	
@@ -202,7 +202,7 @@ public class Model extends AbstractModel implements Runnable {
 	    
 	    private void carsReadyToLeave(){
 	        // Add leaving cars to the payment queue.
-	        Car car = Parkeergarage.viewcarpark.getFirstLeavingCar();
+	        Car car = Parkeergarage.viewCarPark.getFirstLeavingCar();
 	        while (car!=null) {
 	        	if (car.getHasToPay()){
 		            car.setIsPaying(true);
@@ -211,7 +211,7 @@ public class Model extends AbstractModel implements Runnable {
 	        	else {
 	        		carLeavesSpot(car);
 	        	}
-	            car = Parkeergarage.viewcarpark.getFirstLeavingCar();
+	            car = Parkeergarage.viewCarPark.getFirstLeavingCar();
 	        }
 	    }
 
@@ -220,7 +220,7 @@ public class Model extends AbstractModel implements Runnable {
 	    	int i=0;
 	    	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
 	            Car car = paymentCarQueue.removeCar();
-	            // TODO Handle payment.
+	            // Handle payment.
 	            carLeavesSpot(car);
 	            i++;
 	    	}
@@ -239,7 +239,7 @@ public class Model extends AbstractModel implements Runnable {
 	        Random random = new Random();
 
 	        // Get the average number of cars that arrive per hour.
-	        int averageNumberOfCarsPerHour = day < 5
+	        int averageNumberOfCarsPerHour = dag < 5
 	                ? weekDay
 	                : weekend;
 
@@ -254,34 +254,34 @@ public class Model extends AbstractModel implements Runnable {
 	    	switch(type) {
 	    	case AD_HOC: 
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entranceCarQueue.addCar(new CarAdHoc(LocationType.AD_HOC));
+	            	entranceCarQueue.addCar(new CarAdHoc(Type.ADHOC));
 	            }
 	            break;
 	    	case PASS:
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarParkingPass(LocationType.PARKING_PASS));
+	            	entrancePassQueue.addCar(new CarAbonnement(Type.ABONNEMENT));
 	            }
 	            break;	   
 	    	case ELEKTRISCH:
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarElektrische(LocationType.ELEKTRISCH));
+	            	entrancePassQueue.addCar(new CarElektrische(Type.ELEKTRISCH));
 	            }
 	            break;	
 	    	case INVALIDE:
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarInvalide(LocationType.INVALIDE));
+	            	entrancePassQueue.addCar(new CarInvalide(Type.INVALIDE));
 	            }
 	            break;	
 	    	case MOTOR:
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarMotor(LocationType.MOTOR));
+	            	entrancePassQueue.addCar(new CarMotor(Type.MOTOR));
 	            }
 	            break;	
 	    	}
 	    }
 	    
 	    private void carLeavesSpot(Car car){
-	    	Parkeergarage.viewcarpark.removeCarAt(car.getLocation());
+	    	Parkeergarage.viewCarPark.removeCarAt(car.getLocation());
 	        exitCarQueue.addCar(car);
 	        
 	        if (car.getLocationmap() != null) {
@@ -289,11 +289,11 @@ public class Model extends AbstractModel implements Runnable {
 	        }
 	        
 	        // Statements om de bijgehoude nummers te veranderen
-	        if (car.getType().equals(LocationType.AD_HOC)) 			{aantalCarAdHoc--; aantalLegeVakken++;}
-	        if (car.getType().equals(LocationType.PARKING_PASS)) 	{aantalCarParkingPass--; aantalLegeVakken++;}
-	        if (car.getType().equals(LocationType.ELEKTRISCH)) 		{aantalCarElektrisch--; aantalLegeVakken++;}
-	        if (car.getType().equals(LocationType.INVALIDE)) 		{aantalCarInvalide--; aantalLegeVakken++;}
-	        if (car.getType().equals(LocationType.MOTOR)) 			{aantalCarMotor--; aantalLegeVakken++;}
+	        if (car.getType().equals(Type.ADHOC)) 			{aantalCarAdHoc--; aantalLegeVakken++;}
+	        if (car.getType().equals(Type.ABONNEMENT)) 		{aantalCarAbonnement--; aantalLegeVakken++;}
+	        if (car.getType().equals(Type.ELEKTRISCH)) 		{aantalCarElektrisch--; aantalLegeVakken++;}
+	        if (car.getType().equals(Type.INVALIDE)) 		{aantalCarInvalide--; aantalLegeVakken++;}
+	        if (car.getType().equals(Type.MOTOR)) 			{aantalCarMotor--; aantalLegeVakken++;}
 	    }
 	    
 	    private void handleTime(int dag, int uur, int minuut) {

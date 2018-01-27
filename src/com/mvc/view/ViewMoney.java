@@ -2,15 +2,9 @@ package com.mvc.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-import com.car.Car;
-import com.lib.ColorList;
-import com.location.LocationMap;
-import com.location.Map;
-import com.mechanic.CarQueue;
 import com.mvc.model.Model;
 
 public class ViewMoney extends AbstractView {
@@ -62,7 +56,6 @@ public class ViewMoney extends AbstractView {
 	
 	public ViewMoney(Model model) {
 		super(model);
-		this.setSize(400, 200);
 		this.setLayout(null);
 		
 		this.geldCarAdHoc = 1;
@@ -105,7 +98,7 @@ public class ViewMoney extends AbstractView {
 
 	}
 	
-	
+	/** LET OP!! GEBRUIK VANAF NU Methods.voegLabelToe() VOOR LABELS!!!!!*/
 	private void addNumberView(JLabel label, int x, int y, int width, int height, boolean visible) {
 		label.setLocation(x, y);
 		label.setSize(width, height);
@@ -114,27 +107,23 @@ public class ViewMoney extends AbstractView {
 		
 	}
 	
-	
 	public void paintComponent(Graphics g) {
-		// Creëer achtergrond
+		// Teken achtergrond
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 300, 460);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
-		// Creëer belijning
+		// Teken belijning
 		g.setColor(Color.black);
-		g.drawLine(0, 0, 399, 0);
-		g.drawLine(0, 0, 0, 459);
-		g.drawLine(0, 459, 299, 459);
-		g.drawLine(299, 0, 299, 459);
+		g.drawRect(0, 0, 0+this.getWidth()-1, 0+this.getHeight()-1);
 		
-		updateNumbers();
+		updateMoneyNumbers();
 	}
 	
 	
-	private void updateNumbers() {
+	private void updateMoneyNumbers() {
 		// aantal geld
 		totaalGeldCarAdHoc = model.aantalCarAdHoc * geldCarAdHoc;
-		totaalGeldCarParkingPass = model.aantalCarParkingPass * geldCarParkingPass;
+		totaalGeldCarParkingPass = model.aantalCarAbonnement * geldCarParkingPass;
 		totaalGeldCarElektrisch = model.aantalCarElektrisch * geldCarElektrisch;
 		totaalGeldCarInvalide = model.aantalCarInvalide * geldCarInvalide;
 		totaalGeldCarMotor = model.aantalCarMotor * geldCarMotor;
@@ -147,7 +136,7 @@ public class ViewMoney extends AbstractView {
 		aantalGeldCarInvalide.setText("aantalGeldCarInvalide: "+totaalGeldCarInvalide);
 		aantalGeldCarMotor.setText("aantalGeldCarMotor: "+totaalGeldCarMotor);
 		
-		// bereken gemiddeld geld (van KAAS)
+		// bereken gemiddeld geld
 		gemiddeldGeldKaas = 0;
 		gemiddeldAantalGeldCarAdHoc.setText("gemiddeldAantalGeldKaas: "+gemiddeldGeldKaas);
 		//gemiddeldGeldCarAdHoc += Model.exitCarQueue.carsInQueue();

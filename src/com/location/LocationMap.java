@@ -4,14 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.car.Car;
+import com.mechanic.Type;
 
 public class LocationMap {
 	private int x;
 	private int y;
-	private LocationType type;
+	private Type type;
 	private Car car;
 	
-	public LocationMap(int x, int y, LocationType type, Car car) {
+	public LocationMap(int x, int y, Type type, Car car) {
 		this.x = x;
 		this.y = y;
 		this.setCar(car);
@@ -39,11 +40,11 @@ public class LocationMap {
 		this.y = y;
 	}
 
-	public LocationType getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(LocationType type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
 
@@ -55,3 +56,4 @@ public class LocationMap {
 		this.car = car;
 	}
 }
+

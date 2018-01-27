@@ -4,7 +4,7 @@ import java.util.Queue;
 
 import com.car.Car;
 
-public class CarQueue {
+public class QueueCar {
     private Queue<Car> queue = new LinkedList<>();
 
     public boolean addCar(Car car) {
