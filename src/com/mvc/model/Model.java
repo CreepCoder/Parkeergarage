@@ -60,6 +60,12 @@ public class Model extends AbstractModel implements Runnable {
     public int aantalCarInvalide;
     public int aantalCarMotor;
 	
+	public int aantalBetaaldCarAdHoc;
+	public int aantalBetaaldCarParkingPass;
+	public int aantalBetaaldCarElektrisch;
+	public int aantalBetaaldCarInvalide;
+	public int aantalBetaaldCarMotor;
+
 	public Model() {
 			entranceCarQueue = new QueueCar();
 	        entrancePassQueue = new QueueCar();
@@ -207,6 +213,7 @@ public class Model extends AbstractModel implements Runnable {
 	        	if (car.getHasToPay()){
 		            car.setIsPaying(true);
 		            paymentCarQueue.addCar(car);
+		            increaseAmmountOfCarsThatHavePaid(car.getType().getId());
 	        	}
 	        	else {
 	        		carLeavesSpot(car);
@@ -215,7 +222,25 @@ public class Model extends AbstractModel implements Runnable {
 	        }
 	    }
 
-	    private void carsPaying(){
+	    private void increaseAmmountOfCarsThatHavePaid(int carId) {
+	    	if (carId == 1) {
+	    		aantalBetaaldCarAdHoc += 1;
+	    	}
+	    	else if (carId == 2) {
+	    		aantalBetaaldCarParkingPass += 1;
+	    	}
+	    	else if (carId == 3) {
+	    		aantalBetaaldCarElektrisch += 1;
+	    	}
+	    	else if (carId == 4) {
+	    		aantalBetaaldCarInvalide += 1;
+	    	}
+	    	else if (carId == 5) {
+	    		aantalBetaaldCarMotor += 1;
+	    	}
+		}
+
+		private void carsPaying(){
 	        // Let cars pay.
 	    	int i=0;
 	    	while (paymentCarQueue.carsInQueue()>0 && i < paymentSpeed){
