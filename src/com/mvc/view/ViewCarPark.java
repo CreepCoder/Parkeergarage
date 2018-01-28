@@ -29,6 +29,9 @@ public class ViewCarPark extends AbstractView{
 	private JLabel eerstea	= new JLabel("<html><center>Naar<br>+1</center></html>");
 	private JLabel eersteb	= new JLabel("<html><center>Naar<br>+1</center></html>");
 	private JLabel tweede	= new JLabel("<html><center>Naar<br>+2</center></html>");
+	
+	private int nextPosJ = 0;
+	private int nextPosI = 0;
 
 	/* Hier wordt een grid aangemaakt voor de nieuwe opzet voor de parkeergarage.
 	 * Alle verschillende vakjes worden hier aangegeven met een id.
@@ -175,6 +178,10 @@ public class ViewCarPark extends AbstractView{
 						tiles[i][j].drawLocation(g, tiles[i][j].getCar().getColor(), tiles[i][j].getX()+1, tiles[i][j].getY()+1);
 					}
 					
+					else if (tiles[i][j].getCar().getType() == Type.DUBBELE_PARKEERDER) {
+						tiles[i][j].drawLocation(g, tiles[i][j].getCar().getColor(), tiles[i][j].getX()+1, tiles[i][j].getY()+1);
+					}
+					
 					drawLocationType(g, tiles, i, j);
 			}
 		}
@@ -223,6 +230,7 @@ public class ViewCarPark extends AbstractView{
     	if (location != null && car != null) {
     		car.setLocationmap(location);
     		location.setCar(new Car(car.getType()));
+    		
     		}    
     	}
 
@@ -237,11 +245,20 @@ public class ViewCarPark extends AbstractView{
     public LocationMap getFreePosition(Car car) {
 		for (int i=0; i<18; i++) {
 			for (int j=0; j<30; j++) {
-					if (tiles[i][j].getCar() == null && tiles[i][j].getType() == car.getType()) {
-						return tiles[i][j];
-					}
+				if (tiles[i][j].getCar() == null && tiles[i][j].getType() == car.getType()) {
+					return tiles[i][j];
+				}
+				if (tiles[i][j].getCar() == null && car.getType() == Type.DUBBELE_PARKEERDER && tiles[i][j+1].getCar() == null) {
+					nextPosI = i;
+					nextPosJ = j+1;
+					return tiles[i][j];
+				}
 			}
 		}
 		return null;
+    }
+    
+    public LocationMap getNextPosition() {
+		return tiles[nextPosI][nextPosJ];
     }
 }

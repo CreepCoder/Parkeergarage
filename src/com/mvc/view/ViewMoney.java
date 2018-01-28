@@ -80,12 +80,12 @@ public class ViewMoney extends AbstractView {
 		Methods.voegLabelToe(titelInkomenCarMotor, 10, titelInkomenCarInvalide.getY()+30, 250, 20, true, this, SwingConstants.LEFT);
 		Methods.voegLabelToe(titelInkomenAllCars, 10, titelInkomenCarMotor.getY()+30, 250, 20, true, this, SwingConstants.LEFT);
 		
-		Methods.voegLabelToe(totaalInkomenCarAdHoc, 10, 35, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarParkingPass, 10, totaalInkomenCarAdHoc.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarElektrisch, 10, totaalInkomenCarParkingPass.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarInvalide, 10, totaalInkomenCarElektrisch.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarMotor, 10, totaalInkomenCarInvalide.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenAllCars, 10, totaalInkomenCarMotor.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarAdHoc, 16, 35, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarParkingPass, 16, totaalInkomenCarAdHoc.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarElektrisch, 16, totaalInkomenCarParkingPass.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarInvalide, 16, totaalInkomenCarElektrisch.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarMotor, 16, totaalInkomenCarInvalide.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenAllCars, 16, totaalInkomenCarMotor.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
 		
 		// Voeg queues toe
 		Methods.voegLabelToe(titelEntranceCarQueue, 10, 220, 250, 20, true, this, SwingConstants.LEFT);
@@ -122,25 +122,25 @@ public class ViewMoney extends AbstractView {
 		int inkomenCarMotor = model.aantalBetaaldCarMotor * parkeerkostenCarMotor;
 		int inkomenAllCars = inkomenCarAdHoc + inkomenCarParkingPass + inkomenCarElektrisch + inkomenCarInvalide + inkomenCarMotor;
 		
-		titelInkomenCarAdHoc.setText("Inkomen AdHoc");
-		titelInkomenCarParkingPass.setText("Inkomen Abonees");
-		titelInkomenCarElektrisch.setText("Inkomen Elektrisch");
-		titelInkomenCarInvalide.setText("Inkomen Minder Valide");
-		titelInkomenCarMotor.setText("Inkomen Motor");
-		titelInkomenAllCars.setText("Totale inkomen");
+		titelInkomenCarAdHoc.setText("Inkomsten AdHoc");
+		titelInkomenCarParkingPass.setText("Inkomsten Abonees");
+		titelInkomenCarElektrisch.setText("Inkomsten Elektrisch");
+		titelInkomenCarInvalide.setText("Inkomsten Minder Valide");
+		titelInkomenCarMotor.setText("Inkomsten Motor");
+		titelInkomenAllCars.setText("Totale inkomsten");
 		
-		totaalInkomenCarAdHoc.setText(""+inkomenCarAdHoc);
-		totaalInkomenCarParkingPass.setText(""+inkomenCarParkingPass);
-		totaalInkomenCarElektrisch.setText(""+inkomenCarElektrisch);
-		totaalInkomenCarInvalide.setText(""+inkomenCarInvalide);
-		totaalInkomenCarMotor.setText(""+inkomenCarMotor);
-		totaalInkomenAllCars.setText(""+ inkomenAllCars);
+		totaalInkomenCarAdHoc.setText("€ "+inkomenCarAdHoc+",-");
+		totaalInkomenCarParkingPass.setText("€ "+inkomenCarParkingPass+",-");
+		totaalInkomenCarElektrisch.setText("€ "+inkomenCarElektrisch+",-");
+		totaalInkomenCarInvalide.setText("€ "+inkomenCarInvalide+",-");
+		totaalInkomenCarMotor.setText("€ "+inkomenCarMotor+",-");
+		totaalInkomenAllCars.setText("€ "+ inkomenAllCars+",-");
 		
 		
-		titelEntranceCarQueue.setText("Entrance Car Queue: ");
-		titelEntrancePassQueue.setText("Entrance Pass Queue: ");
-		titelPaymentCarQueue.setText("Payment car Queue: ");
-		titelExitCarQueue.setText("Exit Car Queue");
+		titelEntranceCarQueue.setText("Rij voor de Standaard Ingang: ");
+		titelEntrancePassQueue.setText("Rij voor de Ingang voor Abonnees: ");
+		titelPaymentCarQueue.setText("Rij voor de Betaalautomaat: ");
+		titelExitCarQueue.setText("Rij voor de Uitgang: ");
 		
 		entranceCarQueueLength = Model.entranceCarQueue.carsInQueue();
 		entrancePassQueueLength = Model.entrancePassQueue.carsInQueue();

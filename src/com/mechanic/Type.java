@@ -34,4 +34,5 @@ public class Type {
 	public static Type ELEKTRISCH 	= new Type(3, ColorList.ELEKTRISCHE_CAR);
 	public static Type INVALIDE 	= new Type(4, ColorList.INVALIDE_CAR);
 	public static Type MOTOR 		= new Type(5, ColorList.MOTOR);
+	public static Type DUBBELE_PARKEERDER 		= new Type(6, ColorList.DUBBELE_PARKEERDER);
 }

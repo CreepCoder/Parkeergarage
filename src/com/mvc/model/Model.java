@@ -3,11 +3,11 @@ package com.mvc.model;
 import java.util.Random;
 
 import com.car.Car;
+import com.car.CarAbonnement;
 import com.car.CarAdHoc;
 import com.car.CarElektrische;
 import com.car.CarInvalide;
 import com.car.CarMotor;
-import com.car.CarAbonnement;
 import com.lib.CoreVariables;
 import com.location.Location;
 import com.location.LocationMap;
@@ -39,19 +39,19 @@ public class Model extends AbstractModel implements Runnable {
     
     // average number of arriving cars per hour
     private int weekDayArrivals = 100; 
-    private int weekendArrivals = 200;
+    private int weekendArrivals = 20;
     private int weekDayPassArrivals = 50;
-    private int weekendPassArrivals = 5;
+    private int weekendPassArrivals = 10;
     private int weekDayElektrischArrivals = 22;
-    private int weekendElektrischArrivals = 19;
+    private int weekendElektrischArrivals = 10;
     private int weekDayInvalideArrivals = 20;
-    private int weekendInvalideArrivals = 22;
+    private int weekendInvalideArrivals = 10;
     private int weekDayMotorArrivals = 20;
-    private int weekendMotorArrivals = 19;
+    private int weekendMotorArrivals = 10;
 
-    int enterSpeed = 6; // number of cars that can enter per minute
-    int paymentSpeed = 7; // number of cars that can pay per minute
-    int exitSpeed = 5; // number of cars that can leave per minute
+    int enterSpeed = 3; // number of cars that can enter per minute
+    int paymentSpeed = 4; // number of cars that can pay per minute
+    int exitSpeed = 3; // number of cars that can leave per minute
     
     public int aantalLegeVakken = 540;
     public int aantalCarAdHoc;
@@ -104,7 +104,6 @@ public class Model extends AbstractModel implements Runnable {
 		run=true;
 		while(run) {
 			setAantal(getAantal()+1);
-			//System.out.println(getAantal());
 			tick();
 		}
 	}
@@ -182,6 +181,9 @@ public class Model extends AbstractModel implements Runnable {
 	        addArrivingCars(numberOfCars, MOTOR);
 	    }
 
+		Random rand = new Random();
+		int  n = rand.nextInt(5) + 1;
+	    
 	    private void carsEntering(QueueCar queue){
 	        int i=0;
 	        // Remove car from the front of the queue and assign to a parking space.
@@ -192,9 +194,21 @@ public class Model extends AbstractModel implements Runnable {
 	            Location freeLocation = Parkeergarage.viewCarPark.getFirstFreeLocation();
 	            Parkeergarage.viewCarPark.setCarAt(freeLocation, car);
 	            
+	            /*
+				if (n == 5) {
+					car.setType(Type.DUBBELE_PARKEERDER);
+					Car car2 = car;
+		            LocationMap freeLocationMap1 = Parkeergarage.map.getFreePosition(car);
+		            Parkeergarage.map.setCarAt(freeLocationMap1, car);
+		            Parkeergarage.map.setCarAt(Parkeergarage.map.getNextPosition(), car2);
+		            Parkeergarage.viewCarPark.setDubbeleParkeerderAt(freeLocation, car2);
+				}
+				*/
+				//else {
 	            LocationMap freeLocationMap = Parkeergarage.map.getFreePosition(car);
 	            Parkeergarage.map.setCarAt(freeLocationMap, car);
-	            
+				//}
+
 	            // Statement om de bijgehoude nummers te veranderen
 	            if (car.getType().equals(Type.ADHOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
 	            if (car.getType().equals(Type.ABONNEMENT)) 		{aantalCarAbonnement++; aantalLegeVakken--;}
@@ -203,7 +217,6 @@ public class Model extends AbstractModel implements Runnable {
 	            if (car.getType().equals(Type.MOTOR)) 			{aantalCarMotor++; aantalLegeVakken--;}
 	            i++;
 	        }
-	    	
 	    }
 	    
 	    private void carsReadyToLeave(){
@@ -308,6 +321,13 @@ public class Model extends AbstractModel implements Runnable {
 	    private void carLeavesSpot(Car car){
 	    	Parkeergarage.viewCarPark.removeCarAt(car.getLocation());
 	        exitCarQueue.addCar(car);
+	        
+	        /*
+			if (n == 5 && car.getType() == Type.DUBBELE_PARKEERDER) {
+	            Parkeergarage.map.removeCarAt(car.getLocationmap());
+	            Parkeergarage.map.removeCarAt(Parkeergarage.map.getNextPosition());
+			}
+			*/
 	        
 	        if (car.getLocationmap() != null) {
 	        	Parkeergarage.map.removeCarAt(car.getLocationmap());
