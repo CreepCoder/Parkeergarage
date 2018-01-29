@@ -28,7 +28,7 @@ public class ViewMoney extends AbstractView {
 	private int exitCarQueueLength;
 //	private int totalCarQueue;
 	
-	private JLabel titel						= new JLabel("Overzicht van alle inkomens en CarQueues", SwingConstants.CENTER);
+	private JLabel titel						= new JLabel("Overzicht van alle inkomens in euro's", SwingConstants.CENTER);
 
 	private JLabel titelInkomenCarAdHoc 		= new JLabel();
 	private JLabel titelInkomenCarParkingPass 	= new JLabel();
@@ -44,17 +44,20 @@ public class ViewMoney extends AbstractView {
 	private JLabel totaalInkomenCarMotor  		= new JLabel();
 	private JLabel totaalInkomenAllCars  		= new JLabel();
 	
-	
+	private JLabel titelCarQueues				= new JLabel("Overzicht van aantal auto's in de rij", SwingConstants.CENTER);
+
 	private JLabel titelEntranceCarQueue 		= new JLabel();
 	private JLabel titelEntrancePassQueue 		= new JLabel();
 	private JLabel titelPaymentCarQueue 		= new JLabel();
 	private JLabel titelExitCarQueue 			= new JLabel();
 	
-	private JLabel aantalEntranceCarQueue			= new JLabel(""+entranceCarQueueLength);
-	private JLabel aantalEntrancePassQueue			= new JLabel(""+entrancePassQueueLength);
-	private JLabel aantalPaymentCarQueue			= new JLabel(""+paymentCarQueueLength);
+	private JLabel aantalEntranceCarQueue		= new JLabel(""+entranceCarQueueLength);
+	private JLabel aantalEntrancePassQueue		= new JLabel(""+entrancePassQueueLength);
+	private JLabel aantalPaymentCarQueue		= new JLabel(""+paymentCarQueueLength);
 	private JLabel aantalExitCarQueue			= new JLabel(""+exitCarQueueLength);
 //	private JLabel aantalTotalCarQueue			= new JLabel(""+totalCarQueue);
+	
+	private JLabel titelLegend					= new JLabel("Legenda van de parkeerauto kleuren", SwingConstants.CENTER);
 	
 	public ViewMoney(Model model) {
 		super(model);
@@ -71,32 +74,36 @@ public class ViewMoney extends AbstractView {
 		this.paymentCarQueueLength = 0;
 		this.exitCarQueueLength = 0;
 		
-		Methods.voegLabelToe(titel, 10, 5, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titel, 0, 5, 355, 20, true, this, SwingConstants.CENTER);
 		// Voeg inkomen toe
 		Methods.voegLabelToe(titelInkomenCarAdHoc, 10, 35, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelInkomenCarParkingPass, 10, titelInkomenCarAdHoc.getY()+30, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelInkomenCarElektrisch, 10, titelInkomenCarParkingPass.getY()+30, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelInkomenCarInvalide, 10, titelInkomenCarElektrisch.getY()+30, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelInkomenCarMotor, 10, titelInkomenCarInvalide.getY()+30, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelInkomenAllCars, 10, titelInkomenCarMotor.getY()+30, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelInkomenCarParkingPass, 10, titelInkomenCarAdHoc.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelInkomenCarElektrisch, 10, titelInkomenCarParkingPass.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelInkomenCarInvalide, 10, titelInkomenCarElektrisch.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelInkomenCarMotor, 10, titelInkomenCarInvalide.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelInkomenAllCars, 10, titelInkomenCarMotor.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
 		
 		Methods.voegLabelToe(totaalInkomenCarAdHoc, 16, 35, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarParkingPass, 16, totaalInkomenCarAdHoc.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarElektrisch, 16, totaalInkomenCarParkingPass.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarInvalide, 16, totaalInkomenCarElektrisch.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenCarMotor, 16, totaalInkomenCarInvalide.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(totaalInkomenAllCars, 16, totaalInkomenCarMotor.getY()+30, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarParkingPass, 16, totaalInkomenCarAdHoc.getY()+20, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarElektrisch, 16, totaalInkomenCarParkingPass.getY()+20, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarInvalide, 16, totaalInkomenCarElektrisch.getY()+20, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenCarMotor, 16, totaalInkomenCarInvalide.getY()+20, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(totaalInkomenAllCars, 16, totaalInkomenCarMotor.getY()+20, 250, 20, true, this, SwingConstants.RIGHT);
 		
+		Methods.voegLabelToe(titelCarQueues, 0, titelInkomenAllCars.getY()+40, 355, 20, true, this, SwingConstants.CENTER);
 		// Voeg queues toe
-		Methods.voegLabelToe(titelEntranceCarQueue, 10, 220, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelEntrancePassQueue, 10, 250, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelPaymentCarQueue, 10, 280, 250, 20, true, this, SwingConstants.LEFT);
-		Methods.voegLabelToe(titelExitCarQueue, 10, 310, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelEntranceCarQueue, 10, titelCarQueues.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelEntrancePassQueue, 10, titelEntranceCarQueue.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelPaymentCarQueue, 10, titelEntrancePassQueue.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(titelExitCarQueue, 10, titelPaymentCarQueue.getY()+20, 250, 20, true, this, SwingConstants.LEFT);
 		
-		Methods.voegLabelToe(aantalEntranceCarQueue, 10, 220, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(aantalEntrancePassQueue, 10, 250, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(aantalPaymentCarQueue, 10, 280, 250, 20, true, this, SwingConstants.RIGHT);
-		Methods.voegLabelToe(aantalExitCarQueue, 10, 310, 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(aantalEntranceCarQueue, 10, titelEntranceCarQueue.getY(), 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(aantalEntrancePassQueue, 10, titelEntrancePassQueue.getY(), 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(aantalPaymentCarQueue, 10, titelPaymentCarQueue.getY(), 250, 20, true, this, SwingConstants.RIGHT);
+		Methods.voegLabelToe(aantalExitCarQueue, 10, titelExitCarQueue.getY(), 250, 20, true, this, SwingConstants.RIGHT);
+		
+		// Voeg legenda toe
+		Methods.voegLabelToe(titelLegend, 0, titelExitCarQueue.getY()+40, 355, 20, true, this, SwingConstants.CENTER);
 		
 	}
 	
@@ -105,10 +112,12 @@ public class ViewMoney extends AbstractView {
 		// Teken achtergrond
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
 		// Teken belijning
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 0+this.getWidth()-1, 0+this.getHeight()-1);
+		g.drawLine(10, titelInkomenAllCars.getY(), 266, titelInkomenAllCars.getY());
+		g.drawLine(0, titelInkomenAllCars.getY()+35, this.getWidth(), titelInkomenAllCars.getY()+35);
+		g.drawLine(0, titelExitCarQueue.getY()+35, this.getWidth(), titelExitCarQueue.getY()+35);
 		
 		updateMoneyNumbers();
 	}
@@ -123,7 +132,7 @@ public class ViewMoney extends AbstractView {
 		int inkomenAllCars = inkomenCarAdHoc + inkomenCarParkingPass + inkomenCarElektrisch + inkomenCarInvalide + inkomenCarMotor;
 		
 		titelInkomenCarAdHoc.setText("Inkomsten AdHoc");
-		titelInkomenCarParkingPass.setText("Inkomsten Abonees");
+		titelInkomenCarParkingPass.setText("Inkomsten Abonnees");
 		titelInkomenCarElektrisch.setText("Inkomsten Elektrisch");
 		titelInkomenCarInvalide.setText("Inkomsten Minder Valide");
 		titelInkomenCarMotor.setText("Inkomsten Motor");
@@ -137,10 +146,10 @@ public class ViewMoney extends AbstractView {
 		totaalInkomenAllCars.setText("€ "+ inkomenAllCars+",-");
 		
 		
-		titelEntranceCarQueue.setText("Rij voor de Standaard Ingang: ");
-		titelEntrancePassQueue.setText("Rij voor de Ingang voor Abonnees: ");
-		titelPaymentCarQueue.setText("Rij voor de Betaalautomaat: ");
-		titelExitCarQueue.setText("Rij voor de Uitgang: ");
+		titelEntranceCarQueue.setText("Standaard Ingang");
+		titelEntrancePassQueue.setText("Ingang voor Abonnees");
+		titelPaymentCarQueue.setText("Betaalautomaat");
+		titelExitCarQueue.setText("Uitgang");
 		
 		entranceCarQueueLength = Model.entranceCarQueue.carsInQueue();
 		entrancePassQueueLength = Model.entrancePassQueue.carsInQueue();
