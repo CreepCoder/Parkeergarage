@@ -22,7 +22,8 @@ public class ViewCarPark extends AbstractView{
 	public static int height;
 	public static Type type;
 	private int spaceX = 0;
-	
+
+	// Hier worden visueel de plaatsen aangemaakt van de ingang op en afrit van de verdiepingen.
 	private JLabel ingang1 	= new JLabel("Ingang");
 	private JLabel ingang2 	= new JLabel("<html>Ingang<br>Abonnement</html>");
 	private JLabel bg		= new JLabel("<html><center>Naar<br>0</center></html>");
@@ -35,7 +36,7 @@ public class ViewCarPark extends AbstractView{
 
 	/* Hier wordt een grid aangemaakt voor de nieuwe opzet voor de parkeergarage.
 	 * Alle verschillende vakjes worden hier aangegeven met een id.
-	 * Uiteindelijk is het de bedoeling dat alleen de auto's waarvoor het vakje bedoeld is hier parkeren.
+	 * De verschillende auto's kunnen alleen parkeren in de voor hen bestemde vakken.
 	 */
     
     LocationMap[][] tiles = new LocationMap[18][30];
@@ -89,6 +90,11 @@ public class ViewCarPark extends AbstractView{
 	}
 	
 	boolean added = false;
+	
+	/**
+	 * Methode voor het tekenen van de juiste weergave van de parkeergarage.
+	 * @param Graphicsg = voegt alles samen.
+	 */
 	public void paintComponent(Graphics g) {
 		// Teken achtergrond
 		g.setColor(Color.WHITE);
@@ -234,6 +240,10 @@ public class ViewCarPark extends AbstractView{
     		}    
     	}
 
+    /**
+     * Verwijdert een auto van de map als deze weggaat.
+     * @param LocationMap location = locatie van de auto.
+     */
     public void removeCarAt(LocationMap location) {
     	Car car = location.getCar();
     	location.setCar(null);
@@ -241,6 +251,11 @@ public class ViewCarPark extends AbstractView{
     		car.setLocation(null);
     	}
     }
+  
+    /**
+     * Kijkt of er een parkeerplek vrij is.
+     * @param Car car = Hier wordt de juiste auto soort ingevoerd.
+     */
     
     public LocationMap getFreePosition(Car car) {
 		for (int i=0; i<18; i++) {
