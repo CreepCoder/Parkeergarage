@@ -2,7 +2,10 @@ package com.main;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import com.lib.CoreVariables;
@@ -47,6 +50,9 @@ public class Parkeergarage {
 	private Controller controller;
 	public static ViewCarPark map;
 	
+	//private Image img = new ImageIcon("icons/icon.png");
+	
+	
 	public Parkeergarage() {
 		// Maak alle objecten aan
 		model = new Model();
@@ -60,6 +66,12 @@ public class Parkeergarage {
 		viewMoney = new ViewMoney(model);
 		map = new ViewCarPark(model);
 		
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(getClass().getResourceAsStream("/icons/icon.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		// Informatie over het scherm
 		scherm = new JFrame(CoreVariables.SIMULATOR_NAAM);
@@ -69,6 +81,7 @@ public class Parkeergarage {
 		scherm.setLayout(null);	
 		scherm.setBackground(Color.white);
 		scherm.getContentPane().setBackground(Color.white);
+		scherm.setIconImage(image);
 		new Menubar(scherm);
 		
 		// Voeg alle elementen toe
