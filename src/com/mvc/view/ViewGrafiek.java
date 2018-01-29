@@ -85,4 +85,8 @@ public class ViewGrafiek extends AbstractView {
 		carAdHocY.add(y);
 	}
 	
+	public static void clearGraph() {
+		carAdHocY.removeAll(carAdHocY);
+	}
+	
 }

@@ -35,10 +35,6 @@ public class ViewHistogram extends AbstractView {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
-		// Teken belijning
-		g.setColor(Color.black);
-		g.drawRect(0, 0, 0+this.getWidth()-1, 0+this.getHeight()-1);
-		
 		g.setColor(Color.lightGray);
 		g.drawLine(0, 46, 399, 46);
 		g.drawLine(0, 92, 399, 92);
@@ -74,6 +70,10 @@ public class ViewHistogram extends AbstractView {
 		label4.setText(""+ model.aantalCarElektrisch);
 		label5.setText(""+ model.aantalCarMotor);
 		labels();
+		
+		// Teken belijning
+		g.setColor(Color.black);
+		g.drawRect(0, 0, 0+this.getWidth()-1, 0+this.getHeight()-1);
 	}
 	
 	private void createBar(Graphics g, Color color, int x, int y, int width, int height) {
