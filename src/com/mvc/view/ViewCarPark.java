@@ -83,8 +83,8 @@ public class ViewCarPark extends AbstractView{
 		
 		Methods.voegLabelToe(bg, 492, 80, 50, 40, true, this, SwingConstants.CENTER);
 		Methods.voegLabelToe(eerstea, 255, 80, 50, 40, true, this, SwingConstants.CENTER);
-		Methods.voegLabelToe(eersteb, 492, 255, 50, 40, true, this, SwingConstants.CENTER);
-		Methods.voegLabelToe(tweede, 732, 255, 50, 40, true, this, SwingConstants.CENTER);
+		Methods.voegLabelToe(eersteb, 732, 255, 50, 40, true, this, SwingConstants.CENTER);
+		Methods.voegLabelToe(tweede, 492, 255, 50, 40, true, this, SwingConstants.CENTER);
 		
 		repaint();
 	}
