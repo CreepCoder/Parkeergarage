@@ -19,6 +19,7 @@ public class ViewGrafiek extends AbstractView {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	// X-As waarden van de grafiek
 	private JLabel labelX0 = new JLabel("0");
 	private JLabel labelX1 = new JLabel("3");
 	private JLabel labelX2 = new JLabel("6");
@@ -28,8 +29,16 @@ public class ViewGrafiek extends AbstractView {
 	private JLabel labelX6 = new JLabel("18");
 	private JLabel labelX7 = new JLabel("21");
 	private JLabel labelX8 = new JLabel("24");
+	
+	// Y-As waarden van de grafiek
+	private JLabel labelY0 = new JLabel("90");
+	private JLabel labelY1 = new JLabel("181");
+	private JLabel labelY2 = new JLabel("275");
+	
+	// Pijl van de X-As
 	private JLabel labelX9 = new JLabel(">  Dag in uren ");
 
+	// ArrayList die waarden opslaat die later getekend kunnen worden
 	private static ArrayList<Integer> carAdHocY = new ArrayList<Integer>();
 	private static ArrayList<Integer> carParkingPassY = new ArrayList<Integer>();
 	private static ArrayList<Integer> carElektrischY = new ArrayList<Integer>();
@@ -41,6 +50,7 @@ public class ViewGrafiek extends AbstractView {
 		this.setSize(400, 230);
 		this.setLayout(null);
 		
+		// Waardes op de X-As
 		Methods.voegLabelToe(labelX0, 0, 205, 15, 10, true, this, SwingConstants.LEFT);
 		Methods.voegLabelToe(labelX1, 47, 205, 15, 10, true, this, SwingConstants.LEFT);
 		Methods.voegLabelToe(labelX2, 97, 205, 15, 10, true, this, SwingConstants.LEFT);
@@ -51,6 +61,12 @@ public class ViewGrafiek extends AbstractView {
 		Methods.voegLabelToe(labelX7, 347, 205, 15, 10, true, this, SwingConstants.LEFT);
 		Methods.voegLabelToe(labelX8, 387, 205, 15, 10, true, this, SwingConstants.LEFT);
 		Methods.voegLabelToe(labelX9, 303, 216, 100, 15, true, this, SwingConstants.LEFT);
+		
+		// Waardes op de Y-As
+		Methods.voegLabelToe(labelY0, 0, 140, 30, 10, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(labelY1, 0, 90, 30, 10, true, this, SwingConstants.LEFT);
+		Methods.voegLabelToe(labelY2, 0, 40, 30, 10, true, this, SwingConstants.LEFT);
+		
 	}
 
 	public void paintComponent(Graphics g) {
