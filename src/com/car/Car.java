@@ -7,7 +7,7 @@ import com.location.LocationMap;
 import com.mechanic.Type;
 
 /**
- * @author Groep C: Sander, Marc, Lorenzo, Iris, Daniëlle
+ * @author Groep C: Sander, Marc, Lorenzo, Iris, Danielle
  * @version 1.5
  */
 public class Car {

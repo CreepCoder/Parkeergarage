@@ -32,7 +32,7 @@ public class CarAbonnement extends Car {
     }
     
     /**
-     * @return ColorList.CAR_PARKING_PASS = De gekoppelde kleur aan CAR_PARKING_PASS wordt teruggegeven.
+     * @return ColorList.CAR_PARKING_PASS = De gekoppelde kleur wordt teruggegeven.
      */
     public Color getColor(){
     	return ColorList.CAR_PARKING_PASS;

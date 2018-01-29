@@ -12,7 +12,7 @@ public class CarAdHoc extends Car {
     /**
      * Constructor voor de klasse CarAbonnement die verlengd is vanuit de klasse Car.
      * @param Type type = Het type auto wordt hier ingevoerd. type wordt uit de superklasse gehaald.
-     * @param Type.ADHOC = Zet het type vast voor de Abonnement autos.
+     * @param Type.ADHOC = Zet het type vast voor de adhoc autos.
      * @param stayminutes = Het vastzetten van het aantal resterende minuten.
      * @param true = Dit type auto moet wel betalen bij de betaalautomaat.
      */
