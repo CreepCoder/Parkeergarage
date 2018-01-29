@@ -65,6 +65,13 @@ public class Model extends AbstractModel implements Runnable {
 	public int aantalBetaaldCarElektrisch;
 	public int aantalBetaaldCarInvalide;
 	public int aantalBetaaldCarMotor;
+	
+	public int aantalNotEnteredCarAdHoc;
+    public int aantalNotEnteredCarAbonnement;
+    public int aantalNotEnteredCarElektrisch;
+    public int aantalNotEnteredCarInvalide;
+    public int aantalNotEnteredCarMotor;
+
 
 	public Model() {
 			entranceCarQueue = new QueueCar();
@@ -279,28 +286,48 @@ public class Model extends AbstractModel implements Runnable {
 	        // Add the cars to the back of the queue.
 	    	switch(type) {
 	    	case AD_HOC: 
+		        while (entranceCarQueue.carsInQueue() + numberOfCars > 10) {
+		        	aantalNotEnteredCarAdHoc += 1;
+		        	numberOfCars -= 1;
+		        }
 	            for (int i = 0; i < numberOfCars; i++) {
 	            	entranceCarQueue.addCar(new CarAdHoc(Type.ADHOC));
 	            }
 	            break;
 	    	case PASS:
+		        while (entrancePassQueue.carsInQueue() + numberOfCars > 10) {
+		            aantalNotEnteredCarAbonnement += 1;
+		        	numberOfCars -= 1;
+		        }
 	            for (int i = 0; i < numberOfCars; i++) {
 	            	entrancePassQueue.addCar(new CarAbonnement(Type.ABONNEMENT));
 	            }
 	            break;	   
 	    	case ELEKTRISCH:
+		        while (entranceCarQueue.carsInQueue() + numberOfCars > 10) {
+		            aantalNotEnteredCarElektrisch += 1;
+		        	numberOfCars -= 1;
+		        }
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarElektrische(Type.ELEKTRISCH));
+	            	entranceCarQueue.addCar(new CarElektrische(Type.ELEKTRISCH));
 	            }
 	            break;	
 	    	case INVALIDE:
+		        while (entranceCarQueue.carsInQueue() + numberOfCars > 10) {
+		            aantalNotEnteredCarInvalide += 1;
+		        	numberOfCars -= 1;
+		        }
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarInvalide(Type.INVALIDE));
+	            	entranceCarQueue.addCar(new CarInvalide(Type.INVALIDE));
 	            }
 	            break;	
 	    	case MOTOR:
+		        while (entranceCarQueue.carsInQueue() + numberOfCars > 10) {
+		            aantalNotEnteredCarMotor += 1;
+		        	numberOfCars -= 1;
+		        }
 	            for (int i = 0; i < numberOfCars; i++) {
-	            	entrancePassQueue.addCar(new CarMotor(Type.MOTOR));
+	            	entranceCarQueue.addCar(new CarMotor(Type.MOTOR));
 	            }
 	            break;	
 	    	}
