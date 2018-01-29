@@ -31,7 +31,7 @@ public class MenuActionListener implements ActionListener {
 		
 		// OVER
 		if (e.getActionCommand().equals("Over")) {
-			JOptionPane.showMessageDialog(null, "<html><center>Parkeergarage Simulator<br>Gemaakt door: Daniëlle, Iris, Lorenzo, Marc en Sander<br>(C) 2017 Het KipComité (Groep C)</center></html>");
+			JOptionPane.showMessageDialog(null, "<html><center>Parkeergarage Simulator<br>Gemaakt door: Daniëlle, Iris, Lorenzo, Marc en Sander<br>(C) 2018 Het KipComité (Groep C)</center></html>");
 		}
 		
 		// VIEW PIE
