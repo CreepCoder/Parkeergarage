@@ -120,7 +120,8 @@ public class Model extends AbstractModel implements Runnable {
 			Thread.sleep(CoreVariables.simulatorSpeed);
 		} catch (Exception e) {}
 		handleEntrance();
-		ViewGrafiek.updateGraph(Parkeergarage.model.aantalCarAdHoc);
+		ViewGrafiek.updateGraph();
+		ViewGrafiek.clearGraph();
 	}
 
 	    private void advanceTime(){

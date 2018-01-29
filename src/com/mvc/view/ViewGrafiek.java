@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import com.lib.Methods;
+import com.main.Parkeergarage;
 import com.mechanic.Type;
 import com.mvc.model.Model;
 
@@ -30,6 +31,10 @@ public class ViewGrafiek extends AbstractView {
 	private JLabel labelX9 = new JLabel(">  Dag in uren ");
 
 	private static ArrayList<Integer> carAdHocY = new ArrayList<Integer>();
+	private static ArrayList<Integer> carParkingPassY = new ArrayList<Integer>();
+	private static ArrayList<Integer> carElektrischY = new ArrayList<Integer>();
+	private static ArrayList<Integer> carInvalideY = new ArrayList<Integer>();
+	private static ArrayList<Integer> carMotorY = new ArrayList<Integer>();
 	
 	public ViewGrafiek(Model model) {
 		super(model);
@@ -79,14 +84,50 @@ public class ViewGrafiek extends AbstractView {
 			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
 			x++;
 		}
+		
+		for(int coordy : carParkingPassY) {
+			g.setColor(Type.ABONNEMENT.getColor());
+			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
+			x++;
+		}
+		
+		for(int coordy : carElektrischY) {
+			g.setColor(Type.ELEKTRISCH.getColor());
+			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
+			x++;
+		}
+		
+		for(int coordy : carMotorY) {
+			g.setColor(Type.MOTOR.getColor());
+			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
+			x++;
+		}
+		
+		for(int coordy : carInvalideY) {
+			g.setColor(Type.INVALIDE.getColor());
+			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
+			x++;
+		}
+		
 	}
 	
-	public static void updateGraph(int y) {
-		carAdHocY.add(y);
+	public static void updateGraph() {
+		carAdHocY.add(Parkeergarage.model.aantalCarAdHoc);
+		carParkingPassY.add(Parkeergarage.model.aantalCarAbonnement);
+		carElektrischY.add(Parkeergarage.model.aantalCarElektrisch);
+		carInvalideY.add(Parkeergarage.model.aantalCarInvalide);
+		carMotorY.add(Parkeergarage.model.aantalCarMotor);
 	}
 	
 	public static void clearGraph() {
-		carAdHocY.removeAll(carAdHocY);
+		if (Model.uur == 0 && Model.minuut == 0)
+		carAdHocY.clear();
+		carParkingPassY.clear();
+		carElektrischY.clear();
+		carInvalideY.clear();
+		carMotorY.clear();
+	
 	}
 	
+	 
 }
