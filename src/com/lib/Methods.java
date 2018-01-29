@@ -4,6 +4,10 @@ import java.awt.Container;
 
 import javax.swing.JLabel;
 
+import com.main.Parkeergarage;
+import com.mvc.view.ViewGrafiek;
+import com.mvc.view.ViewKlok;
+
 /*
  * Deze klasse bevat een aantal methodes die steeds weer terugkomen in het programma
  */
@@ -15,5 +19,11 @@ public class Methods {
 		label.setVisible(true);
 		label.setHorizontalAlignment(alignment);
 		container.add(label);
+	}
+	
+	public static void update() {
+		ViewKlok.updateTime();
+		ViewGrafiek.updateGraph();
+		Parkeergarage.viewCarPark.updateView();	
 	}
 }

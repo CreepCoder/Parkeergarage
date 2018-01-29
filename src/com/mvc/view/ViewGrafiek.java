@@ -81,30 +81,39 @@ public class ViewGrafiek extends AbstractView {
 		int x = 0;
 		for(int coordy : carAdHocY) {
 			g.setColor(Type.ADHOC.getColor());
+			coordy = (int) (coordy * 0.55);
 			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
 			x++;
 		}
 		
+		x = 0;
 		for(int coordy : carParkingPassY) {
 			g.setColor(Type.ABONNEMENT.getColor());
+			coordy = (int) (coordy * 0.55);
 			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
 			x++;
 		}
 		
+		x = 0;
 		for(int coordy : carElektrischY) {
 			g.setColor(Type.ELEKTRISCH.getColor());
+			coordy = (int) (coordy * 0.55);
 			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
 			x++;
 		}
 		
+		x = 0;
 		for(int coordy : carMotorY) {
 			g.setColor(Type.MOTOR.getColor());
+			coordy = (int) (coordy * 0.55);
 			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
 			x++;
 		}
 		
+		x = 0;
 		for(int coordy : carInvalideY) {
 			g.setColor(Type.INVALIDE.getColor());
+			coordy = (int) (coordy * 0.55);
 			g.drawLine((int) (x*0.27), 199-coordy, (int) ((x*0.27)+0.1), (int) ((199-coordy)-1));
 			x++;
 		}
@@ -120,12 +129,13 @@ public class ViewGrafiek extends AbstractView {
 	}
 	
 	public static void clearGraph() {
-		if (Model.uur == 0 && Model.minuut == 0)
+		if (Model.uur == 0 && Model.minuut == 0) {
 		carAdHocY.clear();
 		carParkingPassY.clear();
 		carElektrischY.clear();
 		carInvalideY.clear();
 		carMotorY.clear();
+		}
 	
 	}
 	

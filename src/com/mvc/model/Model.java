@@ -51,7 +51,7 @@ public class Model extends AbstractModel implements Runnable {
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 4; // number of cars that can pay per minute
-    int exitSpeed = 3; // number of cars that can leave per minute
+    int exitSpeed = 6; // number of cars that can leave per minute
     
     public int aantalLegeVakken = 540;
     public int aantalCarAdHoc;
@@ -194,21 +194,8 @@ public class Model extends AbstractModel implements Runnable {
 	            Car car = queue.removeCar();
 	            Location freeLocation = Parkeergarage.viewCarPark.getFirstFreeLocation();
 	            Parkeergarage.viewCarPark.setCarAt(freeLocation, car);
-	            
-	            /*
-				if (n == 5) {
-					car.setType(Type.DUBBELE_PARKEERDER);
-					Car car2 = car;
-		            LocationMap freeLocationMap1 = Parkeergarage.map.getFreePosition(car);
-		            Parkeergarage.map.setCarAt(freeLocationMap1, car);
-		            Parkeergarage.map.setCarAt(Parkeergarage.map.getNextPosition(), car2);
-		            Parkeergarage.viewCarPark.setDubbeleParkeerderAt(freeLocation, car2);
-				}
-				*/
-				//else {
 	            LocationMap freeLocationMap = Parkeergarage.map.getFreePosition(car);
 	            Parkeergarage.map.setCarAt(freeLocationMap, car);
-				//}
 
 	            // Statement om de bijgehoude nummers te veranderen
 	            if (car.getType().equals(Type.ADHOC)) 			{aantalCarAdHoc++; aantalLegeVakken--;}
@@ -417,7 +404,7 @@ public class Model extends AbstractModel implements Runnable {
 	    	}
 	    	
 	    	else if (dag == 6 && uur == 10 && minuut == 0) {
-	    		weekendArrivals = 250; 
+	    		weekendArrivals = 200; 
 	    		weekendElektrischArrivals = 25;
 	    		weekendInvalideArrivals = 25;
 	    		weekendMotorArrivals = 25;

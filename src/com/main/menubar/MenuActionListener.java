@@ -34,7 +34,7 @@ public class MenuActionListener implements ActionListener {
 			JOptionPane.showMessageDialog(null, "<html><center>Parkeergarage Simulator<br>Gemaakt door: Daniëlle, Iris, Lorenzo, Marc en Sander<br>(C) 2017 Het KipComité (Groep C)</center></html>");
 		}
 		
-		// VIEW PIE CHART
+		// VIEW PIE
 		if (e.getActionCommand().equals("Taart Weergave")) {
 			if (viewpieAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
@@ -61,7 +61,7 @@ public class MenuActionListener implements ActionListener {
 		}
 		
 
-		// VIEW GRAPH
+		// VIEW GRAFIEK
 		if (e.getActionCommand().equals("Grafiek Weergave")) {
 			if (viewgraphAdded == false) {
 				if (LocationView.links.isOccupied() == false || LocationView.rechts.isOccupied() == false) {
@@ -113,7 +113,7 @@ public class MenuActionListener implements ActionListener {
 			}
 		}
 		
-		// VIEW CLOCK
+		// VIEW KLOK
 		if (e.getActionCommand().equals("Klok")) {
 			if (Parkeergarage.viewKlok.isShowing()) {
 				Parkeergarage.viewKlok.setVisible(false);
@@ -123,7 +123,7 @@ public class MenuActionListener implements ActionListener {
 			}
 		}
 		
-		// VIEW SLIDER
+		// VIEW SNELHEID
 		if (e.getActionCommand().equals("Snelheid Slider")) {
 			if (Parkeergarage.viewSnelheid.isShowing()) {
 				Parkeergarage.viewSnelheid.setVisible(false);
